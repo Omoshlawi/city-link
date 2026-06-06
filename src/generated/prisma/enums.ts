@@ -9,7 +9,8 @@
 * 🟢 You can import this file directly.
 */
 
+export const TemplateEngine = {
+  HANDLEBARS: 'HANDLEBARS'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type TemplateEngine = (typeof TemplateEngine)[keyof typeof TemplateEngine]

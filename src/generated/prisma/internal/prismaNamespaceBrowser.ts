@@ -62,7 +62,11 @@ export const ModelName = {
   Member: 'Member',
   Invitation: 'Invitation',
   Jwks: 'Jwks',
-  TwoFactor: 'TwoFactor'
+  TwoFactor: 'TwoFactor',
+  Template: 'Template',
+  TemplateVersion: 'TemplateVersion',
+  OrgTemplateOverride: 'OrgTemplateOverride',
+  OrgTemplateOverrideVersion: 'OrgTemplateOverrideVersion'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -245,12 +249,90 @@ export const TwoFactorScalarFieldEnum = {
 export type TwoFactorScalarFieldEnum = (typeof TwoFactorScalarFieldEnum)[keyof typeof TwoFactorScalarFieldEnum]
 
 
+export const TemplateScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  type: 'type',
+  name: 'name',
+  description: 'description',
+  engine: 'engine',
+  slots: 'slots',
+  schema: 'schema',
+  metadata: 'metadata',
+  version: 'version',
+  voided: 'voided',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TemplateScalarFieldEnum = (typeof TemplateScalarFieldEnum)[keyof typeof TemplateScalarFieldEnum]
+
+
+export const TemplateVersionScalarFieldEnum = {
+  id: 'id',
+  templateId: 'templateId',
+  version: 'version',
+  slots: 'slots',
+  schema: 'schema',
+  metadata: 'metadata',
+  changedById: 'changedById',
+  changeNote: 'changeNote',
+  createdAt: 'createdAt'
+} as const
+
+export type TemplateVersionScalarFieldEnum = (typeof TemplateVersionScalarFieldEnum)[keyof typeof TemplateVersionScalarFieldEnum]
+
+
+export const OrgTemplateOverrideScalarFieldEnum = {
+  id: 'id',
+  templateKey: 'templateKey',
+  organizationId: 'organizationId',
+  slots: 'slots',
+  metadata: 'metadata',
+  version: 'version',
+  voided: 'voided',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrgTemplateOverrideScalarFieldEnum = (typeof OrgTemplateOverrideScalarFieldEnum)[keyof typeof OrgTemplateOverrideScalarFieldEnum]
+
+
+export const OrgTemplateOverrideVersionScalarFieldEnum = {
+  id: 'id',
+  overrideId: 'overrideId',
+  version: 'version',
+  slots: 'slots',
+  metadata: 'metadata',
+  changedById: 'changedById',
+  changeNote: 'changeNote',
+  createdAt: 'createdAt'
+} as const
+
+export type OrgTemplateOverrideVersionScalarFieldEnum = (typeof OrgTemplateOverrideVersionScalarFieldEnum)[keyof typeof OrgTemplateOverrideVersionScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -267,4 +349,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

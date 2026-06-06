@@ -99,3 +99,23 @@ export type Jwks = Prisma.JwksModel
  * 
  */
 export type TwoFactor = Prisma.TwoFactorModel
+/**
+ * Model Template
+ * 
+ */
+export type Template = Prisma.TemplateModel
+/**
+ * Model TemplateVersion
+ * 
+ */
+export type TemplateVersion = Prisma.TemplateVersionModel
+/**
+ * Model OrgTemplateOverride
+ * 
+ */
+export type OrgTemplateOverride = Prisma.OrgTemplateOverrideModel
+/**
+ * Model OrgTemplateOverrideVersion
+ * 
+ */
+export type OrgTemplateOverrideVersion = Prisma.OrgTemplateOverrideVersionModel
