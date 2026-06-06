@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
+import { AuthService } from '@thallesp/nestjs-better-auth';
 import { AppModule } from './app.module';
 import { AppConfig } from './app.config';
 import { Logger } from '@nestjs/common';
+import { mergeBetterAuthSchema } from './auth/auth.utils';
+import { BetterAuthWithPlugins } from './auth/auth.types';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
@@ -22,7 +26,14 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
 
-  const document = SwaggerModule.createDocument(app, config);
+  const appDocument = SwaggerModule.createDocument(app, config);
+
+  const authService = app.get(AuthService<BetterAuthWithPlugins>);
+  const authSpec = await authService.api.generateOpenAPISchema({
+    path: '/api/auth',
+  });
+
+  const document = mergeBetterAuthSchema(appDocument, authSpec);
 
   app.use(
     '/docs',

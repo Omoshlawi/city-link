@@ -33,7 +33,7 @@ export class AuthModule {
       providers: this.globalProviders,
       global: true,
       imports: [authModule],
-      exports: [authModule, ...this.globalProviders],
+      exports: [authModule],
     };
   }
 
