@@ -2,6 +2,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import 'dotenv/config';
 import { PrismaClient } from 'src/generated/prisma/client';
 import seedAdminUser from './scripts/seed-admin';
+import seedTemplates from './scripts/seed-templates';
 
 const connectionString = `${process.env.DATABASE_URL}`;
 const adapter = new PrismaPg({ connectionString });
@@ -12,7 +13,10 @@ type Seeder = {
   fn: (prisma: PrismaClient) => Promise<void>;
 };
 
-const seeders: Seeder[] = [{ name: 'Admin User', fn: seedAdminUser }];
+const seeders: Seeder[] = [
+  { name: 'Admin User', fn: seedAdminUser },
+  { name: 'Templates', fn: seedTemplates },
+];
 
 async function main() {
   console.log('🌱 Starting seed process...\n');
