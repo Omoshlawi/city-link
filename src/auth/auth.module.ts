@@ -1,12 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DynamicModule, Logger, Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthModule as AuthenticationModule } from '@thallesp/nestjs-better-auth';
 import { betterAuth } from 'better-auth';
-import { AppConfig } from '../app.config';
-import { PrismaService } from '../prisma/prisma.service';
-import { RequireActiveOrganizationGuard } from './auth.guards';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
-import { UserSession } from './auth.types';
 import {
   admin,
   anonymous,
@@ -17,8 +14,12 @@ import {
   twoFactor,
   username,
 } from 'better-auth/plugins';
-import { adminConfig } from './auth.system.acl';
+import { AppConfig } from '../app.config';
+import { PrismaService } from '../prisma/prisma.service';
 import { AuthConfig } from './auth.config';
+import { RequireActiveOrganizationGuard } from './auth.guards';
+import { adminConfig } from './auth.system.acl';
+import { UserSession } from './auth.types';
 
 @Module({})
 export class AuthModule {
@@ -177,6 +178,72 @@ export class AuthModule {
               },
             }),
           ],
+          advanced: { disableOriginCheck: true },
+          emailAndPassword: {
+            enabled: true,
+            sendResetPassword: async ({ user, token }, _) => {
+              const deepLink = `citylinkapp://auth/reset-password?token=${token}`;
+              const resetUrl = `${appConfig.frontEndUrl}/reset-password?token=${token}`;
+              this.logger.log(`Initiate reset password for user ${user.email}`);
+              this.logger.debug(
+                `Generated token ${token} for reset password. Deep link: ${deepLink}, Reset Url: ${resetUrl}`,
+              );
+              await Promise.resolve();
+              /*
+              await notificationDispatch.sendFromTemplate({
+                templateKey: 'auth.password.reset',
+                recipient: { email: user.email },
+                data: {
+                  user,
+                  deepLink,
+                  resetUrl,
+                  year: new Date().getFullYear(),
+                },
+                userId: user.id,
+                priority: NotificationPriority.HIGH,
+                force: true,
+                eventTitle: 'Password Reset Requested',
+                eventBody: `A password reset email has been sent to ${user.email}.`,
+                eventDescription: `Password reset requested for user ${user.email} (id: ${user.id}).`,
+              });
+              */
+            },
+            requireEmailVerification: true,
+          },
+          emailVerification: {
+            sendVerificationEmail: async ({ user, token }, _) => {
+              const deepLink = `citylinkapp://auth/verify-email?token=${token}`;
+              const verificationUrl = `${appConfig.frontEndUrl}/verify-email?token=${token}`;
+              this.logger.log(
+                `Initiate email verification for user ${user.email}`,
+              );
+              this.logger.debug(
+                `Generated token ${token} for email verification. Deeplink ${deepLink}, Verification link ${verificationUrl}`,
+              );
+              await Promise.resolve();
+              /*
+              await notificationDispatch.sendFromTemplate({
+                templateKey: 'auth.email.verification',
+                recipient: { email: user.email },
+                data: {
+                  user,
+                  deepLink,
+                  verificationUrl,
+                  year: new Date().getFullYear(),
+                },
+                userId: user.id,
+                priority: NotificationPriority.HIGH,
+                force: true,
+                eventTitle: 'Verify Your Email',
+                eventBody: `A verification email has been sent to ${user.email}. Please verify your email address to activate your account.`,
+                eventDescription: `Email verification triggered for new user ${user.email} (id: ${user.id}) on sign-up.`,
+              });
+              */
+            },
+            autoSignInAfterVerification: true,
+            sendOnSignUp: true,
+            sendOnSignIn: true,
+          },
         }),
       }),
       inject: [PrismaService, AppConfig, AuthConfig],
