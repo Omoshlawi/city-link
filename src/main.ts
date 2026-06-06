@@ -1,8 +1,36 @@
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { apiReference } from '@scalar/nestjs-api-reference';
 import { AppModule } from './app.module';
+import { AppConfig } from './app.config';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
+  const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+
+  app.setGlobalPrefix('api');
+  const appConfig = app.get(AppConfig);
+
+  const config = new DocumentBuilder()
+    .setTitle('City Link API')
+    .setDescription('City Link backend API')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+
+  app.use(
+    '/docs',
+    apiReference({
+      spec: { content: document },
+      pageTitle: 'City Link API Docs',
+    }),
+  );
+
+  await app.listen(appConfig.port);
+  logger.log(`Server is running on port ${appConfig.port}`);
+  logger.log(`Swagger is running on http://localhost:${appConfig.port}/docs`);
 }
-bootstrap();
+void bootstrap();
