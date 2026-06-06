@@ -7,7 +7,10 @@ import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    // The library will re-add the default body parsers for non-auth routes.
+    bodyParser: false,
+  });
 
   app.setGlobalPrefix('api');
   const appConfig = app.get(AppConfig);

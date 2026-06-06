@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigifyModule } from '@itgorillaz/configify';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ConfigifyModule.forRootAsync(), PrismaModule.forRoot()],
+  imports: [ConfigifyModule.forRootAsync(), PrismaModule.forRoot(), AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
