@@ -1,13 +1,13 @@
+import { organization } from 'better-auth/plugins';
 import { createAccessControl } from 'better-auth/plugins/access';
 import {
   defaultStatements as defaultOrganizationStatements,
   memberAc,
   adminAc as organizationAdminAc,
   ownerAc,
-  defaultRoles,
 } from 'better-auth/plugins/organization/access';
 
-export const organizationPluginAcl = createAccessControl({
+const organizationPluginAcl = createAccessControl({
   ...defaultOrganizationStatements,
 });
 
@@ -23,15 +23,17 @@ const organizationMemberRole = organizationPluginAcl.newRole({
   ...memberAc.statements,
 });
 
-export const organizationPluginRoles = {
+const organizationPluginRoles = {
   admin: organizationAdminRole,
   owner: organizationOwnerRole,
   member: organizationMemberRole,
 } as const;
 
-export const organizationConfig = {
+type OrganizationPluginProps = Parameters<typeof organization>[0];
+
+export const organizationConfig: OrganizationPluginProps = {
   ac: organizationPluginAcl,
-  roles: defaultRoles,
+  roles: organizationPluginRoles,
   teams: {
     enabled: true,
   },
