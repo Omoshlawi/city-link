@@ -1,0 +1,105 @@
+import { Injectable } from '@nestjs/common';
+import {
+  CustomRepresentationQueryDto,
+  CustomRepresentationService,
+  DeleteQueryDto,
+  PaginationService,
+  SortService,
+} from '../common/query-builder';
+import { AddressHierarchy, Prisma } from '../generated/prisma/client';
+import { PrismaService } from '../prisma/prisma.service';
+import { QueryAddressHierarchyDto } from './address-hierarchy.dto';
+
+@Injectable()
+export class AddressHierarchyService {
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly sortService: SortService,
+    private readonly paginationService: PaginationService,
+    private readonly representationService: CustomRepresentationService,
+  ) {}
+
+  async getAll(query: QueryAddressHierarchyDto, originalUrl: string) {
+    const dbQuery: Prisma.AddressHierarchyWhereInput = {
+      AND: [
+        {
+          voided: query?.includeVoided ? undefined : false,
+          country: query?.country,
+          level: query?.level,
+          code: query?.code,
+          name: query?.name,
+          nameLocal: query?.nameLocal,
+          parentId: query?.parentId,
+          parent: {
+            code: query?.parentCode,
+            country: query?.parentCountry,
+            level: query?.parentLevel,
+            name: query?.parentName,
+            nameLocal: query?.parentNameLocal,
+          },
+        },
+        {
+          OR: query.search
+            ? [
+                {
+                  name: {
+                    contains: query.search,
+                    mode: 'insensitive',
+                  },
+                },
+                {
+                  nameLocal: {
+                    contains: query.search,
+                    mode: 'insensitive',
+                  },
+                },
+              ]
+            : undefined,
+        },
+      ],
+    };
+    const totalCount = await this.prismaService.addressHierarchy.count({
+      where: dbQuery,
+    });
+    const data = await this.prismaService.addressHierarchy.findMany({
+      where: dbQuery,
+      ...this.paginationService.buildSafePaginationQuery(query, totalCount),
+      ...this.representationService.buildCustomRepresentationQuery(query?.v),
+      ...this.sortService.buildSortQuery(query?.orderBy),
+    });
+
+    return {
+      results: data,
+      ...this.paginationService.buildPaginationControls(
+        totalCount,
+        originalUrl,
+        query,
+      ),
+    };
+  }
+
+  async delete(id: string, query: DeleteQueryDto) {
+    let data: AddressHierarchy;
+    if (query?.purge) {
+      data = await this.prismaService.addressHierarchy.delete({
+        where: { id },
+        ...this.representationService.buildCustomRepresentationQuery(query?.v),
+      });
+    } else {
+      data = await this.prismaService.addressHierarchy.update({
+        where: { id },
+        data: { voided: true },
+        ...this.representationService.buildCustomRepresentationQuery(query?.v),
+      });
+    }
+    return data;
+  }
+
+  restore(id: string, query: CustomRepresentationQueryDto) {
+    return this.prismaService.addressHierarchy.update({
+      where: { id },
+      data: { voided: false },
+      ...this.representationService.buildCustomRepresentationQuery(query?.v),
+    });
+  }
+}

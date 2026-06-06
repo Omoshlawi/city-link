@@ -13,3 +13,22 @@ datasource db {
   provider = "postgresql"
 }
 
+model AddressHierarchy {
+  id       String             @id @default(uuid())
+  country  String // ISO country code
+  level    Int // 1, 2, 3, 4, 5
+  parentId String? // Reference to parent level
+  parent   AddressHierarchy?  @relation("Hierarchy", fields: [parentId], references: [id])
+  children AddressHierarchy[] @relation("Hierarchy")
+
+  code      String // Unique code (e.g., "KE-30" for Nairobi County)
+  name      String // Display name
+  nameLocal String? // Local language name
+
+  voided Boolean @default(false)
+
+  @@unique([country, code])
+  @@index([country, level])
+  @@index([parentId])
+  @@map("address_hierarchy")
+}

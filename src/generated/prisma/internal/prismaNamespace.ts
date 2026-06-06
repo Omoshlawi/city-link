@@ -399,7 +399,8 @@ export const ModelName = {
   Template: 'Template',
   TemplateVersion: 'TemplateVersion',
   OrgTemplateOverride: 'OrgTemplateOverride',
-  OrgTemplateOverrideVersion: 'OrgTemplateOverrideVersion'
+  OrgTemplateOverrideVersion: 'OrgTemplateOverrideVersion',
+  AddressHierarchy: 'AddressHierarchy'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "organization" | "organizationRole" | "team" | "teamMember" | "member" | "invitation" | "jwks" | "twoFactor" | "template" | "templateVersion" | "orgTemplateOverride" | "orgTemplateOverrideVersion"
+    modelProps: "user" | "session" | "account" | "verification" | "organization" | "organizationRole" | "team" | "teamMember" | "member" | "invitation" | "jwks" | "twoFactor" | "template" | "templateVersion" | "orgTemplateOverride" | "orgTemplateOverrideVersion" | "addressHierarchy"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1603,6 +1604,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AddressHierarchy: {
+      payload: Prisma.$AddressHierarchyPayload<ExtArgs>
+      fields: Prisma.AddressHierarchyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AddressHierarchyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AddressHierarchyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>
+        }
+        findFirst: {
+          args: Prisma.AddressHierarchyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AddressHierarchyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>
+        }
+        findMany: {
+          args: Prisma.AddressHierarchyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>[]
+        }
+        create: {
+          args: Prisma.AddressHierarchyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>
+        }
+        createMany: {
+          args: Prisma.AddressHierarchyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AddressHierarchyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>[]
+        }
+        delete: {
+          args: Prisma.AddressHierarchyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>
+        }
+        update: {
+          args: Prisma.AddressHierarchyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>
+        }
+        deleteMany: {
+          args: Prisma.AddressHierarchyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AddressHierarchyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AddressHierarchyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>[]
+        }
+        upsert: {
+          args: Prisma.AddressHierarchyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressHierarchyPayload>
+        }
+        aggregate: {
+          args: Prisma.AddressHierarchyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAddressHierarchy>
+        }
+        groupBy: {
+          args: Prisma.AddressHierarchyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AddressHierarchyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AddressHierarchyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AddressHierarchyCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1867,6 +1942,20 @@ export const OrgTemplateOverrideVersionScalarFieldEnum = {
 } as const
 
 export type OrgTemplateOverrideVersionScalarFieldEnum = (typeof OrgTemplateOverrideVersionScalarFieldEnum)[keyof typeof OrgTemplateOverrideVersionScalarFieldEnum]
+
+
+export const AddressHierarchyScalarFieldEnum = {
+  id: 'id',
+  country: 'country',
+  level: 'level',
+  parentId: 'parentId',
+  code: 'code',
+  name: 'name',
+  nameLocal: 'nameLocal',
+  voided: 'voided'
+} as const
+
+export type AddressHierarchyScalarFieldEnum = (typeof AddressHierarchyScalarFieldEnum)[keyof typeof AddressHierarchyScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2139,6 +2228,7 @@ export type GlobalOmitConfig = {
   templateVersion?: Prisma.TemplateVersionOmit
   orgTemplateOverride?: Prisma.OrgTemplateOverrideOmit
   orgTemplateOverrideVersion?: Prisma.OrgTemplateOverrideVersionOmit
+  addressHierarchy?: Prisma.AddressHierarchyOmit
 }
 
 /* Types for Logging */

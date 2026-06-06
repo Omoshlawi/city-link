@@ -66,7 +66,8 @@ export const ModelName = {
   Template: 'Template',
   TemplateVersion: 'TemplateVersion',
   OrgTemplateOverride: 'OrgTemplateOverride',
-  OrgTemplateOverrideVersion: 'OrgTemplateOverrideVersion'
+  OrgTemplateOverrideVersion: 'OrgTemplateOverrideVersion',
+  AddressHierarchy: 'AddressHierarchy'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -310,6 +311,20 @@ export const OrgTemplateOverrideVersionScalarFieldEnum = {
 } as const
 
 export type OrgTemplateOverrideVersionScalarFieldEnum = (typeof OrgTemplateOverrideVersionScalarFieldEnum)[keyof typeof OrgTemplateOverrideVersionScalarFieldEnum]
+
+
+export const AddressHierarchyScalarFieldEnum = {
+  id: 'id',
+  country: 'country',
+  level: 'level',
+  parentId: 'parentId',
+  code: 'code',
+  name: 'name',
+  nameLocal: 'nameLocal',
+  voided: 'voided'
+} as const
+
+export type AddressHierarchyScalarFieldEnum = (typeof AddressHierarchyScalarFieldEnum)[keyof typeof AddressHierarchyScalarFieldEnum]
 
 
 export const SortOrder = {

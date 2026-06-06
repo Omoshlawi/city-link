@@ -119,3 +119,8 @@ export type OrgTemplateOverride = Prisma.OrgTemplateOverrideModel
  * 
  */
 export type OrgTemplateOverrideVersion = Prisma.OrgTemplateOverrideVersionModel
+/**
+ * Model AddressHierarchy
+ * 
+ */
+export type AddressHierarchy = Prisma.AddressHierarchyModel
