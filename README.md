@@ -1,98 +1,178 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# City Link — Backend API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+NestJS backend for City Link. Provides the REST API, authentication, and database layer consumed by the mobile app.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Requirements
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js 22+
+- pnpm
+- PostgreSQL
+- Redis
 
-## Project setup
+---
+
+## Setup
 
 ```bash
-$ pnpm install
+pnpm install
 ```
 
-## Compile and run the project
+Copy `.env.example` to `.env` and fill in the required values:
+
+| Variable | Description | Default |
+|---|---|---|
+| `DATABASE_URL` | PostgreSQL connection string | — |
+| `REDIS_URL` | Redis connection string | — |
+| `PORT` | HTTP port | `2000` |
+| `BETTER_AUTH_URL` | Public base URL of this server | `http://localhost:2000` |
+| `FRONTEND_URL` | Mobile/web app base URL (used in email links) | `http://localhost:8000` |
+| `ADMIN_EMAIL` | Seed admin email | — |
+| `ADMIN_USERNAME` | Seed admin username | — |
+| `ADMIN_PASSWORD` | Seed admin password | — |
+| `ADMIN_SKIP_SEED_IF_EXISTS` | Set to `true` to skip re-seeding admin if already present | — |
+
+---
+
+## Development
 
 ```bash
-# development
-$ pnpm run start
+# Start with hot reload
+pnpm run start:dev
 
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+# Start with debugger
+pnpm run start:debug
 ```
 
-## Run tests
+Server starts on `http://localhost:2000` (or `PORT`).  
+API docs (Scalar) available at `http://localhost:2000/docs`.  
+All routes are prefixed with `/api`.
+
+---
+
+## Database
+
+The project uses **Prisma** with a multi-file schema (`prisma/models/`). Each domain has its own `.prisma` file.
 
 ```bash
-# unit tests
-$ pnpm run test
+# Run migrations (dev)
+pnpm run db migrate dev
 
-# e2e tests
-$ pnpm run test:e2e
+# Run migrations (production)
+pnpm run db migrate deploy
 
-# test coverage
-$ pnpm run test:cov
+# Open Prisma Studio
+pnpm run db studio
+
+# Validate schema
+pnpm run db validate
+
+# Regenerate Better Auth schema additions
+pnpm run auth:gen
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Seeding
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+pnpm seed
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Seeders run in order:
 
-## Resources
+1. **Admin User** — creates the admin account from env vars
+2. **Templates** — upserts notification templates from `prisma/seed/data/templates.csv`
 
-Check out a few resources that may come in handy when working with NestJS:
+#### Adding a new seeder
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+1. Create `prisma/seed/scripts/seed-<name>.ts` — export a default `async function(prisma: PrismaClient): Promise<void>`
+2. Register it in `prisma/seed/index.ts` by adding to the `seeders` array
 
-## Support
+CSV-based seeders can use the shared utilities from `prisma/seed/utils/csv.ts`:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```ts
+import { readCsv, buildSlots, resolveRef, parseJsonField } from '../utils/csv';
+```
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Testing
 
-## License
+```bash
+# Unit tests
+pnpm test
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# Unit tests in watch mode
+pnpm test:watch
+
+# Run a single test file
+pnpm test -- --testPathPattern=<file>
+
+# E2E tests
+pnpm test:e2e
+
+# Coverage
+pnpm test:cov
+```
+
+---
+
+## Other commands
+
+```bash
+# Build
+pnpm run build
+
+# Production start (after build)
+pnpm run start:prod
+
+# Lint + autofix
+pnpm run lint
+
+# Format
+pnpm run format
+```
+
+---
+
+## Project structure
+
+```
+src/
+├── auth/           # Better Auth integration, guards, decorators, ACL
+├── common/         # Shared utilities, types, query-builder
+├── prisma/         # PrismaService, module, config
+└── main.ts         # Bootstrap — Swagger/Scalar docs wired here
+
+prisma/
+├── models/         # Multi-file Prisma schema (one file per domain)
+│   ├── schema.prisma   # generator + datasource
+│   ├── auth.prisma
+│   └── templates.prisma
+├── migrations/
+└── seed/
+    ├── index.ts        # Seed runner
+    ├── scripts/        # One file per seeder
+    ├── data/           # CSV data files
+    ├── templates/      # Handlebars template files referenced by CSV
+    └── utils/csv.ts    # Shared CSV helpers
+```
+
+---
+
+## Authentication
+
+Authentication is handled by [Better Auth](https://better-auth.com) via `@thallesp/nestjs-better-auth`.
+
+Active plugins: `username`, `anonymous`, `admin`, `bearer`, `openAPI`, `jwt`, `twoFactor`, `phoneNumber`, `organization`.
+
+All routes are protected by default. Use decorators from `src/auth/auth.decorators.ts` to adjust access:
+
+```ts
+@AllowAnonymous()   // no auth required
+@OptionalAuth()     // session attached if present, not required
+@Roles(['admin'])   // system-level role check (user.role)
+@OrgRoles(['owner', 'admin'])  // org member role check
+@UserHasPermission({ permission: { resource: ['action'] } })
+@MemberHasPermission({ permissions: { resource: ['action'] } })
+```
