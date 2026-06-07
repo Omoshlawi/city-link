@@ -62,7 +62,7 @@ export class AuthModule {
                   newEmail: string;
                   token: string;
                 },
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
                 _,
               ) => {
                 const deepLink = `citylinkapp://change-email-verify?token=${token}`;

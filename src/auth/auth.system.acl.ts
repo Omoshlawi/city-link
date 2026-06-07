@@ -1,4 +1,4 @@
-import { admin } from 'better-auth/plugins';
+// import { AdminOptions } from 'better-auth/plugins';
 import { createAccessControl } from 'better-auth/plugins/access';
 import {
   adminAc,
@@ -9,25 +9,25 @@ import {
 
 const adminPluginAcl = createAccessControl({
   ...defaultAdminStatements,
+  adrressHierArchy: ['create', 'update', 'delete', 'restore'],
 });
 
 const adminRole = adminPluginAcl.newRole({
   ...adminAc.statements,
+  adrressHierArchy: ['create', 'update', 'delete', 'restore'],
 });
 
 const userRole = adminPluginAcl.newRole({
   ...userAc.statements,
 });
 
-const adminPluginRoles = {
+export const adminPluginRoles = {
   ...adminDefaultRoles,
   admin: adminRole,
   user: userRole,
-};
+} as const;
 
-type AdminPluginProps = Parameters<typeof admin>[0];
-
-export const adminConfig: AdminPluginProps = {
+export const adminConfig = {
   ac: adminPluginAcl,
   roles: adminPluginRoles,
 } as const;

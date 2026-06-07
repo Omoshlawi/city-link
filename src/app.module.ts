@@ -6,6 +6,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
 import { AddressHierarchyModule } from './address-hierarchy/address-hierarchy.module';
+import { TemplatesModule } from './templates/templates.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AddressHierarchyModule } from './address-hierarchy/address-hierarchy.mo
     AuthModule.forRoot(),
     CommonModule,
     AddressHierarchyModule,
+    TemplatesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

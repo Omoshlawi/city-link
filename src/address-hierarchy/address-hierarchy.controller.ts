@@ -13,7 +13,7 @@ import {
   QueryAddressHierarchyDto,
   QueryAddressHierarchyResponseDto,
 } from './address-hierarchy.dto';
-import { OptionalAuth } from '@thallesp/nestjs-better-auth';
+import { OptionalAuth, UserHasPermission } from '@thallesp/nestjs-better-auth';
 import { ApiOperation, ApiOkResponse } from '@nestjs/swagger';
 import {
   CustomRepresentationQueryDto,
@@ -21,7 +21,6 @@ import {
   OriginalUrl,
 } from '../common/query-builder';
 import { ApiErrorsResponse } from '../common/common.decorators';
-
 @Controller('address-hierarchy')
 export class AddressHierarchyController {
   constructor(
@@ -41,7 +40,7 @@ export class AddressHierarchyController {
   }
 
   @Delete('/:id')
-  //   @RequireSystemPermission({ addressHierarchy: ['delete'] })
+  @UserHasPermission({ permission: { adrressHierArchy: ['delete'] } })
   @ApiOperation({ summary: 'Delete AddressHierarchy' })
   @ApiOkResponse({ type: GetAddressHierarchyResponseDto })
   @ApiErrorsResponse()
@@ -53,7 +52,7 @@ export class AddressHierarchyController {
   }
 
   @Post('/:id/restore')
-  @OptionalAuth()
+  @UserHasPermission({ permission: { adrressHierArchy: ['restore'] } })
   @ApiOperation({ summary: 'Restore AddressHierarchy' })
   @ApiOkResponse({ type: GetAddressHierarchyResponseDto })
   @ApiErrorsResponse()

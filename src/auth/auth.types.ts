@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 import { type UserSession as BetterAuthUserSession } from '@thallesp/nestjs-better-auth';
 import { auth } from './auth.cli.config';
 
