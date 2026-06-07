@@ -10,6 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { MemberHasPermission } from '@thallesp/nestjs-better-auth';
 import { RequireActiveOrganization } from '../auth/auth.decorators';
 import { ApiErrorsResponse } from '../common/common.decorators';
 import {
@@ -61,6 +62,7 @@ export class OrgTemplateOverridesController {
   }
 
   @Put('/:key/overrides/:orgId')
+  @MemberHasPermission({ permissions: { orgTemplates: ['update'] } })
   @ApiOperation({ summary: 'Create or update an org override (upsert)' })
   @ApiOkResponse({ type: OrgTemplateOverrideResponseDto })
   @ApiErrorsResponse({ badRequest: true })
@@ -73,6 +75,7 @@ export class OrgTemplateOverridesController {
   }
 
   @Delete('/:key/overrides/:orgId')
+  @MemberHasPermission({ permissions: { orgTemplates: ['delete'] } })
   @ApiOperation({
     summary: 'Soft-delete an org override (purge=true to hard delete)',
   })
@@ -100,6 +103,7 @@ export class OrgTemplateOverridesController {
   }
 
   @Post('/:key/overrides/:orgId/versions/:version/restore')
+  @MemberHasPermission({ permissions: { orgTemplates: ['restore'] } })
   @ApiOperation({ summary: 'Restore an org override to a past version' })
   @ApiOkResponse({ type: OrgTemplateOverrideResponseDto })
   @ApiErrorsResponse()

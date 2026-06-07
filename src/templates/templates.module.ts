@@ -12,10 +12,6 @@ import { TemplatesService } from './templates.service';
     TemplateRendererService,
   ],
   controllers: [TemplatesController, OrgTemplateOverridesController],
-  exports: [
-    TemplatesService,
-    OrgTemplateOverridesService,
-    TemplateRendererService,
-  ],
+  exports: [TemplateRendererService],
 })
 export class TemplatesModule {}

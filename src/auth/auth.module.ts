@@ -10,6 +10,7 @@ import {
   bearer,
   jwt,
   openAPI,
+  organization,
   phoneNumber,
   twoFactor,
   username,
@@ -20,6 +21,7 @@ import { AuthConfig } from './auth.config';
 import { RequireActiveOrganizationGuard } from './auth.guards';
 import { adminConfig } from './auth.system.acl';
 import { UserSession } from './auth.types';
+import { organizationConfig } from './auth.org.acl';
 
 @Module({})
 export class AuthModule {
@@ -109,6 +111,7 @@ export class AuthModule {
             username(),
             anonymous(),
             admin(adminConfig),
+            organization(organizationConfig),
             bearer(),
             openAPI(),
             jwt(),

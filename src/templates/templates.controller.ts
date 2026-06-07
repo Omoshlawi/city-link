@@ -10,6 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { OptionalAuth, UserHasPermission } from '@thallesp/nestjs-better-auth';
 import { ApiErrorsResponse } from '../common/common.decorators';
 import {
   CustomRepresentationQueryDto,
@@ -33,6 +34,7 @@ export class TemplatesController {
   constructor(private readonly templatesService: TemplatesService) {}
 
   @Get('/')
+  @OptionalAuth()
   @ApiOperation({ summary: 'List templates' })
   @ApiOkResponse({ type: QueryTemplatesResponseDto })
   @ApiErrorsResponse()
@@ -44,6 +46,7 @@ export class TemplatesController {
   }
 
   @Get('/:key')
+  @OptionalAuth()
   @ApiOperation({ summary: 'Get a template by key' })
   @ApiOkResponse({ type: TemplateResponseDto })
   @ApiErrorsResponse()
@@ -55,7 +58,7 @@ export class TemplatesController {
   }
 
   @Patch('/:key')
-  // @RequireSystemPermission({ templates: ['update'] })
+  @UserHasPermission({ permission: { templates: ['update'] } })
   @ApiOperation({
     summary: 'Update template slots (creates a version snapshot)',
   })
@@ -69,7 +72,7 @@ export class TemplatesController {
   }
 
   @Delete('/:key')
-  // @RequireSystemPermission({ templates: ['delete'] })
+  @UserHasPermission({ permission: { templates: ['delete'] } })
   @ApiOperation({
     summary: 'Soft-delete a template (purge=true to hard delete)',
   })
@@ -80,7 +83,7 @@ export class TemplatesController {
   }
 
   @Post('/:key/restore')
-  // @RequireSystemPermission({ templates: ['update'] })
+  @UserHasPermission({ permission: { templates: ['restore'] } })
   @ApiOperation({ summary: 'Restore a voided template' })
   @ApiOkResponse({ type: TemplateResponseDto })
   @ApiErrorsResponse()
@@ -92,6 +95,7 @@ export class TemplatesController {
   }
 
   @Get('/:key/versions')
+  @OptionalAuth()
   @ApiOperation({ summary: 'List version history for a template' })
   @ApiOkResponse({ type: QueryTemplateVersionsResponseDto })
   @ApiErrorsResponse()
@@ -104,7 +108,7 @@ export class TemplatesController {
   }
 
   @Post('/:key/versions/:version/restore')
-  // @RequireSystemPermission({ templates: ['update'] })
+  @UserHasPermission({ permission: { templates: ['restore'] } })
   @ApiOperation({ summary: 'Restore a system template to a past version' })
   @ApiOkResponse({ type: TemplateResponseDto })
   @ApiErrorsResponse()

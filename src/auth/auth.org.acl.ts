@@ -9,14 +9,17 @@ import {
 
 const organizationPluginAcl = createAccessControl({
   ...defaultOrganizationStatements,
+  orgTemplates: ['create', 'update', 'delete', 'restore'],
 });
 
 const organizationAdminRole = organizationPluginAcl.newRole({
   ...organizationAdminAc.statements,
+  orgTemplates: ['create', 'update', 'delete', 'restore'],
 });
 
 const organizationOwnerRole = organizationPluginAcl.newRole({
   ...ownerAc.statements,
+  orgTemplates: ['create', 'update', 'delete', 'restore'],
 });
 
 const organizationMemberRole = organizationPluginAcl.newRole({
