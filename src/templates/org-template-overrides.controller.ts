@@ -28,7 +28,7 @@ import {
 } from './templates.dto';
 import { OrgTemplateOverridesService } from './org-template-overrides.service';
 
-@ApiTags('org-template-overrides')
+@ApiTags('OrganizationTemplateOverrides')
 @RequireActiveOrganization()
 @Controller('templates')
 export class OrgTemplateOverridesController {

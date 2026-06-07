@@ -27,7 +27,7 @@ import {
 } from './templates.dto';
 import { TemplatesService } from './templates.service';
 
-@ApiTags('templates')
+@ApiTags('Templates')
 @Controller('templates')
 export class TemplatesController {
   constructor(private readonly templatesService: TemplatesService) {}
