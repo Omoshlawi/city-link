@@ -71,6 +71,9 @@ importers:
       expo-server-sdk:
         specifier: ^6.1.0
         version: 6.1.0
+      handlebars:
+        specifier: ^4.7.9
+        version: 4.7.9
       ioredis:
         specifier: ^5.11.1
         version: 5.11.1
