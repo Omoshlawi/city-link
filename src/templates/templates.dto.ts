@@ -1,12 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { createZodDto } from 'nestjs-zod';
 import z from 'zod';
-import {
-  CustomRepresentationQuerySchema,
-  DeleteQuerySchema,
-  PaginatedListBase,
-  QueryBuilderSchema,
-} from '../common/query-builder';
+import { PaginatedListBase, QueryBuilderSchema } from '../common/query-builder';
 import {
   OrgTemplateOverride,
   OrgTemplateOverrideVersion,
@@ -52,12 +47,6 @@ const QueryOrgOverrideVersionsSchema = z.object({
 export class QueryOrgOverrideVersionsDto extends createZodDto(
   QueryOrgOverrideVersionsSchema,
 ) {}
-
-export class GetTemplateRepresentationDto extends createZodDto(
-  CustomRepresentationQuerySchema,
-) {}
-
-export class DeleteTemplateDto extends createZodDto(DeleteQuerySchema) {}
 
 // ── Mutation DTOs ─────────────────────────────────────────────────────────────
 

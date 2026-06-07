@@ -11,10 +11,12 @@ import {
 } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { ApiErrorsResponse } from '../common/common.decorators';
-import { OriginalUrl } from '../common/query-builder';
 import {
-  DeleteTemplateDto,
-  GetTemplateRepresentationDto,
+  CustomRepresentationQueryDto,
+  DeleteQueryDto,
+  OriginalUrl,
+} from '../common/query-builder';
+import {
   OrgTemplateOverrideResponseDto,
   QueryOrgOverridesDto,
   QueryOrgOverridesResponseDto,
@@ -28,11 +30,15 @@ import {
   UpdateTemplateSlotsDto,
   UpsertOrgOverrideDto,
 } from './templates.dto';
+import { OrgTemplateOverridesService } from './org-template-overrides.service';
 import { TemplatesService } from './templates.service';
 
 @Controller('templates')
 export class TemplatesController {
-  constructor(private readonly templatesService: TemplatesService) {}
+  constructor(
+    private readonly templatesService: TemplatesService,
+    private readonly orgOverridesService: OrgTemplateOverridesService,
+  ) {}
 
   // ── System Templates ────────────────────────────────────────────────────────
 
@@ -53,7 +59,7 @@ export class TemplatesController {
   @ApiErrorsResponse()
   getTemplate(
     @Param('key') key: string,
-    @Query() query: GetTemplateRepresentationDto,
+    @Query() query: CustomRepresentationQueryDto,
   ) {
     return this.templatesService.getByKey(key, query);
   }
@@ -79,7 +85,7 @@ export class TemplatesController {
   })
   @ApiOkResponse({ type: TemplateResponseDto })
   @ApiErrorsResponse()
-  deleteTemplate(@Param('key') key: string, @Query() query: DeleteTemplateDto) {
+  deleteTemplate(@Param('key') key: string, @Query() query: DeleteQueryDto) {
     return this.templatesService.delete(key, query);
   }
 
@@ -90,7 +96,7 @@ export class TemplatesController {
   @ApiErrorsResponse()
   restoreTemplate(
     @Param('key') key: string,
-    @Query() query: GetTemplateRepresentationDto,
+    @Query() query: CustomRepresentationQueryDto,
   ) {
     return this.templatesService.restore(key, query);
   }
@@ -118,7 +124,7 @@ export class TemplatesController {
     @Query() query: QueryOrgOverridesDto,
     @OriginalUrl() originalUrl: string,
   ) {
-    return this.templatesService.getOrgOverrides(key, query, originalUrl);
+    return this.orgOverridesService.getAll(key, query, originalUrl);
   }
 
   @Get('/:key/overrides/:orgId')
@@ -128,9 +134,9 @@ export class TemplatesController {
   getOrgOverride(
     @Param('key') key: string,
     @Param('orgId') orgId: string,
-    @Query() query: GetTemplateRepresentationDto,
+    @Query() query: CustomRepresentationQueryDto,
   ) {
-    return this.templatesService.getOrgOverride(key, orgId, query);
+    return this.orgOverridesService.getOne(key, orgId, query);
   }
 
   @Put('/:key/overrides/:orgId')
@@ -142,7 +148,7 @@ export class TemplatesController {
     @Param('orgId') orgId: string,
     @Body() dto: UpsertOrgOverrideDto,
   ) {
-    return this.templatesService.upsertOrgOverride(key, orgId, dto);
+    return this.orgOverridesService.upsert(key, orgId, dto);
   }
 
   @Delete('/:key/overrides/:orgId')
@@ -154,9 +160,9 @@ export class TemplatesController {
   deleteOrgOverride(
     @Param('key') key: string,
     @Param('orgId') orgId: string,
-    @Query() query: DeleteTemplateDto,
+    @Query() query: DeleteQueryDto,
   ) {
-    return this.templatesService.deleteOrgOverride(key, orgId, query);
+    return this.orgOverridesService.delete(key, orgId, query);
   }
 
   @Get('/:key/overrides/:orgId/versions')
@@ -169,11 +175,6 @@ export class TemplatesController {
     @Query() query: QueryOrgOverrideVersionsDto,
     @OriginalUrl() originalUrl: string,
   ) {
-    return this.templatesService.getOrgOverrideVersions(
-      key,
-      orgId,
-      query,
-      originalUrl,
-    );
+    return this.orgOverridesService.getVersions(key, orgId, query, originalUrl);
   }
 }
