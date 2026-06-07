@@ -3,6 +3,7 @@ import 'dotenv/config';
 import { PrismaClient } from 'src/generated/prisma/client';
 import seedAdminUser from './scripts/seed-admin';
 import seedTemplates from './scripts/seed-templates';
+import seedKenyaAddressHierarchy from './scripts/seed-kenya-address-hierarchy';
 
 const connectionString = `${process.env.DATABASE_URL}`;
 const adapter = new PrismaPg({ connectionString });
@@ -16,6 +17,7 @@ type Seeder = {
 const seeders: Seeder[] = [
   { name: 'Admin User', fn: seedAdminUser },
   { name: 'Templates', fn: seedTemplates },
+  { name: 'Kenya Address Hierarchy', fn: seedKenyaAddressHierarchy },
 ];
 
 async function main() {

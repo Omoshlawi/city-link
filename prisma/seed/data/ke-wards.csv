@@ -1,0 +1,1451 @@
+code,name,subcounty_code,county_code
+1,Port Reitz,1,1
+2,Kipevu,1,1
+3,Airport,1,1
+4,Changamwe,1,1
+5,Chaani,1,1
+6,Jomvu Kuu,2,1
+7,Miritini,2,1
+8,Mikindani,2,1
+9,Mjambere,3,1
+10,Junda,3,1
+11,Bamburi,3,1
+12,Mwakirunge,3,1
+13,Mtopanga,3,1
+14,Magogoni,3,1
+15,Shanzu,3,1
+16,Frere Town,4,1
+17,Ziwa La Ng'ombe,4,1
+18,Mkomani,4,1
+19,Kongowea,4,1
+20,Kadzandani,4,1
+21,Mtongwe,5,1
+22,Shika Adabu,5,1
+23,Bofu,5,1
+24,Likoni,5,1
+25,Timbwani,5,1
+26,Mji Wa Kale/Makadara,6,1
+27,Tudor,6,1
+28,Tononoka,6,1
+29,Shimanzi/Ganjoni,6,1
+30,Majengo,6,1
+31,Gombato Bongwe,7,2
+32,Ukunda,7,2
+33,Kinondo,7,2
+34,Ramisi,7,2
+35,Pongwe/Kikoneni,8,2
+36,Dzombo,8,2
+37,Mwereni,8,2
+38,Vanga,8,2
+39,Tsimba Golini,9,2
+40,Waa,9,2
+41,Tiwi,9,2
+42,Kubo South,9,2
+43,Mkongani,9,2
+44,Ndavaya,10,2
+45,Puma,10,2
+46,Kinango,10,2
+47,Mackinnon Road,10,2
+48,Chengoni/Samburu,10,2
+49,Mwavumbo,10,2
+50,Kasemeni,10,2
+51,Tezo,11,3
+52,Sokoni,11,3
+53,Kibarani,11,3
+54,Dabaso,11,3
+55,Matsangoni,11,3
+56,Watamu,11,3
+57,Mnarani,11,3
+58,Junju,12,3
+59,Mwarakaya,12,3
+60,Shimo La Tewa,12,3
+61,Chasimba,12,3
+62,Mtepeni,12,3
+63,Mariakani,13,3
+64,Kayafungo,13,3
+65,Kaloleni,13,3
+66,Mwanamwinga,13,3
+67,Mwawesa,14,3
+68,Ruruma,14,3
+69,Kambe/Ribe,14,3
+70,Rabai/Kisurutini,14,3
+71,Ganze,15,3
+72,Bamba,15,3
+73,Jaribuni,15,3
+74,Sokoke,15,3
+75,Jilore,16,3
+76,Kakuyuni,16,3
+77,Ganda,16,3
+78,Malindi Town,16,3
+79,Shella,16,3
+80,Marafa,17,3
+81,Magarini,17,3
+82,Gongoni,17,3
+83,Adu,17,3
+84,Garashi,17,3
+85,Sabaki,17,3
+86,Kipini East,18,4
+87,Garsen South,18,4
+88,Kipini West,18,4
+89,Garsen Central,18,4
+90,Garsen West,18,4
+91,Garsen North,18,4
+92,Kinakomba,19,4
+93,Mikinduni,19,4
+94,Chewani,19,4
+95,Wayu,19,4
+96,Chewele,20,4
+97,Hirimani,20,4
+98,Bangale,20,4
+99,Sala,20,4
+100,Madogo,20,4
+101,Faza,21,5
+102,Kiunga,21,5
+103,Basuba,21,5
+104,Shella,22,5
+105,Mkomani,22,5
+106,Hindi,22,5
+107,Mkunumbi,22,5
+108,Hongwe,22,5
+109,Witu,22,5
+110,Bahari,22,5
+111,Chala,23,6
+112,Mahoo,23,6
+113,Bomani,23,6
+114,Mboghoni,23,6
+115,Mata,23,6
+116,Wundanyi/Mbale,24,6
+117,Werugha,24,6
+118,Wumingu/Kishushe,24,6
+119,Mwanda/Mgange,24,6
+120,Rong'e,25,6
+121,Mwatate,25,6
+122,Bura,25,6
+123,Chawia,25,6
+124,Wusi/Kishamba,25,6
+125,Mbololo,26,6
+126,Sagalla,26,6
+127,Kaloleni,26,6
+128,Marungu,26,6
+129,Kasigau,26,6
+130,Ngolia,26,6
+131,Waberi,27,7
+132,Galbet,27,7
+133,Township,27,7
+134,Iftin,27,7
+135,Balambala,28,7
+136,Danyere,28,7
+137,Jara Jara,28,7
+138,Saka,28,7
+139,Sankuri,28,7
+140,Modogashe,29,7
+141,Benane,29,7
+142,Goreale,29,7
+143,Maalimin,29,7
+144,Sabena,29,7
+145,Baraki,29,7
+146,Dertu,30,7
+147,Dadaab,30,7
+148,Labasigale,30,7
+149,Damajale,30,7
+150,Liboi,30,7
+151,Abakaile,30,7
+152,Bura,31,7
+153,Dekaharia,31,7
+154,Jarajila,31,7
+155,Fafi,31,7
+156,Nanighi,31,7
+157,Hulugho,32,7
+158,Sangailu,32,7
+159,Ijara,32,7
+160,Masalani,32,7
+161,Gurar,33,8
+162,Bute,33,8
+163,Korondile,33,8
+164,Malkagufu,33,8
+165,Batalu,33,8
+166,Danaba,33,8
+167,Godoma,33,8
+168,Wagberi,34,8
+169,Township,34,8
+170,Barwago,34,8
+171,Khorof/Harar,34,8
+172,Elben,35,8
+173,Sarman,35,8
+174,Tarbaj,35,8
+175,Wargadud,35,8
+176,Arbajahan,36,8
+177,Hadado/Athibohol,36,8
+178,Adamasajide,36,8
+179,Ganyure/Wagalla,36,8
+180,Eldas,37,8
+181,Della,37,8
+182,Lakoley South/Basir,37,8
+183,Elnur/Tula Tula,37,8
+184,Benane,38,8
+185,Burder,38,8
+186,Dadaja Bulla,38,8
+187,Habasswein,38,8
+188,Lagboghol South,38,8
+189,Ibrahim Ure,38,8
+190,Diif,38,8
+191,Takaba South,39,9
+192,Takaba,39,9
+193,Lagsure,39,9
+194,Dandu,39,9
+195,Gither,39,9
+196,Banissa,40,9
+197,Derkhale,40,9
+198,Guba,40,9
+199,Malkamari,40,9
+200,Kiliwehiri,40,9
+201,Ashabito,41,9
+202,Guticha,41,9
+203,Morothile,41,9
+204,Rhamu,41,9
+205,Rhamu-Dimtu,41,9
+206,Wargadud,42,9
+207,Kutulo,42,9
+208,Elwak South,42,9
+209,Elwak North,42,9
+210,Shimbir Fatuma,42,9
+211,Arabia,43,9
+212,Township,43,9
+213,Neboi,43,9
+214,Khalalio,43,9
+215,Libehia,43,9
+216,Sala,44,9
+217,Fino,44,9
+218,Lafey,44,9
+219,Waranqara,44,9
+220,Alango Gof,44,9
+221,Butiye,45,10
+222,Sololo,45,10
+223,Heillu/Manyatta,45,10
+224,Golbo,45,10
+225,Moyale Township,45,10
+226,Uran,45,10
+227,Obbu,45,10
+228,Dukana,46,10
+229,Maikona,46,10
+230,Turbi,46,10
+231,North Horr,46,10
+232,Illeret,46,10
+233,Sagante/Jaldesa,47,10
+234,Karare,47,10
+235,Marsabit Central,47,10
+236,Loiyangalani,48,10
+237,Kargi/South Horr,48,10
+238,Korr/Ngurunit,48,10
+239,Logo Logo,48,10
+240,Laisamis,48,10
+241,Wabera,49,11
+242,Bulla Pesa,49,11
+243,Chari,49,11
+244,Cherab,49,11
+245,Ngare Mara,49,11
+246,Burat,49,11
+247,Oldo/Nyiro,49,11
+248,Garbatulla,50,11
+249,Kinna,50,11
+250,Sericho,50,11
+251,Maua,51,12
+252,Kiegoi/Antubochiu,51,12
+253,Athiru Gaiti,51,12
+254,Akachiu,51,12
+255,Kanuni,51,12
+256,Akirang'Ondu,52,12
+257,Athiru Ruujine,52,12
+258,Igembe East,52,12
+259,Njia,52,12
+260,Kangeta,52,12
+261,Antuambui,53,12
+262,Ntunene,53,12
+263,Antubetwe Kiongo,53,12
+264,Naathu,53,12
+265,Amwathi,53,12
+266,Athwana,54,12
+267,Akithii,54,12
+268,Kianjai,54,12
+269,Nkomo,54,12
+270,Mbeu,54,12
+271,Thangatha,55,12
+272,Mikinduri,55,12
+273,Kiguchwa,55,12
+274,Muthara,55,12
+275,Karama,55,12
+276,Municipality,56,12
+277,Ntima East,56,12
+278,Ntima West,56,12
+279,Nyaki West,56,12
+280,Nyaki East,56,12
+281,Timau,57,12
+282,Kisima,57,12
+283,Kiirua/Naari,57,12
+284,Ruiri/Rwarera,57,12
+289,Kibirichia,57,12
+285,Mwanganthia,58,12
+286,Abothuguchi Central,58,12
+287,Abothuguchi West,58,12
+288,Kiagu,58,12
+290,Mitunguu,59,12
+291,Igoji East,59,12
+292,Igoji West,59,12
+293,Abogeta East,59,12
+294,Abogeta West,59,12
+295,Nkuene,59,12
+296,Mitheru,60,13
+297,Muthambi,60,13
+298,Mwimbi,60,13
+299,Ganga,60,13
+300,Chogoria,60,13
+301,Mariani,61,13
+302,Karingani,61,13
+303,Magumoni,61,13
+304,Mugwe,61,13
+305,Igambang'Ombe,61,13
+306,Gatunga,62,13
+307,Mukothima,62,13
+308,Nkondi,62,13
+309,Chiakariga,62,13
+310,Marimanti,62,13
+311,Ruguru/Ngandori,63,14
+312,Kithimu,63,14
+313,Nginda,63,14
+314,Mbeti North,63,14
+315,Kirimari,63,14
+316,Gaturi South,63,14
+317,Gaturi North,64,14
+318,Kagaari South,64,14
+319,Central  Ward,64,14
+320,Kagaari North,64,14
+321,Kyeni North,64,14
+322,Kyeni South,64,14
+323,Mwea,65,14
+324,Makima,65,14
+325,Mbeti South,65,14
+326,Mavuria,65,14
+327,Kiambere,65,14
+328,Nthawa,66,14
+329,Muminji,66,14
+330,Evurore,66,14
+331,Ngomeni,67,15
+332,Kyuso,67,15
+333,Mumoni,67,15
+334,Tseikuru,67,15
+335,Tharaka,67,15
+336,Kyome/Thaana,68,15
+337,Nguutani,68,15
+338,Migwani,68,15
+339,Kiomo/Kyethani,68,15
+340,Central,69,15
+341,Kivou,69,15
+342,Nguni,69,15
+343,Nuu,69,15
+344,Mui,69,15
+345,Waita,69,15
+346,Mutonguni,70,15
+347,Kauwi,70,15
+348,Matinyani,70,15
+349,Kwa Mutonga/Kithumula,70,15
+350,Kisasi,71,15
+351,Mbitini,71,15
+352,Kwavonza/Yatta,71,15
+353,Kanyangi,71,15
+354,Miambani,72,15
+355,Township,72,15
+356,Kyangwithya West,72,15
+357,Mulango,72,15
+358,Kyangwithya East,72,15
+359,Zombe/Mwitika,73,15
+360,Nzambani,73,15
+361,Chuluni,73,15
+362,Voo/Kyamatu,73,15
+363,Endau/Malalani,73,15
+364,Mutito/Kaliku,73,15
+365,Ikanga/Kyatune,74,15
+366,Mutomo,74,15
+367,Mutha,74,15
+368,Ikutha,74,15
+369,Kanziko,74,15
+370,Athi,74,15
+371,Kivaa,75,16
+372,Masinga Central,75,16
+373,Ekalakala,75,16
+374,Muthesya,75,16
+375,Ndithini,75,16
+376,Ndalani,76,16
+377,Matuu,76,16
+378,Kithimani,76,16
+379,Ikombe,76,16
+380,Katangi,76,16
+381,Kangundo North,77,16
+382,Kangundo Central,77,16
+383,Kangundo East,77,16
+384,Kangundo West,77,16
+385,Tala,78,16
+386,Matungulu North,78,16
+387,Matungulu East,78,16
+388,Matungulu West,78,16
+389,Kyeleni,78,16
+390,Mitaboni,79,16
+391,Kathiani Central,79,16
+392,Upper Kaewa/Iveti,79,16
+393,Lower Kaewa/Kaani,79,16
+394,Athi River,80,16
+395,Kinanie,80,16
+396,Muthwani,80,16
+397,Syokimau/Mulolongo,80,16
+398,Kalama,81,16
+399,Mua,81,16
+400,Mutituni,81,16
+401,Machakos Central,81,16
+402,Mumbuni North,81,16
+403,Muvuti/Kiima-Kimwe,81,16
+404,Kola,81,16
+405,Mbiuni,82,16
+406,Makutano/ Mwala,82,16
+407,Masii,82,16
+408,Muthetheni,82,16
+409,Wamunyu,82,16
+410,Kibauni,82,16
+411,Tulimani,83,17
+412,Mbooni,83,17
+413,Kithungo/Kitundu,83,17
+414,Kiteta/Kisau,83,17
+415,Waia-Kako,83,17
+416,Kalawa,83,17
+417,Kasikeu,84,17
+418,Mukaa,84,17
+419,Kiima Kiu/Kalanzoni,84,17
+420,Ukia,85,17
+421,Kee,85,17
+422,Kilungu,85,17
+423,Ilima,85,17
+424,Wote,86,17
+425,Muvau/Kikuumini,86,17
+426,Mavindini,86,17
+427,Kitise/Kithuki,86,17
+428,Kathonzweni,86,17
+429,Nzaui/Kilili/Kalamba,86,17
+430,Mbitini,86,17
+431,Makindu,87,17
+432,Nguumo,87,17
+433,Kikumbulyu North,87,17
+434,Kikumbulyu South,87,17
+435,Nguu/Masumba,87,17
+436,Emali/Mulala,87,17
+437,Masongaleni,88,17
+438,Mtito Andei,88,17
+439,Thange,88,17
+440,Ivingoni/Nzambani,88,17
+441,Engineer,89,18
+442,Gathara,89,18
+443,North Kinangop,89,18
+444,Murungaru,89,18
+445,Njabini/Kiburu,89,18
+446,Nyakio,89,18
+447,Githabai,89,18
+448,Magumu,89,18
+449,Wanjohi,90,18
+450,Kipipiri,90,18
+451,Geta,90,18
+452,Githioro,90,18
+453,Karau,91,18
+454,Kanjuiri Range,91,18
+455,Mirangine,91,18
+456,Kaimbaga,91,18
+457,Rurii,91,18
+458,Gathanji,92,18
+459,Gatimu,92,18
+460,Weru,92,18
+461,Charagita,92,18
+462,Leshau/Pondo,93,18
+463,Kiriita,93,18
+464,Central,93,18
+465,Shamata,93,18
+466,Dedan Kimanthi,94,19
+467,Wamagana,94,19
+468,Aguthi-Gaaki,94,19
+469,Mweiga,95,19
+470,Naromoru Kiamathaga,95,19
+471,Mwiyogo/Endarasha,95,19
+472,Mugunda,95,19
+473,Gatarakwa,95,19
+474,Thegu River,95,19
+475,Kabaru,95,19
+476,Gakawa,95,19
+477,Ruguru,96,19
+478,Magutu,96,19
+479,Iriaini,96,19
+480,Konyu,96,19
+481,Kirimukuyu,96,19
+482,Karatina Town,96,19
+483,Mahiga,97,19
+484,Iria-Ini,97,19
+485,Chinga,97,19
+486,Karima,97,19
+487,Gikondi,98,19
+488,Rugi,98,19
+489,Mukurwe-Ini West,98,19
+490,Mukurwe-Ini Central,98,19
+491,Kiganjo/Mathari,99,19
+492,Rware,99,19
+493,Gatitu/Muruguru,99,19
+494,Ruring'u,99,19
+495,Kamakwa/Mukaro,99,19
+496,Mutithi,100,20
+497,Kangai,100,20
+498,Thiba,100,20
+499,Wamumu,100,20
+500,Nyangati,100,20
+501,Murinduko,100,20
+502,Gathigiriri,100,20
+503,Tebere,100,20
+504,Kabare,101,20
+505,Baragwi,101,20
+506,Njukiini,101,20
+507,Ngariama,101,20
+508,Karumandi,101,20
+509,Mukure,102,20
+510,Kiine,102,20
+511,Kariti,102,20
+512,Mutira,103,20
+513,Kanyekini,103,20
+514,Kerugoya,103,20
+515,Inoi,103,20
+516,Kanyenya-Ini,104,21
+517,Muguru,104,21
+518,Rwathia,104,21
+519,Gitugi,105,21
+520,Kiru,105,21
+521,Kamacharia,105,21
+522,Wangu,106,21
+523,Mugoiri,106,21
+524,Mbiri,106,21
+525,Township,106,21
+526,Murarandia,106,21
+527,Gaturi,106,21
+528,Kahumbu,107,21
+529,Muthithi,107,21
+530,Kigumo,107,21
+531,Kangari,107,21
+532,Kinyona,107,21
+533,Kimorori/Wempa,108,21
+534,Makuyu,108,21
+535,Kambiti,108,21
+536,Kamahuha,108,21
+537,Ichagaki,108,21
+538,Nginda,108,21
+539,Ng'araria,109,21
+540,Muruka,109,21
+541,Kagundu-Ini,109,21
+542,Gaichanjiru,109,21
+543,Ithiru,109,21
+544,Ruchu,109,21
+545,Ithanga,110,21
+546,Kakuzi/Mitubiri,110,21
+547,Mugumo-Ini,110,21
+548,Kihumbu-Ini,110,21
+549,Gatanga,110,21
+550,Kariara,110,21
+551,Kiamwangi,111,22
+552,Kiganjo,111,22
+553,Ndarugu,111,22
+554,Ngenda,111,22
+555,Gituamba,112,22
+556,Githobokoni,112,22
+557,Chania,112,22
+558,Mang'u,112,22
+559,Murera,113,22
+560,Theta,113,22
+561,Juja,113,22
+562,Witeithie,113,22
+563,Kalimoni,113,22
+564,Township,114,22
+565,Kamenu,114,22
+566,Hospital,114,22
+567,Gatuanyaga,114,22
+568,Ngoliba,114,22
+569,Gitothua,115,22
+570,Biashara,115,22
+571,Gatongora,115,22
+572,Kahawa Sukari,115,22
+573,Kahawa Wendani,115,22
+574,Kiuu,115,22
+575,Mwiki,115,22
+576,Mwihoko,115,22
+577,Githunguri,116,22
+578,Githiga,116,22
+579,Ikinu,116,22
+580,Ngewa,116,22
+581,Komothai,116,22
+582,Ting'ang'a,117,22
+583,Ndumberi,117,22
+584,Riabai,117,22
+585,Township,117,22
+586,Cianda,118,22
+587,Karuri,118,22
+588,Ndenderu,118,22
+589,Muchatha,118,22
+590,Kihara,118,22
+591,Gitaru,119,22
+592,Muguga,119,22
+593,Nyadhuna,119,22
+594,Kabete,119,22
+595,Uthiru,119,22
+596,Karai,120,22
+597,Nachu,120,22
+598,Sigona,120,22
+599,Kikuyu,120,22
+600,Kinoo,120,22
+601,Bibirioni,121,22
+602,Limuru Central,121,22
+603,Ndeiya,121,22
+604,Limuru East,121,22
+605,Ngecha Tigoni,121,22
+606,Kinale,122,22
+607,Kijabe,122,22
+608,Nyanduma,122,22
+609,Kamburu,122,22
+610,Lari/Kirenga,122,22
+611,Kaeris,123,23
+612,Lake Zone,123,23
+613,Lapur,123,23
+614,Kaaleng/Kaikor,123,23
+615,Kibish,123,23
+616,Nakalale,123,23
+617,Kakuma,124,23
+618,Lopur,124,23
+619,Letea,124,23
+620,Songot,124,23
+621,Kalobeyei,124,23
+622,Lokichoggio,124,23
+623,Nanaam,124,23
+624,Kerio Delta,125,23
+625,Kang'atotha,125,23
+626,Kalokol,125,23
+627,Lodwar Township,125,23
+628,Kanamkemer,125,23
+629,Kotaruk/Lobei,126,23
+630,Turkwel,126,23
+631,Loima,126,23
+632,Lokiriama/Lorengippi,126,23
+633,Kaputir,127,23
+634,Katilu,127,23
+635,Lobokat,127,23
+636,Kalapata,127,23
+637,Lokichar,127,23
+638,Kapedo/Napeitom,128,23
+639,Katilia,128,23
+640,Lokori/Kochodin,128,23
+641,Riwo,129,24
+642,Kapenguria,129,24
+643,Mnagei,129,24
+644,Siyoi,129,24
+645,Endugh,129,24
+646,Sook,129,24
+647,Sekerr,130,24
+648,Masool,130,24
+649,Lomut,130,24
+650,Weiwei,130,24
+651,Suam,131,24
+652,Kodich,131,24
+653,Kasei,131,24
+654,Kapchok,131,24
+655,Kiwawa,131,24
+656,Alale,131,24
+657,Chepareria,132,24
+658,Batei,132,24
+659,Lelan,132,24
+660,Tapach,132,24
+661,Lodokejek,133,25
+662,Suguta Marmar,133,25
+663,Maralal,133,25
+664,Loosuk,133,25
+665,Poro,133,25
+666,El-Barta,134,25
+667,Nachola,134,25
+668,Ndoto,134,25
+669,Nyiro,134,25
+670,Angata Nanyokie,134,25
+671,Baawa,134,25
+672,Waso,135,25
+673,Wamba West,135,25
+674,Wamba East,135,25
+675,Wamba North,135,25
+676,Kapomboi,136,26
+677,Kwanza,136,26
+678,Keiyo,136,26
+679,Bidii,136,26
+680,Chepchoina,137,26
+681,Endebess,137,26
+682,Matumbei,137,26
+683,Kinyoro,138,26
+684,Matisi,138,26
+685,Tuwani,138,26
+686,Saboti,138,26
+687,Machewa,138,26
+688,Kiminini,139,26
+689,Waitaluk,139,26
+690,Sirende,139,26
+691,Hospital,139,26
+692,Sikhendu,139,26
+693,Nabiswa,139,26
+694,Sinyerere,140,26
+695,Makutano,140,26
+696,Kaplamai,140,26
+697,Motosiet,140,26
+698,Cherangany/Suwerwa,140,26
+699,Chepsiro/Kiptoror,140,26
+700,Sitatunga,140,26
+701,Moi's Bridge,141,27
+702,Kapkures,141,27
+703,Ziwa,141,27
+704,Segero/Barsombe,141,27
+705,Kipsomba,141,27
+706,Soy,141,27
+707,Kuinet/Kapsuswa,141,27
+708,Ngenyilel,142,27
+709,Tapsagoi,142,27
+710,Kamagut,142,27
+711,Kiplombe,142,27
+712,Kapsaos,142,27
+713,Huruma,142,27
+714,Tembelio,143,27
+715,Sergoit,143,27
+716,Karuna/Meibeki,143,27
+717,Moiben,143,27
+718,Kimumu,143,27
+719,Kapsoya,144,27
+720,Kaptagat,144,27
+721,Ainabkoi/Olare,144,27
+722,Simat/Kapseret,145,27
+723,Kipkenyo,145,27
+724,Ngeria,145,27
+725,Megun,145,27
+726,Langas,145,27
+727,Racecourse,146,27
+728,Cheptiret/Kipchamo,146,27
+729,Tulwet/Chuiyat,146,27
+730,Tarakwa,146,27
+731,Kapyego,147,28
+732,Sambirir,147,28
+733,Endo,147,28
+734,Embobut / Embulot,147,28
+735,Lelan,148,28
+736,Sengwer,148,28
+737,Cherang'any/Chebororwa,148,28
+738,Moiben/Kuserwo,148,28
+739,Kapsowar,148,28
+740,Arror,148,28
+741,Emsoo,149,28
+742,Kamariny,149,28
+743,Kapchemutwa,149,28
+744,Tambach,149,28
+745,Kaptarakwa,150,28
+746,Chepkorio,150,28
+747,Soy North,150,28
+748,Soy South,150,28
+749,Kabiemit,150,28
+750,Metkei,150,28
+751,Songhor/Soba,151,29
+752,Tindiret,151,29
+753,Chemelil/Chemase,151,29
+754,Kapsimotwo,151,29
+755,Kabwareng,152,29
+756,Terik,152,29
+757,Kemeloi-Maraba,152,29
+758,Kobujoi,152,29
+759,Kaptumo-Kaboi,152,29
+760,Koyo-Ndurio,152,29
+761,Nandi Hills,153,29
+762,Chepkunyuk,153,29
+763,Ol'Lessos,153,29
+764,Kapchorua,153,29
+765,Chemundu/Kapng'etuny,154,29
+766,Kosirai,154,29
+767,Lelmokwo/Ngechek,154,29
+768,Kaptel/Kamoiywo,154,29
+769,Kiptuya,154,29
+770,Chepkumia,155,29
+771,Kapkangani,155,29
+772,Kapsabet,155,29
+773,Kilibwoni,155,29
+774,Chepterwai,156,29
+775,Kipkaren,156,29
+776,Kurgung/Surungai,156,29
+777,Kabiyet,156,29
+778,Ndalat,156,29
+779,Kabisaga,156,29
+780,Sangalo/Kebulonik,156,29
+781,Tirioko,157,30
+782,Kolowa,157,30
+783,Ribkwo,157,30
+784,Silale,157,30
+785,Loiyamorock,157,30
+786,Tangulbei/Korossi,157,30
+787,Churo/Amaya,157,30
+788,Barwessa,158,30
+789,Kabartonjo,158,30
+790,Saimo/Kipsaraman,158,30
+791,Saimo/Soi,158,30
+792,Bartabwa,158,30
+793,Kabarnet,159,30
+794,Sacho,159,30
+795,Tenges,159,30
+796,Ewalel/Chapchap,159,30
+797,Kapropita,159,30
+798,Marigat,160,30
+799,Ilchamus,160,30
+800,Mochongoi,160,30
+801,Mukutani,160,30
+802,Mogotio,161,30
+803,Emining,161,30
+804,Kisanana,161,30
+805,Lembus,162,30
+806,Lembus Kwen,162,30
+807,Ravine,162,30
+808,Mumberes/Maji Mazuri,162,30
+809,Lembus/Perkerra,162,30
+810,Koibatek,162,30
+811,Ol-Moran,163,31
+812,Rumuruti Township,163,31
+813,Githiga,163,31
+814,Marmanet,163,31
+815,Igwamiti,163,31
+816,Salama,163,31
+817,Ngobit,164,31
+818,Tigithi,164,31
+819,Thingithu,164,31
+820,Nanyuki,164,31
+821,Umande,164,31
+822,Sosian,165,31
+823,Segera,165,31
+824,Mugogodo West,165,31
+825,Mugogodo East,165,31
+826,Mariashoni,166,32
+827,Elburgon,166,32
+828,Turi,166,32
+829,Molo,166,32
+830,Mau Narok,167,32
+831,Mauche,167,32
+832,Kihingo,167,32
+833,Nessuit,167,32
+834,Lare,167,32
+835,Njoro,167,32
+836,Biashara,168,32
+837,Hells Gate,168,32
+838,Lake View,168,32
+839,Mai Mahiu,168,32
+840,Maiella,168,32
+841,Olkaria,168,32
+842,Naivasha East,168,32
+843,Viwandani,168,32
+844,Gilgil,169,32
+845,Elementaita,169,32
+846,Mbaruk/Eburu,169,32
+847,Malewa West,169,32
+848,Murindati,169,32
+849,Amalo,170,32
+850,Keringet,170,32
+851,Kiptagich,170,32
+852,Tinet,170,32
+853,Kiptororo,171,32
+854,Nyota,171,32
+855,Sirikwa,171,32
+856,Kamara,171,32
+857,Subukia,172,32
+858,Waseges,172,32
+859,Kabazi,172,32
+860,Menengai West,173,32
+861,Soin,173,32
+862,Visoi,173,32
+863,Mosop,173,32
+864,Solai,173,32
+865,Dundori,174,32
+866,Kabatini,174,32
+867,Kiamaina,174,32
+868,Lanet/Umoja,174,32
+869,Bahati,174,32
+870,Barut,175,32
+871,London,175,32
+872,Kaptembwo,175,32
+873,Kapkures,175,32
+874,Rhoda,175,32
+875,Shaabab,175,32
+876,Biashara,176,32
+877,Kivumbini,176,32
+878,Flamingo,176,32
+879,Menengai,176,32
+880,Nakuru East,176,32
+881,Kilgoris Central,177,33
+882,Keyian,177,33
+883,Angata Barikoi,177,33
+884,Shankoe,177,33
+885,Kimintet,177,33
+886,Lolgorian,177,33
+887,Ilkerin,178,33
+888,Ololmasani,178,33
+889,Mogondo,178,33
+890,Kapsasian,178,33
+891,Olpusimoru,179,33
+892,Olokurto,179,33
+893,Narok Town,179,33
+894,Nkareta,179,33
+895,Olorropil,179,33
+896,Melili,179,33
+897,Mosiro,180,33
+898,Ildamat,180,33
+899,Keekonyokie,180,33
+900,Suswa,180,33
+901,Majimoto/Naroosura,181,33
+902,Ololulung'a,181,33
+903,Melelo,181,33
+904,Loita,181,33
+905,Sogoo,181,33
+906,Sagamian,181,33
+907,Ilmotiok,182,33
+908,Mara,182,33
+909,Siana,182,33
+910,Naikarra,182,33
+911,Olkeri,183,34
+912,Ongata Rongai,183,34
+913,Nkaimurunya,183,34
+914,Oloolua,183,34
+915,Ngong,183,34
+916,Purko,184,34
+917,Ildamat,184,34
+918,Dalalekutuk,184,34
+919,Matapato North,184,34
+920,Matapato South,184,34
+921,Kaputiei North,185,34
+922,Kitengela,185,34
+923,Oloosirkon/Sholinke,185,34
+924,Kenyawa-Poka,185,34
+925,Imaroro,185,34
+926,Keekonyokie,186,34
+927,Iloodokilani,186,34
+928,Magadi,186,34
+929,Ewuaso Oonkidong'I,186,34
+930,Mosiro,186,34
+931,Entonet/Lenkisim,187,34
+932,Mbirikani/Eselenkei,187,34
+933,Kuku,187,34
+934,Rombo,187,34
+935,Kimana,187,34
+936,Londiani,188,35
+937,Kedowa/Kimugul,188,35
+938,Chepseon,188,35
+939,Tendeno/Sorget,188,35
+940,Kunyak,189,35
+941,Kamasian,189,35
+942,Kipkelion,189,35
+943,Chilchila,189,35
+944,Kapsoit,190,35
+945,Ainamoi,190,35
+946,Kapkugerwet,190,35
+947,Kipchebor,190,35
+948,Kipchimchim,190,35
+949,Kapsaos,190,35
+950,Kisiara,191,35
+951,Tebesonik,191,35
+952,Cheboin,191,35
+953,Chemosot,191,35
+954,Litein,191,35
+955,Cheplanget,191,35
+956,Kapkatet,191,35
+957,Waldai,192,35
+958,Kabianga,192,35
+959,Cheptororiet/Seretut,192,35
+960,Chaik,192,35
+961,Kapsuser,192,35
+962,Sigowet,193,35
+963,Kaplelartet,193,35
+964,Soliat,193,35
+965,Soin,193,35
+966,Ndanai/Abosi,194,36
+967,Chemagel,194,36
+968,Kipsonoi,194,36
+969,Kapletundo,194,36
+970,Rongena/Manaret,194,36
+971,Kong'asis,195,36
+972,Nyangores,195,36
+973,Sigor,195,36
+974,Chebunyo,195,36
+975,Siongiroi,195,36
+976,Merigi,196,36
+977,Kembu,196,36
+978,Longisa,196,36
+979,Kipreres,196,36
+980,Chemaner,196,36
+981,Silibwet Township,197,36
+982,Ndaraweta,197,36
+983,Singorwet,197,36
+984,Chesoen,197,36
+985,Mutarakwa,197,36
+986,Chepchabas,198,36
+987,Kimulot,198,36
+988,Mogogosiek,198,36
+989,Boito,198,36
+990,Embomos,198,36
+991,Mautuma,199,37
+992,Lugari,199,37
+993,Lumakanda,199,37
+994,Chekalini,199,37
+995,Chevaywa,199,37
+996,Lwandeti,199,37
+997,Likuyani,200,37
+998,Sango,200,37
+999,Kongoni,200,37
+1000,Nzoia,200,37
+1001,Sinoko,200,37
+1002,West Kabras,201,37
+1003,Chemuche,201,37
+1004,East Kabras,201,37
+1005,Butali/Chegulo,201,37
+1006,Manda-Shivanga,201,37
+1007,Shirugu-Mugai,201,37
+1008,South Kabras,201,37
+1009,Butsotso East,202,37
+1010,Butsotso South,202,37
+1011,Butsotso Central,202,37
+1012,Sheywe,202,37
+1013,Mahiakalo,202,37
+1014,Shirere,202,37
+1015,Ingostse-Mathia,203,37
+1016,Shinoyi-Shikomari-Esumeyia,203,37
+1017,Bunyala West,203,37
+1018,Bunyala East,203,37
+1019,Bunyala Central,203,37
+1020,Mumias Central,204,37
+1021,Mumias North,204,37
+1022,Etenje,204,37
+1023,Musanda,204,37
+1024,Lusheya/Lubinu,205,37
+1025,Malaha/Isongo/Makunga,205,37
+1026,East Wanga,205,37
+1027,Koyonzo,206,37
+1028,Kholera,206,37
+1029,Khalaba,206,37
+1030,Mayoni,206,37
+1031,Namamali,206,37
+1032,Marama West,207,37
+1033,Marama Central,207,37
+1034,Marenyo - Shianda,207,37
+1035,Marama North,207,37
+1036,Marama South,207,37
+1037,Kisa North,208,37
+1038,Kisa East,208,37
+1039,Kisa West,208,37
+1040,Kisa Central,208,37
+1041,Isukha North,209,37
+1042,Murhanda,209,37
+1043,Isukha Central,209,37
+1044,Isukha South,209,37
+1045,Isukha East,209,37
+1046,Isukha West,209,37
+1047,Idakho South,210,37
+1048,Idakho East,210,37
+1049,Idakho North,210,37
+1050,Idakho Central,210,37
+1051,Lugaga-Wamuluma,211,38
+1052,South Maragoli,211,38
+1053,Central Maragoli,211,38
+1054,Mungoma,211,38
+1055,Lyaduywa/Izava,212,38
+1056,West Sabatia,212,38
+1057,Chavakali,212,38
+1058,North Maragoli,212,38
+1059,Wodanga,212,38
+1060,Busali,212,38
+1061,Shiru,213,38
+1062,Gisambai,213,38
+1063,Shamakhokho,213,38
+1064,Banja,213,38
+1065,Muhudu,213,38
+1066,Tambua,213,38
+1067,Jepkoyai,213,38
+1068,Luanda Township,214,38
+1069,Wemilabi,214,38
+1070,Mwibona,214,38
+1071,Luanda South,214,38
+1072,Emabungo,214,38
+1073,North East Bunyore,215,38
+1074,Central Bunyore,215,38
+1075,West Bunyore,215,38
+1076,Cheptais,216,39
+1077,Chesikaki,216,39
+1078,Chepyuk,216,39
+1079,Kapkateny,216,39
+1080,Kaptama,216,39
+1081,Elgon,216,39
+1082,Namwela,217,39
+1083,Malakisi/South Kulisiru,217,39
+1084,Lwandanyi,217,39
+1085,Kabuchai/Chwele,218,39
+1086,West Nalondo,218,39
+1087,Bwake/Luuya,218,39
+1088,Mukuyuni,218,39
+1089,South Bukusu,219,39
+1090,Bumula,219,39
+1091,Khasoko,219,39
+1092,Kabula,219,39
+1093,Kimaeti,219,39
+1094,West Bukusu,219,39
+1095,Siboti,219,39
+1096,Bukembe West,220,39
+1097,Bukembe East,220,39
+1098,Township,220,39
+1099,Khalaba,220,39
+1100,Musikoma,220,39
+1101,East Sang'Alo,220,39
+1102,Marakaru/Tuuti,220,39
+1103,West Sang'alo,220,39
+1104,Mihuu,221,39
+1105,Ndivisi,221,39
+1106,Maraka,221,39
+1107,Misikhu,222,39
+1108,Sitikho,222,39
+1109,Matulo,222,39
+1110,Bokoli,222,39
+1111,Kibingei,223,39
+1112,Kimilili,223,39
+1113,Maeni,223,39
+1114,Kamukuywa,223,39
+1115,Mbakalo,224,39
+1116,Naitiri/Kabuyefwe,224,39
+1117,Milima,224,39
+1118,Ndalu/ Tabani,224,39
+1119,Tongaren,224,39
+1120,Soysambu/ Mitua,224,39
+1121,Malaba Central,225,40
+1122,Malaba North,225,40
+1123,Ang'Urai South,225,40
+1124,Ang'Urai North,225,40
+1125,Ang'Urai East,225,40
+1126,Malaba South,225,40
+1127,Ang'orom,226,40
+1128,Chakol South,226,40
+1129,Chakol North,226,40
+1130,Amukura West,226,40
+1131,Amukura East,226,40
+1132,Amukura Central,226,40
+1133,Nambale Township,227,40
+1134,Bukhayo North/Waltsi,227,40
+1135,Bukhayo East,227,40
+1136,Bukhayo Central,227,40
+1137,Bukhayo West,228,40
+1138,Mayenje,228,40
+1139,Matayos South,228,40
+1140,Busibwabo,228,40
+1141,Burumba,228,40
+1142,Marachi West,229,40
+1143,Kingandole,229,40
+1144,Marachi Central,229,40
+1145,Marachi East,229,40
+1146,Marachi North,229,40
+1147,Elugulu,229,40
+1148,Namboboto Nambuku,230,40
+1149,Nangina,230,40
+1150,Ageng'a Nanguba,230,40
+1151,Bwiri,230,40
+1152,Bunyala Central,231,40
+1153,Bunyala North,231,40
+1154,Bunyala West,231,40
+1155,Bunyala South,231,40
+1156,West Ugenya,232,41
+1157,Ukwala,232,41
+1158,North Ugenya,232,41
+1159,East Ugenya,232,41
+1160,Sidindi,233,41
+1161,Sigomere,233,41
+1162,Ugunja,233,41
+1163,Usonga,234,41
+1164,West Alego,234,41
+1165,Central Alego,234,41
+1166,Siaya Township,234,41
+1167,North Alego,234,41
+1168,South East Alego,234,41
+1169,North Gem,235,41
+1170,West Gem,235,41
+1171,Central Gem,235,41
+1172,Yala Township,235,41
+1173,East Gem,235,41
+1174,South Gem,235,41
+1175,West Yimbo,236,41
+1176,Central Sakwa,236,41
+1177,South Sakwa,236,41
+1178,Yimbo East,236,41
+1179,West Sakwa,236,41
+1180,North Sakwa,236,41
+1181,East Asembo,237,41
+1182,West Asembo,237,41
+1183,North Uyoma,237,41
+1184,South Uyoma,237,41
+1185,West Uyoma,237,41
+1186,Kajulu,238,42
+1187,Kolwa East,238,42
+1188,Manyatta 'B',238,42
+1189,Nyalenda 'A',238,42
+1190,Kolwa Central,238,42
+1191,South West Kisumu,239,42
+1192,Central Kisumu,239,42
+1193,Kisumu North,239,42
+1194,West Kisumu,239,42
+1195,North West Kisumu,239,42
+1196,Railways,240,42
+1197,Migosi,240,42
+1198,Shaurimoyo Kaloleni,240,42
+1199,Market Milimani,240,42
+1200,Kondele,240,42
+1201,Nyalenda B,240,42
+1202,West Seme,241,42
+1203,Central Seme,241,42
+1204,East Seme,241,42
+1205,North Seme,241,42
+1206,East Kano/Wawidhi,242,42
+1207,Awasi/Onjiko,242,42
+1208,Ahero,242,42
+1209,Kabonyo/Kanyagwal,242,42
+1210,Kobura,242,42
+1211,Miwani,243,42
+1212,Ombeyi,243,42
+1213,Masogo/Nyang'oma,243,42
+1214,Chemelil,243,42
+1215,Muhoroni/Koru,243,42
+1216,South West Nyakach,244,42
+1217,North Nyakach,244,42
+1218,Central Nyakach,244,42
+1219,West Nyakach,244,42
+1220,South East Nyakach,244,42
+1221,West Kasipul,245,43
+1222,South Kasipul,245,43
+1223,Central Kasipul,245,43
+1224,East Kamagak,245,43
+1225,West Kamagak,245,43
+1226,Kabondo East,246,43
+1227,Kabondo West,246,43
+1228,Kokwanyo/Kakelo,246,43
+1229,Kojwach,246,43
+1230,West Karachuonyo,247,43
+1231,North Karachuonyo,247,43
+1232,Central,247,43
+1233,Kanyaluo,247,43
+1234,Kibiri,247,43
+1235,Wangchieng,247,43
+1236,Kendu Bay Town,247,43
+1237,West Gem,248,43
+1238,East Gem,248,43
+1239,Kagan,248,43
+1240,Kochia,248,43
+1241,Homa Bay Central,249,43
+1242,Homa Bay Arujo,249,43
+1243,Homa Bay West,249,43
+1244,Homa Bay East,249,43
+1245,Kwabwai,250,43
+1246,Kanyadoto,250,43
+1247,Kanyikela,250,43
+1248,Kabuoch North,250,43
+1249,Kabuoch South/Pala,250,43
+1250,Kanyamwa Kologi,250,43
+1251,Kanyamwa Kosewe,250,43
+1252,Mfangano Island,251,43
+1253,Rusinga Island,251,43
+1254,Kasgunga,251,43
+1255,Gembe,251,43
+1256,Lambwe,251,43
+1257,Gwassi South,252,43
+1258,Gwassi North,252,43
+1259,Kaksingri West,252,43
+1260,Ruma-Kaksingri,252,43
+1261,North Kamagambo,253,44
+1262,Central Kamagambo,253,44
+1263,East Kamagambo,253,44
+1264,South Kamagambo,253,44
+1265,North Sakwa,254,44
+1266,South Sakwa,254,44
+1267,West Sakwa,254,44
+1268,Central Sakwa,254,44
+1269,God Jope,255,44
+1270,Suna Central,255,44
+1271,Kakrao,255,44
+1272,Kwa,255,44
+1273,Wiga,256,44
+1274,Wasweta Ii,256,44
+1275,Ragana-Oruba,256,44
+1276,Wasimbete,256,44
+1277,West Kanyamkago,257,44
+1278,North Kanyamkago,257,44
+1279,Central Kanyamkago,257,44
+1280,South Kanyamkago,257,44
+1281,East Kanyamkago,257,44
+1282,Kachien'g,258,44
+1283,Kanyasa,258,44
+1284,North Kadem,258,44
+1285,Macalder/Kanyarwanda,258,44
+1286,Kaler,258,44
+1287,Got Kachola,258,44
+1288,Muhuru,258,44
+1289,Bukira East,259,44
+1290,Bukira Centrl/Ikerege,259,44
+1291,Isibania,259,44
+1292,Makerero,259,44
+1293,Masaba,259,44
+1294,Tagare,259,44
+1295,Nyamosense/Komosoko,259,44
+1296,Gokeharaka/Getambwega,260,44
+1297,Ntimaru West,260,44
+1298,Ntimaru East,260,44
+1299,Nyabasi East,260,44
+1300,Nyabasi West,260,44
+1301,Bomariba,261,45
+1302,Bogiakumu,261,45
+1303,Bomorenda,261,45
+1304,Riana,261,45
+1305,Tabaka,262,45
+1306,Boikang'a,262,45
+1307,Bogetenga,262,45
+1308,Borabu / Chitago,262,45
+1309,Moticho,262,45
+1310,Getenga,262,45
+1311,Bombaba Borabu,263,45
+1312,Boochi Borabu,263,45
+1313,Bokimonge,263,45
+1314,Magenche,263,45
+1315,Masige West,264,45
+1316,Masige East,264,45
+1317,Basi Central,264,45
+1318,Nyacheki,264,45
+1319,Basi Bogetaorio,264,45
+1320,Bobasi Chache,264,45
+1321,Sameta/Mokwerero,264,45
+1322,Bobasi Boitangare,264,45
+1323,Majoge Basi,265,45
+1324,Boochi/Tendere,265,45
+1325,Bosoti/Sengera,265,45
+1326,Ichuni,266,45
+1327,Nyamasibi,266,45
+1328,Masimba,266,45
+1329,Gesusu,266,45
+1330,Kiamokama,266,45
+1331,Bobaracho,267,45
+1332,Kisii Central,267,45
+1333,Keumbu,267,45
+1334,Kiogoro,267,45
+1335,Birongo,267,45
+1336,Ibeno,267,45
+1337,Monyerero,268,45
+1338,Sensi,268,45
+1339,Marani,268,45
+1340,Kegogi,268,45
+1341,Bogusero,269,45
+1342,Bogeka,269,45
+1343,Nyakoe,269,45
+1344,Kitutu   Central,269,45
+1345,Nyatieko,269,45
+1346,Rigoma,270,46
+1347,Gachuba,270,46
+1348,Kemera,270,46
+1349,Magombo,270,46
+1350,Manga,270,46
+1351,Gesima,270,46
+1352,Nyamaiya,271,46
+1353,Bogichora,271,46
+1354,Bosamaro,271,46
+1355,Bonyamatuta,271,46
+1356,Township,271,46
+1357,Itibo,272,46
+1358,Bomwagamo,272,46
+1359,Bokeira,272,46
+1360,Magwagwa,272,46
+1361,Ekerenyo,272,46
+1362,Mekenene,273,46
+1363,Kiabonyoru,273,46
+1364,Nyansiongo,273,46
+1365,Esise,273,46
+1366,Kitisuru,274,47
+1367,Parklands/Highridge,274,47
+1368,Karura,274,47
+1369,Kangemi,274,47
+1370,Mountain View,274,47
+1371,Kilimani,275,47
+1372,Kawangware,275,47
+1373,Gatina,275,47
+1374,Kileleshwa,275,47
+1375,Kabiro,275,47
+1376,Mutu-Ini,276,47
+1377,Ngando,276,47
+1378,Riruta,276,47
+1379,Uthiru/Ruthimitu,276,47
+1380,Waithaka,276,47
+1381,Karen,277,47
+1382,Nairobi West,277,47
+1383,Mugumu-Ini,277,47
+1384,South C,277,47
+1385,Nyayo Highrise,277,47
+1386,Laini Saba,278,47
+1387,Lindi,278,47
+1388,Makina,278,47
+1389,Woodley/Kenyatta Golf Course,278,47
+1390,Sarangombe,278,47
+1391,Githurai,279,47
+1392,Kahawa West,279,47
+1393,Zimmerman,279,47
+1394,Roysambu,279,47
+1395,Kahawa,279,47
+1396,Clay City,280,47
+1397,Mwiki,280,47
+1398,Kasarani,280,47
+1399,Njiru,280,47
+1400,Ruai,280,47
+1401,Baba Dogo,281,47
+1402,Utalii,281,47
+1403,Mathare North,281,47
+1404,Lucky Summer,281,47
+1405,Korogocho,281,47
+1406,Imara Daima,282,47
+1407,Kwa Njenga,282,47
+1408,Kwa Reuben,282,47
+1409,Pipeline,282,47
+1410,Kware,282,47
+1411,Kariobangi North,283,47
+1412,Dandora Area I,283,47
+1413,Dandora Area Ii,283,47
+1414,Dandora Area Iii,283,47
+1415,Dandora Area Iv,283,47
+1416,Kayole North,284,47
+1417,Kayole Central,284,47
+1418,Kayole South,284,47
+1419,Komarock,284,47
+1420,Matopeni/Spring Valley,284,47
+1421,Upper Savannah,285,47
+1422,Lower Savannah,285,47
+1423,Embakasi,285,47
+1424,Utawala,285,47
+1425,Mihango,285,47
+1426,Umoja I,286,47
+1427,Umoja Ii,286,47
+1428,Mowlem,286,47
+1429,Kariobangi South,286,47
+1430,Maringo/Hamza,287,47
+1431,Viwandani,287,47
+1432,Harambee,287,47
+1433,Makongeni,287,47
+1434,Pumwani,288,47
+1435,Eastleigh North,288,47
+1436,Eastleigh South,288,47
+1437,Airbase,288,47
+1438,California,288,47
+1439,Nairobi Central,289,47
+1440,Ngara,289,47
+1441,Pangani,289,47
+1442,Ziwani/Kariokor,289,47
+1443,Landimawe,289,47
+1444,Nairobi South,289,47
+1445,Hospital,290,47
+1446,Mabatini,290,47
+1447,Huruma,290,47
+1448,Ngei,290,47
+1449,Mlango Kubwa,290,47
+1450,Kiamaiko,290,47
