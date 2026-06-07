@@ -11,6 +11,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import {
   QueryOrgOverridesDto,
   QueryOrgOverrideVersionsDto,
+  RestoreVersionDto,
   UpsertOrgOverrideDto,
 } from './templates.dto';
 
@@ -140,6 +141,56 @@ export class OrgTemplateOverridesService {
       where: orgKey(key, orgId),
       data: { voided: true },
       ...this.representationService.buildCustomRepresentationQuery(query.v),
+    });
+  }
+
+  async restoreToVersion(
+    key: string,
+    orgId: string,
+    version: number,
+    dto: RestoreVersionDto,
+    userId?: string,
+  ) {
+    return this.prisma.$transaction(async (tx) => {
+      const current = await tx.orgTemplateOverride.findUnique({
+        where: orgKey(key, orgId),
+      });
+      if (!current) {
+        throw new NotFoundException(
+          `Override for template '${key}' and org '${orgId}' not found`,
+        );
+      }
+
+      const target = await tx.orgTemplateOverrideVersion.findUnique({
+        where: { overrideId_version: { overrideId: current.id, version } },
+      });
+      if (!target) {
+        throw new NotFoundException(
+          `Version ${version} of override for template '${key}' and org '${orgId}' not found`,
+        );
+      }
+
+      await tx.orgTemplateOverrideVersion.create({
+        data: {
+          overrideId: current.id,
+          version: current.version,
+          slots: current.slots as unknown as Prisma.InputJsonValue,
+          metadata: (current.metadata ??
+            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+          changedById: userId ?? null,
+          changeNote: dto.changeNote ?? null,
+        },
+      });
+
+      return tx.orgTemplateOverride.update({
+        where: orgKey(key, orgId),
+        data: {
+          slots: target.slots as unknown as Prisma.InputJsonValue,
+          metadata: (target.metadata ??
+            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+          version: { increment: 1 },
+        },
+      });
     });
   }
 

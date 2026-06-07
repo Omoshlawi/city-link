@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Put,
@@ -19,6 +20,7 @@ import {
 import {
   OrgTemplateOverrideResponseDto,
   QueryOrgOverridesDto,
+  RestoreVersionDto,
   QueryOrgOverridesResponseDto,
   QueryOrgOverrideVersionsDto,
   QueryOrgOverrideVersionsResponseDto,
@@ -113,6 +115,19 @@ export class TemplatesController {
     return this.templatesService.getVersions(key, query, originalUrl);
   }
 
+  @Post('/:key/versions/:version/restore')
+  // @RequireSystemPermission({ templates: ['update'] })
+  @ApiOperation({ summary: 'Restore a system template to a past version' })
+  @ApiOkResponse({ type: TemplateResponseDto })
+  @ApiErrorsResponse()
+  restoreTemplateToVersion(
+    @Param('key') key: string,
+    @Param('version', ParseIntPipe) version: number,
+    @Body() dto: RestoreVersionDto,
+  ) {
+    return this.templatesService.restoreToVersion(key, version, dto);
+  }
+
   // ── Org Overrides ───────────────────────────────────────────────────────────
 
   @Get('/:key/overrides')
@@ -176,5 +191,18 @@ export class TemplatesController {
     @OriginalUrl() originalUrl: string,
   ) {
     return this.orgOverridesService.getVersions(key, orgId, query, originalUrl);
+  }
+
+  @Post('/:key/overrides/:orgId/versions/:version/restore')
+  @ApiOperation({ summary: 'Restore an org override to a past version' })
+  @ApiOkResponse({ type: OrgTemplateOverrideResponseDto })
+  @ApiErrorsResponse()
+  restoreOrgOverrideToVersion(
+    @Param('key') key: string,
+    @Param('orgId') orgId: string,
+    @Param('version', ParseIntPipe) version: number,
+    @Body() dto: RestoreVersionDto,
+  ) {
+    return this.orgOverridesService.restoreToVersion(key, orgId, version, dto);
   }
 }

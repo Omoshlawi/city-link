@@ -69,6 +69,11 @@ export class UpsertOrgOverrideDto extends createZodDto(
   UpsertOrgOverrideSchema,
 ) {}
 
+const RestoreVersionSchema = z.object({
+  changeNote: z.string().optional(),
+});
+export class RestoreVersionDto extends createZodDto(RestoreVersionSchema) {}
+
 // ── Response DTOs ─────────────────────────────────────────────────────────────
 
 export class TemplateResponseDto implements Template {

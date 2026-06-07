@@ -11,6 +11,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import {
   QueryTemplatesDto,
   QueryTemplateVersionsDto,
+  RestoreVersionDto,
   UpdateTemplateSlotsDto,
 } from './templates.dto';
 
@@ -134,6 +135,53 @@ export class TemplatesService {
       where: { key },
       data: { voided: false },
       ...this.representationService.buildCustomRepresentationQuery(query.v),
+    });
+  }
+
+  async restoreToVersion(
+    key: string,
+    version: number,
+    dto: RestoreVersionDto,
+    userId?: string,
+  ) {
+    return this.prisma.$transaction(async (tx) => {
+      const current = await tx.template.findUnique({ where: { key } });
+      if (!current) throw new NotFoundException(`Template '${key}' not found`);
+
+      const target = await tx.templateVersion.findUnique({
+        where: { templateId_version: { templateId: current.id, version } },
+      });
+      if (!target) {
+        throw new NotFoundException(
+          `Version ${version} of template '${key}' not found`,
+        );
+      }
+
+      await tx.templateVersion.create({
+        data: {
+          templateId: current.id,
+          version: current.version,
+          slots: current.slots as unknown as Prisma.InputJsonValue,
+          schema: (current.schema ??
+            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+          metadata: (current.metadata ??
+            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+          changedById: userId ?? null,
+          changeNote: dto.changeNote ?? null,
+        },
+      });
+
+      return tx.template.update({
+        where: { key },
+        data: {
+          slots: target.slots as unknown as Prisma.InputJsonValue,
+          schema: (target.schema ??
+            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+          metadata: (target.metadata ??
+            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+          version: { increment: 1 },
+        },
+      });
     });
   }
 
