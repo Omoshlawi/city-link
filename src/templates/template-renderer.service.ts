@@ -1,7 +1,9 @@
 import {
   Injectable,
   InternalServerErrorException,
+  Logger,
   NotFoundException,
+  OnModuleInit,
 } from '@nestjs/common';
 import Handlebars from 'handlebars';
 import { TemplateEngine } from '../generated/prisma/enums';
@@ -13,8 +15,18 @@ export interface RenderedTemplate {
 }
 
 @Injectable()
-export class TemplateRendererService {
+export class TemplateRendererService implements OnModuleInit {
+  private readonly logger = new Logger(TemplateRendererService.name);
+  private hbs!: ReturnType<typeof Handlebars.create>;
+
   constructor(private readonly prisma: PrismaService) {}
+
+  onModuleInit() {
+    this.hbs = Handlebars.create();
+    this.registerHelpers();
+    const names = Object.keys(this.hbs.helpers).join(', ');
+    this.logger.log(`Registered Handlebars helpers: ${names}`);
+  }
 
   async render(
     key: string,
@@ -80,8 +92,64 @@ export class TemplateRendererService {
     return Object.fromEntries(
       Object.entries(slots).map(([name, source]) => [
         name,
-        Handlebars.compile(source)(data),
+        this.hbs.compile(source)(data),
       ]),
     );
+  }
+
+  // Handlebars always appends an options hash as the final argument; helpers
+  // that don't need it should still accept and ignore it to avoid misreading
+  // the hash as a real parameter when the caller omits optional args.
+  private registerHelpers() {
+    // ── Date / time ───────────────────────────────────────────────────────────
+    this.hbs.registerHelper(
+      'formatDate',
+      (value: unknown, locale?: unknown) => {
+        const date = value instanceof Date ? value : new Date(String(value));
+        if (isNaN(date.getTime())) return String(value);
+        // Handlebars passes its options hash as the last arg; treat non-string
+        // locale values (the hash object) as "use default".
+        const loc = typeof locale === 'string' ? locale : 'en-GB';
+        return new Intl.DateTimeFormat(loc, {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        }).format(date);
+      },
+    );
+
+    this.hbs.registerHelper('year', () => new Date().getFullYear());
+
+    // ── String ────────────────────────────────────────────────────────────────
+    this.hbs.registerHelper('uppercase', (value: unknown) =>
+      this.str(value).toUpperCase(),
+    );
+
+    this.hbs.registerHelper('lowercase', (value: unknown) =>
+      this.str(value).toLowerCase(),
+    );
+
+    this.hbs.registerHelper('capitalize', (value: unknown) => {
+      const s = this.str(value);
+      return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+    });
+
+    // ── Logic (for use inside {{#if (eq ...)}} sub-expressions) ───────────────
+    this.hbs.registerHelper('eq', (a: unknown, b: unknown) => a === b);
+
+    this.hbs.registerHelper('neq', (a: unknown, b: unknown) => a !== b);
+
+    // ── Fallback ──────────────────────────────────────────────────────────────
+    this.hbs.registerHelper(
+      'default',
+      (value: unknown, fallback: unknown) => value ?? fallback,
+    );
+  }
+
+  private str(value: unknown): string {
+    if (typeof value === 'string') return value;
+    if (typeof value === 'number' || typeof value === 'boolean')
+      return String(value);
+    return '';
   }
 }
