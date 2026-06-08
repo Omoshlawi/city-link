@@ -22,6 +22,8 @@ import { RequireActiveOrganizationGuard } from './auth.guards';
 import { adminConfig } from './auth.system.acl';
 import { UserSession } from './auth.types';
 import { organizationConfig } from './auth.org.acl';
+import { ExtendedAuthController } from './auth.controller';
+import { ExtendedAuthService } from './auth.service';
 
 @Module({})
 export class AuthModule {
@@ -33,10 +35,11 @@ export class AuthModule {
     const authModule = this.getBetterAuthModule();
     return {
       module: AuthModule,
-      providers: this.globalProviders,
+      providers: [...this.globalProviders, ExtendedAuthService],
       global: true,
       imports: [authModule],
       exports: [authModule],
+      controllers: [ExtendedAuthController],
     };
   }
 
