@@ -24,6 +24,7 @@ import { UserSession } from './auth.types';
 import { organizationConfig } from './auth.org.acl';
 import { ExtendedAuthController } from './auth.controller';
 import { ExtendedAuthService } from './auth.service';
+import { AuthHook } from './auth.hooks';
 
 @Module({})
 export class AuthModule {
@@ -35,7 +36,7 @@ export class AuthModule {
     const authModule = this.getBetterAuthModule();
     return {
       module: AuthModule,
-      providers: [...this.globalProviders, ExtendedAuthService],
+      providers: [...this.globalProviders, ExtendedAuthService, AuthHook],
       global: true,
       imports: [authModule],
       exports: [authModule],
@@ -250,6 +251,7 @@ export class AuthModule {
             sendOnSignUp: true,
             sendOnSignIn: true,
           },
+          hooks: {},
         }),
       }),
       inject: [PrismaService, AppConfig, AuthConfig],
