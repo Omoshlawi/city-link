@@ -3,6 +3,7 @@ import { ExtendedAuthService } from './auth.service';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { ApiErrorsResponse } from '../common/common.decorators';
 import { ListMembershipDto, QueryMembershipDto } from './auth.dto';
+import { AclResourcesResponseDto } from './auth.acl.dto';
 import { OriginalUrl } from '../common/query-builder';
 import { Session } from '@thallesp/nestjs-better-auth';
 import { type UserSession } from './auth.types';
@@ -10,6 +11,15 @@ import { type UserSession } from './auth.types';
 @Controller()
 export class ExtendedAuthController {
   constructor(private readonly authService: ExtendedAuthService) {}
+
+  @Get('/acl-resources')
+  @ApiOperation({
+    summary: 'Get ACL resources for system and organization scopes',
+  })
+  @ApiOkResponse({ type: AclResourcesResponseDto })
+  getAclResources(): AclResourcesResponseDto {
+    return this.authService.getAclResources();
+  }
 
   @Get('/list-memberships')
   @ApiOperation({ summary: 'Query Memberships' })

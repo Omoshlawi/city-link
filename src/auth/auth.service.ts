@@ -2,12 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { QueryMembershipDto } from './auth.dto';
+import { AclResourcesResponseDto } from './auth.acl.dto';
 import {
   CustomRepresentationService,
   PaginationService,
   SortService,
 } from '../common/query-builder';
 import { type UserSession } from './auth.types';
+import { organizationConfig } from './auth.org.acl';
+import { adminConfig } from './auth.system.acl';
 
 @Injectable()
 export class ExtendedAuthService {
@@ -17,6 +20,17 @@ export class ExtendedAuthService {
     private readonly paginationService: PaginationService,
     private readonly representationService: CustomRepresentationService,
   ) {}
+
+  getAclResources(): AclResourcesResponseDto {
+    return {
+      organization: (organizationConfig?.ac?.statements ??
+        {}) as unknown as Record<string, string[]>,
+      system: (adminConfig?.ac?.statements ?? {}) as unknown as Record<
+        string,
+        string[]
+      >,
+    };
+  }
 
   async listMemberships(
     query: QueryMembershipDto,
