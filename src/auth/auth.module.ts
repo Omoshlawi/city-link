@@ -68,7 +68,7 @@ export class AuthModule {
                 _,
               ) => {
                 const deepLink = `citylinkapp://change-email-verify?token=${token}`;
-                const verificationUrl = `${appConfig.frontEndUrl}/change-email-verify?token=${token}`;
+                const verificationUrl = `${appConfig.frontEndUrl}/auth/change-email-verify?token=${token}`;
                 const year = new Date().getFullYear();
                 this.logger.log(
                   `Initiating email change process for user ${user.email} (id: ${user.id}) to new address ${newEmail}.`,
@@ -186,7 +186,7 @@ export class AuthModule {
             enabled: true,
             sendResetPassword: async ({ user, token }, _) => {
               const deepLink = `citylinkapp://auth/reset-password?token=${token}`;
-              const resetUrl = `${appConfig.frontEndUrl}/reset-password?token=${token}`;
+              const resetUrl = `${appConfig.frontEndUrl}/auth/reset-password?token=${token}`;
               this.logger.log(`Initiate reset password for user ${user.email}`);
               this.logger.debug(
                 `Generated token ${token} for reset password. Deep link: ${deepLink}, Reset Url: ${resetUrl}`,
@@ -216,7 +216,7 @@ export class AuthModule {
           emailVerification: {
             sendVerificationEmail: async ({ user, token }, _) => {
               const deepLink = `citylinkapp://auth/verify-email?token=${token}`;
-              const verificationUrl = `${appConfig.frontEndUrl}/verify-email?token=${token}`;
+              const verificationUrl = `${appConfig.frontEndUrl}/auth/verify-email?token=${token}`;
               this.logger.log(
                 `Initiate email verification for user ${user.email}`,
               );

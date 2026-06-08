@@ -13,6 +13,5 @@ export interface UserSession extends BetterAuthUserSession {
     activeOrganizationId?: string;
     activeTeamId?: string;
     impersonatedBy?: string;
-    stationId?: string | null;
   };
 }
