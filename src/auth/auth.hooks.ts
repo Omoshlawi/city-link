@@ -16,7 +16,7 @@ export class AuthHook {
   @AfterHook('/organization/list-roles')
   handle(ctx: AuthHookContext) {
     const roles = [...(ctx.context.returned as Array<OrganizationRole>)].map(
-      (role) => ({ ...role, label: this.toLabel(role.role) }),
+      (role) => ({ ...role, label: this.toLabel(role.role), inbuild: false }),
     );
     const defaultRoles = Object.entries(organizationConfig?.roles ?? {}).map(
       ([role, val]) => ({
@@ -27,6 +27,7 @@ export class AuthHook {
         updatedAt: dayjs().toISOString(),
         id: crypto.randomUUID(),
         label: this.toLabel(role),
+        inbuild: true,
       }),
     );
 
