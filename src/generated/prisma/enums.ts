@@ -8,6 +8,27 @@
 * 🟢 You can import this file directly.
 */
 
+export const SettingScope = {
+  SYSTEM: 'SYSTEM',
+  ORGANIZATION: 'ORGANIZATION',
+  USER: 'USER'
+} as const
+
+export type SettingScope = (typeof SettingScope)[keyof typeof SettingScope]
+
+
+export const SettingType = {
+  STRING: 'STRING',
+  BOOLEAN: 'BOOLEAN',
+  INTEGER: 'INTEGER',
+  FLOAT: 'FLOAT',
+  JSON: 'JSON',
+  ENCRYPTED: 'ENCRYPTED'
+} as const
+
+export type SettingType = (typeof SettingType)[keyof typeof SettingType]
+
+
 export const TemplateEngine = {
   HANDLEBARS: 'HANDLEBARS'
 } as const

@@ -160,6 +160,40 @@ export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
 }
 
+export type EnumSettingScopeFilter<$PrismaModel = never> = {
+  equals?: $Enums.SettingScope | Prisma.EnumSettingScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.SettingScope[] | Prisma.ListEnumSettingScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SettingScope[] | Prisma.ListEnumSettingScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSettingScopeFilter<$PrismaModel> | $Enums.SettingScope
+}
+
+export type EnumSettingTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.SettingType | Prisma.EnumSettingTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SettingType[] | Prisma.ListEnumSettingTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SettingType[] | Prisma.ListEnumSettingTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSettingTypeFilter<$PrismaModel> | $Enums.SettingType
+}
+
+export type EnumSettingScopeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SettingScope | Prisma.EnumSettingScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.SettingScope[] | Prisma.ListEnumSettingScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SettingScope[] | Prisma.ListEnumSettingScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSettingScopeWithAggregatesFilter<$PrismaModel> | $Enums.SettingScope
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSettingScopeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSettingScopeFilter<$PrismaModel>
+}
+
+export type EnumSettingTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SettingType | Prisma.EnumSettingTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SettingType[] | Prisma.ListEnumSettingTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SettingType[] | Prisma.ListEnumSettingTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSettingTypeWithAggregatesFilter<$PrismaModel> | $Enums.SettingType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSettingTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSettingTypeFilter<$PrismaModel>
+}
+
 export type EnumTemplateEngineFilter<$PrismaModel = never> = {
   equals?: $Enums.TemplateEngine | Prisma.EnumTemplateEngineFieldRefInput<$PrismaModel>
   in?: $Enums.TemplateEngine[] | Prisma.ListEnumTemplateEngineFieldRefInput<$PrismaModel>
@@ -464,6 +498,40 @@ export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumSettingScopeFilter<$PrismaModel = never> = {
+  equals?: $Enums.SettingScope | Prisma.EnumSettingScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.SettingScope[] | Prisma.ListEnumSettingScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SettingScope[] | Prisma.ListEnumSettingScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSettingScopeFilter<$PrismaModel> | $Enums.SettingScope
+}
+
+export type NestedEnumSettingTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.SettingType | Prisma.EnumSettingTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SettingType[] | Prisma.ListEnumSettingTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SettingType[] | Prisma.ListEnumSettingTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSettingTypeFilter<$PrismaModel> | $Enums.SettingType
+}
+
+export type NestedEnumSettingScopeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SettingScope | Prisma.EnumSettingScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.SettingScope[] | Prisma.ListEnumSettingScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SettingScope[] | Prisma.ListEnumSettingScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSettingScopeWithAggregatesFilter<$PrismaModel> | $Enums.SettingScope
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSettingScopeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSettingScopeFilter<$PrismaModel>
+}
+
+export type NestedEnumSettingTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SettingType | Prisma.EnumSettingTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SettingType[] | Prisma.ListEnumSettingTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SettingType[] | Prisma.ListEnumSettingTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSettingTypeWithAggregatesFilter<$PrismaModel> | $Enums.SettingType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSettingTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSettingTypeFilter<$PrismaModel>
 }
 
 export type NestedEnumTemplateEngineFilter<$PrismaModel = never> = {

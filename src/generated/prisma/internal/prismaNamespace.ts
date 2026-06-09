@@ -395,6 +395,7 @@ export const ModelName = {
   Invitation: 'Invitation',
   Jwks: 'Jwks',
   TwoFactor: 'TwoFactor',
+  Setting: 'Setting',
   Template: 'Template',
   TemplateVersion: 'TemplateVersion',
   OrgTemplateOverride: 'OrgTemplateOverride',
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "organization" | "organizationRole" | "team" | "teamMember" | "member" | "invitation" | "jwks" | "twoFactor" | "template" | "templateVersion" | "orgTemplateOverride" | "orgTemplateOverrideVersion" | "addressHierarchy"
+    modelProps: "user" | "session" | "account" | "verification" | "organization" | "organizationRole" | "team" | "teamMember" | "member" | "invitation" | "jwks" | "twoFactor" | "setting" | "template" | "templateVersion" | "orgTemplateOverride" | "orgTemplateOverrideVersion" | "addressHierarchy"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1307,6 +1308,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Setting: {
+      payload: Prisma.$SettingPayload<ExtArgs>
+      fields: Prisma.SettingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SettingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SettingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>
+        }
+        findFirst: {
+          args: Prisma.SettingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SettingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>
+        }
+        findMany: {
+          args: Prisma.SettingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>[]
+        }
+        create: {
+          args: Prisma.SettingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>
+        }
+        createMany: {
+          args: Prisma.SettingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SettingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>[]
+        }
+        delete: {
+          args: Prisma.SettingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>
+        }
+        update: {
+          args: Prisma.SettingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>
+        }
+        deleteMany: {
+          args: Prisma.SettingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SettingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SettingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>[]
+        }
+        upsert: {
+          args: Prisma.SettingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SettingPayload>
+        }
+        aggregate: {
+          args: Prisma.SettingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSetting>
+        }
+        groupBy: {
+          args: Prisma.SettingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SettingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SettingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SettingCountAggregateOutputType> | number
+        }
+      }
+    }
     Template: {
       payload: Prisma.$TemplatePayload<ExtArgs>
       fields: Prisma.TemplateFieldRefs
@@ -1880,6 +1955,26 @@ export const TwoFactorScalarFieldEnum = {
 export type TwoFactorScalarFieldEnum = (typeof TwoFactorScalarFieldEnum)[keyof typeof TwoFactorScalarFieldEnum]
 
 
+export const SettingScalarFieldEnum = {
+  id: 'id',
+  scope: 'scope',
+  namespace: 'namespace',
+  key: 'key',
+  userId: 'userId',
+  organizationId: 'organizationId',
+  value: 'value',
+  valueType: 'valueType',
+  description: 'description',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  updatedBy: 'updatedBy',
+  deletedAt: 'deletedAt'
+} as const
+
+export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
+
+
 export const TemplateScalarFieldEnum = {
   id: 'id',
   key: 'key',
@@ -2043,6 +2138,34 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SettingScope'
+ */
+export type EnumSettingScopeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SettingScope'>
+    
+
+
+/**
+ * Reference to a field of type 'SettingScope[]'
+ */
+export type ListEnumSettingScopeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SettingScope[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SettingType'
+ */
+export type EnumSettingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SettingType'>
+    
+
+
+/**
+ * Reference to a field of type 'SettingType[]'
+ */
+export type ListEnumSettingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SettingType[]'>
     
 
 
@@ -2223,6 +2346,7 @@ export type GlobalOmitConfig = {
   invitation?: Prisma.InvitationOmit
   jwks?: Prisma.JwksOmit
   twoFactor?: Prisma.TwoFactorOmit
+  setting?: Prisma.SettingOmit
   template?: Prisma.TemplateOmit
   templateVersion?: Prisma.TemplateVersionOmit
   orgTemplateOverride?: Prisma.OrgTemplateOverrideOmit

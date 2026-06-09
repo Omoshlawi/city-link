@@ -285,6 +285,7 @@ export type UserWhereInput = {
   twofactors?: Prisma.TwoFactorListRelationFilter
   templateVersions?: Prisma.TemplateVersionListRelationFilter
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionListRelationFilter
+  settings?: Prisma.SettingListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -313,6 +314,7 @@ export type UserOrderByWithRelationInput = {
   twofactors?: Prisma.TwoFactorOrderByRelationAggregateInput
   templateVersions?: Prisma.TemplateVersionOrderByRelationAggregateInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionOrderByRelationAggregateInput
+  settings?: Prisma.SettingOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -344,6 +346,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   twofactors?: Prisma.TwoFactorListRelationFilter
   templateVersions?: Prisma.TemplateVersionListRelationFilter
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionListRelationFilter
+  settings?: Prisma.SettingListRelationFilter
 }, "id" | "email" | "username" | "phoneNumber">
 
 export type UserOrderByWithAggregationInput = {
@@ -418,6 +421,7 @@ export type UserCreateInput = {
   twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -446,6 +450,7 @@ export type UserUncheckedCreateInput = {
   twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -474,6 +479,7 @@ export type UserUpdateInput = {
   twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -502,6 +508,7 @@ export type UserUncheckedUpdateInput = {
   twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -742,6 +749,22 @@ export type UserUpdateOneRequiredWithoutTwofactorsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTwofactorsInput, Prisma.UserUpdateWithoutTwofactorsInput>, Prisma.UserUncheckedUpdateWithoutTwofactorsInput>
 }
 
+export type UserCreateNestedOneWithoutSettingsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSettingsInput, Prisma.UserUncheckedCreateWithoutSettingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSettingsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSettingsInput, Prisma.UserUncheckedCreateWithoutSettingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSettingsInput
+  upsert?: Prisma.UserUpsertWithoutSettingsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSettingsInput, Prisma.UserUpdateWithoutSettingsInput>, Prisma.UserUncheckedUpdateWithoutSettingsInput>
+}
+
 export type UserCreateNestedOneWithoutTemplateVersionsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutTemplateVersionsInput, Prisma.UserUncheckedCreateWithoutTemplateVersionsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutTemplateVersionsInput
@@ -799,6 +822,7 @@ export type UserCreateWithoutSessionsInput = {
   twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -826,6 +850,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -869,6 +894,7 @@ export type UserUpdateWithoutSessionsInput = {
   twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -896,6 +922,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -923,6 +950,7 @@ export type UserCreateWithoutAccountsInput = {
   twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -950,6 +978,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -993,6 +1022,7 @@ export type UserUpdateWithoutAccountsInput = {
   twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -1020,6 +1050,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTeammembersInput = {
@@ -1047,6 +1078,7 @@ export type UserCreateWithoutTeammembersInput = {
   twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTeammembersInput = {
@@ -1074,6 +1106,7 @@ export type UserUncheckedCreateWithoutTeammembersInput = {
   twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTeammembersInput = {
@@ -1117,6 +1150,7 @@ export type UserUpdateWithoutTeammembersInput = {
   twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTeammembersInput = {
@@ -1144,6 +1178,7 @@ export type UserUncheckedUpdateWithoutTeammembersInput = {
   twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMembersInput = {
@@ -1171,6 +1206,7 @@ export type UserCreateWithoutMembersInput = {
   twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMembersInput = {
@@ -1198,6 +1234,7 @@ export type UserUncheckedCreateWithoutMembersInput = {
   twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMembersInput = {
@@ -1241,6 +1278,7 @@ export type UserUpdateWithoutMembersInput = {
   twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembersInput = {
@@ -1268,6 +1306,7 @@ export type UserUncheckedUpdateWithoutMembersInput = {
   twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutInvitationsInput = {
@@ -1295,6 +1334,7 @@ export type UserCreateWithoutInvitationsInput = {
   twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -1322,6 +1362,7 @@ export type UserUncheckedCreateWithoutInvitationsInput = {
   twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -1365,6 +1406,7 @@ export type UserUpdateWithoutInvitationsInput = {
   twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -1392,6 +1434,7 @@ export type UserUncheckedUpdateWithoutInvitationsInput = {
   twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTwofactorsInput = {
@@ -1419,6 +1462,7 @@ export type UserCreateWithoutTwofactorsInput = {
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTwofactorsInput = {
@@ -1446,6 +1490,7 @@ export type UserUncheckedCreateWithoutTwofactorsInput = {
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTwofactorsInput = {
@@ -1489,6 +1534,7 @@ export type UserUpdateWithoutTwofactorsInput = {
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTwofactorsInput = {
@@ -1514,6 +1560,135 @@ export type UserUncheckedUpdateWithoutTwofactorsInput = {
   teammembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutUserNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSettingsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  username?: string | null
+  displayUsername?: string | null
+  isAnonymous?: boolean | null
+  role?: string | null
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  twoFactorEnabled?: boolean | null
+  phoneNumber?: string | null
+  phoneNumberVerified?: boolean | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  teammembers?: Prisma.TeamMemberCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberCreateNestedManyWithoutUserInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
+  templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+}
+
+export type UserUncheckedCreateWithoutSettingsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  username?: string | null
+  displayUsername?: string | null
+  isAnonymous?: boolean | null
+  role?: string | null
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  twoFactorEnabled?: boolean | null
+  phoneNumber?: string | null
+  phoneNumberVerified?: boolean | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  teammembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
+  templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+}
+
+export type UserCreateOrConnectWithoutSettingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSettingsInput, Prisma.UserUncheckedCreateWithoutSettingsInput>
+}
+
+export type UserUpsertWithoutSettingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSettingsInput, Prisma.UserUncheckedUpdateWithoutSettingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSettingsInput, Prisma.UserUncheckedCreateWithoutSettingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSettingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSettingsInput, Prisma.UserUncheckedUpdateWithoutSettingsInput>
+}
+
+export type UserUpdateWithoutSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAnonymous?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumberVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  teammembers?: Prisma.TeamMemberUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
+  templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAnonymous?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumberVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  teammembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
 }
@@ -1543,6 +1718,7 @@ export type UserCreateWithoutTemplateVersionsInput = {
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
   twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTemplateVersionsInput = {
@@ -1570,6 +1746,7 @@ export type UserUncheckedCreateWithoutTemplateVersionsInput = {
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
   twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTemplateVersionsInput = {
@@ -1613,6 +1790,7 @@ export type UserUpdateWithoutTemplateVersionsInput = {
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
   twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTemplateVersionsInput = {
@@ -1640,6 +1818,7 @@ export type UserUncheckedUpdateWithoutTemplateVersionsInput = {
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
   twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOrgTemplateOverrideVersionsInput = {
@@ -1667,6 +1846,7 @@ export type UserCreateWithoutOrgTemplateOverrideVersionsInput = {
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
   twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrgTemplateOverrideVersionsInput = {
@@ -1694,6 +1874,7 @@ export type UserUncheckedCreateWithoutOrgTemplateOverrideVersionsInput = {
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
   twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
   templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrgTemplateOverrideVersionsInput = {
@@ -1737,6 +1918,7 @@ export type UserUpdateWithoutOrgTemplateOverrideVersionsInput = {
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
   twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrgTemplateOverrideVersionsInput = {
@@ -1764,6 +1946,7 @@ export type UserUncheckedUpdateWithoutOrgTemplateOverrideVersionsInput = {
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
   twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1780,6 +1963,7 @@ export type UserCountOutputType = {
   twofactors: number
   templateVersions: number
   orgTemplateOverrideVersions: number
+  settings: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1791,6 +1975,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   twofactors?: boolean | UserCountOutputTypeCountTwofactorsArgs
   templateVersions?: boolean | UserCountOutputTypeCountTemplateVersionsArgs
   orgTemplateOverrideVersions?: boolean | UserCountOutputTypeCountOrgTemplateOverrideVersionsArgs
+  settings?: boolean | UserCountOutputTypeCountSettingsArgs
 }
 
 /**
@@ -1859,6 +2044,13 @@ export type UserCountOutputTypeCountOrgTemplateOverrideVersionsArgs<ExtArgs exte
   where?: Prisma.OrgTemplateOverrideVersionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SettingWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1886,6 +2078,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   twofactors?: boolean | Prisma.User$twofactorsArgs<ExtArgs>
   templateVersions?: boolean | Prisma.User$templateVersionsArgs<ExtArgs>
   orgTemplateOverrideVersions?: boolean | Prisma.User$orgTemplateOverrideVersionsArgs<ExtArgs>
+  settings?: boolean | Prisma.User$settingsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1959,6 +2152,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   twofactors?: boolean | Prisma.User$twofactorsArgs<ExtArgs>
   templateVersions?: boolean | Prisma.User$templateVersionsArgs<ExtArgs>
   orgTemplateOverrideVersions?: boolean | Prisma.User$orgTemplateOverrideVersionsArgs<ExtArgs>
+  settings?: boolean | Prisma.User$settingsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1975,6 +2169,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     twofactors: Prisma.$TwoFactorPayload<ExtArgs>[]
     templateVersions: Prisma.$TemplateVersionPayload<ExtArgs>[]
     orgTemplateOverrideVersions: Prisma.$OrgTemplateOverrideVersionPayload<ExtArgs>[]
+    settings: Prisma.$SettingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2396,6 +2591,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   twofactors<T extends Prisma.User$twofactorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$twofactorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TwoFactorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   templateVersions<T extends Prisma.User$templateVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$templateVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TemplateVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orgTemplateOverrideVersions<T extends Prisma.User$orgTemplateOverrideVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$orgTemplateOverrideVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrgTemplateOverrideVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  settings<T extends Prisma.User$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$settingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3024,6 +3220,30 @@ export type User$orgTemplateOverrideVersionsArgs<ExtArgs extends runtime.Types.E
   take?: number
   skip?: number
   distinct?: Prisma.OrgTemplateOverrideVersionScalarFieldEnum | Prisma.OrgTemplateOverrideVersionScalarFieldEnum[]
+}
+
+/**
+ * User.settings
+ */
+export type User$settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Setting
+   */
+  select?: Prisma.SettingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Setting
+   */
+  omit?: Prisma.SettingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SettingInclude<ExtArgs> | null
+  where?: Prisma.SettingWhereInput
+  orderBy?: Prisma.SettingOrderByWithRelationInput | Prisma.SettingOrderByWithRelationInput[]
+  cursor?: Prisma.SettingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SettingScalarFieldEnum | Prisma.SettingScalarFieldEnum[]
 }
 
 /**

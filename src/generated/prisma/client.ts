@@ -99,6 +99,11 @@ export type Jwks = Prisma.JwksModel
  */
 export type TwoFactor = Prisma.TwoFactorModel
 /**
+ * Model Setting
+ * 
+ */
+export type Setting = Prisma.SettingModel
+/**
  * Model Template
  * 
  */

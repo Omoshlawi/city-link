@@ -62,6 +62,7 @@ export const ModelName = {
   Invitation: 'Invitation',
   Jwks: 'Jwks',
   TwoFactor: 'TwoFactor',
+  Setting: 'Setting',
   Template: 'Template',
   TemplateVersion: 'TemplateVersion',
   OrgTemplateOverride: 'OrgTemplateOverride',
@@ -247,6 +248,26 @@ export const TwoFactorScalarFieldEnum = {
 } as const
 
 export type TwoFactorScalarFieldEnum = (typeof TwoFactorScalarFieldEnum)[keyof typeof TwoFactorScalarFieldEnum]
+
+
+export const SettingScalarFieldEnum = {
+  id: 'id',
+  scope: 'scope',
+  namespace: 'namespace',
+  key: 'key',
+  userId: 'userId',
+  organizationId: 'organizationId',
+  value: 'value',
+  valueType: 'valueType',
+  description: 'description',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  updatedBy: 'updatedBy',
+  deletedAt: 'deletedAt'
+} as const
+
+export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
 
 
 export const TemplateScalarFieldEnum = {
