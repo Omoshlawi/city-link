@@ -28,25 +28,22 @@ export class ExtendedAuthService {
   ) {}
 
   listSystemRoles() {
-    const results = Object.entries(adminPluginRoles).map(
-      ([roleKey, roleConfig]) => {
-        const statements = roleConfig.statements as unknown as Record<
-          string,
-          string[]
-        >;
-        const permissions = Object.entries(statements).flatMap(
-          ([resource, actions]) =>
-            actions.map((action) => ({
-              resource,
-              resourceName: capitalize(resource),
-              action,
-              actionName: capitalize(action),
-            })),
-        );
-        return { role: roleKey, name: capitalize(roleKey), permissions };
-      },
-    );
-    return { results };
+    const now = new Date().toISOString();
+    return Object.entries(adminPluginRoles).map(([roleKey, roleConfig]) => {
+      const permission = roleConfig.statements as unknown as Record<
+        string,
+        string[]
+      >;
+      return {
+        id: roleKey,
+        role: roleKey,
+        label: capitalize(roleKey),
+        permission,
+        inbuild: true,
+        createdAt: now,
+        updatedAt: now,
+      };
+    });
   }
 
   async createUser(dto: CreateUserExtendedDto) {
