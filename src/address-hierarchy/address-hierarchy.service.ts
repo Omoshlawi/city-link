@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   CustomRepresentationQueryDto,
   CustomRepresentationService,
@@ -8,7 +8,11 @@ import {
 } from '../common/query-builder';
 import { AddressHierarchy, Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import { QueryAddressHierarchyDto } from './address-hierarchy.dto';
+import {
+  CreateAddressHierarchyDto,
+  QueryAddressHierarchyDto,
+  UpdateAddressHierarchyDto,
+} from './address-hierarchy.dto';
 
 @Injectable()
 export class AddressHierarchyService {
@@ -100,6 +104,21 @@ export class AddressHierarchyService {
       where: { id },
       data: { voided: false },
       ...this.representationService.buildCustomRepresentationQuery(query?.v),
+    });
+  }
+
+  async create(dto: CreateAddressHierarchyDto) {
+    return this.prismaService.addressHierarchy.create({ data: dto });
+  }
+
+  async update(id: string, dto: UpdateAddressHierarchyDto) {
+    const existing = await this.prismaService.addressHierarchy.findUnique({
+      where: { id },
+    });
+    if (!existing) throw new NotFoundException('Address hierarchy not found');
+    return this.prismaService.addressHierarchy.update({
+      where: { id },
+      data: dto,
     });
   }
 }

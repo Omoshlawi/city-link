@@ -69,6 +69,33 @@ export class GetAddressHierarchyResponseDto implements AddressHierarchy {
   updatedAt!: string;
 }
 
+const AddressLevelSchema = z.union([
+  z.literal(1),
+  z.literal(2),
+  z.literal(3),
+  z.literal(4),
+  z.literal(5),
+]);
+
+export const CreateAddressHierarchySchema = z.object({
+  country: z.string().min(2),
+  level: AddressLevelSchema,
+  parentId: z.uuid().optional(),
+  code: z.string().min(1),
+  name: z.string().min(1),
+  nameLocal: z.string().optional(),
+});
+
+export class CreateAddressHierarchyDto extends createZodDto(
+  CreateAddressHierarchySchema,
+) {}
+
+export const UpdateAddressHierarchySchema = CreateAddressHierarchySchema.partial();
+
+export class UpdateAddressHierarchyDto extends createZodDto(
+  UpdateAddressHierarchySchema,
+) {}
+
 export class QueryAddressHierarchyResponseDto {
   @ApiProperty({ isArray: true, type: GetAddressHierarchyResponseDto })
   results!: GetAddressHierarchyResponseDto[];
