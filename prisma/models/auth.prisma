@@ -22,8 +22,9 @@ model User {
     members              Member[]
     invitations          Invitation[]
     twofactors           TwoFactor[]
-    templateVersions          TemplateVersion[]
+    templateVersions            TemplateVersion[]
     orgTemplateOverrideVersions OrgTemplateOverrideVersion[]
+    settings                    Setting[]                    @relation("UserSettings")
 
     @@unique([email])
     @@unique([username])
@@ -94,6 +95,7 @@ model Organization {
     members              Member[]
     invitations          Invitation[]
     templateOverrides    OrgTemplateOverride[]
+    settings             Setting[]            @relation("OrganizationSettings")
 
     @@unique([slug])
     @@map("organization")

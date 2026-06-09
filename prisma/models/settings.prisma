@@ -1,0 +1,42 @@
+enum SettingScope {
+    SYSTEM
+    ORGANIZATION
+    USER
+}
+
+enum SettingType {
+    STRING
+    BOOLEAN
+    INTEGER
+    FLOAT
+    JSON
+    ENCRYPTED
+}
+
+model Setting {
+    id             String        @id @default(uuid())
+    scope          SettingScope
+    namespace      String // module/feature grouping e.g. "notifications", "dashboard"
+    key            String // atomic key within the namespace e.g. "email", "cols"
+    userId         String? // non-null only when scope = USER
+    user           User?         @relation("UserSettings", fields: [userId], references: [id], onDelete: Cascade)
+    organizationId String? // non-null when scope = ORGANIZATION | USER
+    organization   Organization? @relation("OrganizationSettings", fields: [organizationId], references: [id], onDelete: Cascade)
+    value          String
+    valueType      SettingType   @default(STRING)
+    description    String?
+    isPublic       Boolean       @default(false)
+    createdAt      DateTime      @default(now())
+    updatedAt      DateTime      @updatedAt
+    updatedBy      String?
+    deletedAt      DateTime? // soft delete — null means active
+
+    // One value per (scope, namespace, key, owner). NULLs are distinct in Postgres
+    // unique indexes, so SYSTEM/ORG/USER rows never collide.
+    @@unique([scope, namespace, key, userId, organizationId])
+    @@index([scope, namespace])
+    @@index([organizationId])
+    @@index([userId])
+    @@index([deletedAt])
+    @@map("settings")
+}

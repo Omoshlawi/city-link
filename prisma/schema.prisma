@@ -32,3 +32,17 @@ model AddressHierarchy {
   @@index([parentId])
   @@map("address_hierarchy")
 }
+
+// -------------Settings Model------------
+
+// Every setting is ONE atomic value stored as a string.
+// Keys are scoped by namespace + key (no dot-notation needed):
+//
+//   scope=SYSTEM,  namespace="locale",         key="default"       → "en-KE"
+//   scope=SYSTEM,  namespace="theme",          key="default"       → "dark"
+//   scope=ORG,     namespace="notifications",  key="email"         → "true"
+//   scope=ORG,     namespace="notifications",  key="quiet_start"   → "22"
+//   scope=ORG,     namespace="notifications",  key="timezone"      → "Africa/Nairobi"
+//   scope=USER,    namespace="dashboard",      key="cols"          → "3"
+//   scope=USER,    namespace="dashboard",      key="widgets"       → "[\"revenue\"]"  (JSON)
+//
