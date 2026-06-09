@@ -34,8 +34,6 @@ export class AuthHook {
     ctx.context.returned = [...defaultRoles, ...roles];
   }
 
-  private generateUuid() {}
-
   private toLabel(role: string) {
     return capitalize(role);
   }

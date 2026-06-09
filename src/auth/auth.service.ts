@@ -1,16 +1,21 @@
-import { Injectable } from '@nestjs/common';
-import { Prisma } from '../generated/prisma/client';
-import { PrismaService } from '../prisma/prisma.service';
-import { QueryMembershipDto } from './auth.dto';
-import { AclResourcesResponseDto } from './auth.acl.dto';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { AuthService } from '@thallesp/nestjs-better-auth';
+import capitalize from 'lodash/capitalize';
 import {
   CustomRepresentationService,
   PaginationService,
   SortService,
 } from '../common/query-builder';
-import { type UserSession } from './auth.types';
+import { Prisma } from '../generated/prisma/client';
+import { PrismaService } from '../prisma/prisma.service';
+import {
+  AclResourcesResponseDto,
+  CreateUserExtendedDto,
+  QueryMembershipDto,
+} from './auth.dto';
 import { organizationConfig } from './auth.org.acl';
-import { adminConfig } from './auth.system.acl';
+import { adminConfig, adminPluginRoles } from './auth.system.acl';
+import { type UserSession, BetterAuthWithPlugins } from './auth.types';
 
 @Injectable()
 export class ExtendedAuthService {
@@ -19,7 +24,72 @@ export class ExtendedAuthService {
     private readonly sortService: SortService,
     private readonly paginationService: PaginationService,
     private readonly representationService: CustomRepresentationService,
+    private readonly authService: AuthService<BetterAuthWithPlugins>,
   ) {}
+
+  listSystemRoles() {
+    const results = Object.entries(adminPluginRoles).map(
+      ([roleKey, roleConfig]) => {
+        const statements = roleConfig.statements as unknown as Record<
+          string,
+          string[]
+        >;
+        const permissions = Object.entries(statements).flatMap(
+          ([resource, actions]) =>
+            actions.map((action) => ({
+              resource,
+              resourceName: capitalize(resource),
+              action,
+              actionName: capitalize(action),
+            })),
+        );
+        return { role: roleKey, name: capitalize(roleKey), permissions };
+      },
+    );
+    return { results };
+  }
+
+  async createUser(dto: CreateUserExtendedDto) {
+    if (dto.username) {
+      const { available } = await this.authService.api.isUsernameAvailable({
+        body: { username: dto.username },
+      });
+      if (!available)
+        throw new BadRequestException('User exist with given username');
+    }
+    if (dto.phoneNumber) {
+      const count = await this.prismaService.user.count({
+        where: {
+          phoneNumber: dto.phoneNumber,
+        },
+      });
+      if (count > 0)
+        throw new BadRequestException('User exist with given phone number');
+    }
+
+    const { user } = await this.authService.api.createUser({
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      body: { ...dto, role: dto.role as any },
+    });
+
+    const updated = await this.prismaService.user.update({
+      where: { id: user.id },
+      data: {
+        ...(dto.username ? { username: dto.username } : {}),
+        ...(dto.phoneNumber ? { phoneNumber: dto.phoneNumber } : {}),
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        username: true,
+        phoneNumber: true,
+        createdAt: true,
+      },
+    });
+
+    return updated;
+  }
 
   getAclResources(): AclResourcesResponseDto {
     return {

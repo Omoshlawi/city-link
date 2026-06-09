@@ -11,12 +11,14 @@ const adminPluginAcl = createAccessControl({
   ...defaultAdminStatements,
   adrressHierArchy: ['create', 'update', 'delete', 'restore'],
   templates: ['create', 'update', 'delete', 'restore'],
+  setting: ['manage-system', 'view'],
 });
 
 const adminRole = adminPluginAcl.newRole({
   ...adminAc.statements,
   adrressHierArchy: ['create', 'update', 'delete', 'restore'],
   templates: ['create', 'update', 'delete', 'restore'],
+  setting: ['manage-system', 'view'],
 });
 
 const userRole = adminPluginAcl.newRole({
