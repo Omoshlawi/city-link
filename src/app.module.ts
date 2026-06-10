@@ -8,6 +8,7 @@ import { CommonModule } from './common/common.module';
 import { AddressHierarchyModule } from './address-hierarchy/address-hierarchy.module';
 import { TemplatesModule } from './templates/templates.module';
 import { SettingsModule } from './settings/settings.module';
+import { QueueModule } from './queue/queue.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { SettingsModule } from './settings/settings.module';
     AddressHierarchyModule,
     TemplatesModule,
     SettingsModule,
+    QueueModule,
   ],
   controllers: [AppController],
   providers: [AppService],
