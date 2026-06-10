@@ -90,7 +90,7 @@ export class NotificationLogService {
     const results = await this.prisma.notificationLog.findMany({
       where,
       ...this.paginationService.buildSafePaginationQuery(filters, totalCount),
-      ...this.sortService.buildSortQuery(filters.orderBy),
+      ...this.sortService.buildSortQuery(filters.orderBy ?? '-createdAt'),
     });
 
     return {

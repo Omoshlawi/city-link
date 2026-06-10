@@ -1,0 +1,2 @@
+-- RenameIndex
+ALTER INDEX "notification_logs_dispatchId_channel_recipientRef_attemptNumber" RENAME TO "notification_logs_dispatchId_channel_recipientRef_attemptNu_key";

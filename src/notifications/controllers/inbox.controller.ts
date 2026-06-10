@@ -44,6 +44,7 @@ export class InboxController {
   @Patch('/read-all')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Mark all notifications as read' })
+  @ApiErrorsResponse()
   markAllRead(@Session() { user }: UserSession) {
     return this.inboxService.markAllRead(user.id);
   }

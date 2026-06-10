@@ -4,7 +4,6 @@ import { BullBoardModule } from '@bull-board/nestjs';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { TemplatesModule } from '../templates/templates.module';
-import { SettingsModule } from '../settings/settings.module';
 import { NotificationConfig } from './notifications.config';
 import { QUEUE_NAMES } from './notifications.constants';
 import { SMS_CHANNEL } from './channels/channel.interface';

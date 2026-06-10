@@ -189,22 +189,24 @@ export class NotificationDispatchService {
         if (!tokens.length) {
           this.logger.debug(`No active push tokens for user ${userId}`);
         }
-        for (const pushToken of tokens) {
-          await this.pushQueue.add(
-            QUEUE_NAMES.PUSH,
-            {
-              dispatchId,
-              templateKey: dto.templateKey,
-              recipientRef: pushToken.token,
-              recipientId: userId,
-              organizationId: dto.orgId,
-              title: slots.push_title ?? '',
-              body: slots.push_body ?? '',
-              data: parsedPushData,
-            } satisfies PushJobPayload,
-            jobOpts,
-          );
-        }
+        await Promise.all(
+          tokens.map((pushToken) =>
+            this.pushQueue.add(
+              QUEUE_NAMES.PUSH,
+              {
+                dispatchId,
+                templateKey: dto.templateKey,
+                recipientRef: pushToken.token,
+                recipientId: userId,
+                organizationId: dto.orgId,
+                title: slots.push_title ?? '',
+                body: slots.push_body ?? '',
+                data: parsedPushData,
+              } satisfies PushJobPayload,
+              jobOpts,
+            ),
+          ),
+        );
       }
 
       if (channel === NotificationChannel.SMS) {
