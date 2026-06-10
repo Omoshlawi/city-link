@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DynamicModule, Logger, Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthModule as AuthenticationModule } from '@thallesp/nestjs-better-auth';
@@ -17,6 +16,8 @@ import {
 } from 'better-auth/plugins';
 import { AppConfig } from '../app.config';
 import { PrismaService } from '../prisma/prisma.service';
+import { NotificationDispatchService } from '../notifications/dispatch.service';
+import { NotificationPriority } from '../notifications/notifications.constants';
 import { AuthConfig } from './auth.config';
 import { RequireActiveOrganizationGuard } from './auth.guards';
 import { adminConfig } from './auth.system.acl';
@@ -50,6 +51,7 @@ export class AuthModule {
         prisma: PrismaService,
         appConfig: AppConfig,
         authConfig: AuthConfig,
+        notificationDispatch: NotificationDispatchService,
       ) => ({
         auth: betterAuth({
           database: prismaAdapter(prisma, {
@@ -58,7 +60,7 @@ export class AuthModule {
           user: {
             changeEmail: {
               enabled: true,
-              sendChangeEmailVerification: (
+              sendChangeEmailVerification: async (
                 {
                   user,
                   newEmail,
@@ -68,46 +70,29 @@ export class AuthModule {
                   newEmail: string;
                   token: string;
                 },
-
                 _,
               ) => {
                 const deepLink = `citylinkapp://change-email-verify?token=${token}`;
-                const verificationUrl = `${appConfig.frontEndUrl}/auth/change-email-verify?token=${token}`;
+                const actionUrl = `${appConfig.frontEndUrl}/auth/change-email-verify?token=${token}`;
                 const year = new Date().getFullYear();
-                this.logger.log(
-                  `Initiating email change process for user ${user.email} (id: ${user.id}) to new address ${newEmail}.`,
-                );
-                this.logger.debug(
-                  `Generated verification token for email change: ${token}. Deep link: ${deepLink}, Verification URL: ${verificationUrl}, Year: ${year}`,
-                );
                 // 1. Verification email → new address (proves ownership)
-                /*
                 await notificationDispatch.sendFromTemplate({
                   templateKey: 'auth.email.change',
-                  recipient: { email: newEmail },
-                  data: { user, newEmail, deepLink, verificationUrl, year },
-                  userId: user.id,
+                  recipient: { userId: user.id, email: newEmail },
+                  data: { user, newEmail, actionUrl, deepLink, year },
                   priority: NotificationPriority.HIGH,
                   force: true,
-                  eventTitle: 'Email Change Requested',
-                  eventBody: `A verification email has been sent to ${newEmail} to confirm the email address change.`,
-                  eventDescription: `Email change requested by user ${user.email} (id: ${user.id}) to new address ${newEmail}.`,
+                  internalNote: `Email change verification to ${newEmail} for user ${user.id}`,
                 });
-                */
                 // 2. Security alert → old address (notifies the account owner)
-                /*
                 await notificationDispatch.sendFromTemplate({
                   templateKey: 'auth.email.change.alert',
-                  recipient: { email: user.email },
+                  recipient: { userId: user.id, email: user.email },
                   data: { user, newEmail, year },
-                  userId: user.id,
                   priority: NotificationPriority.HIGH,
                   force: true,
-                  eventTitle: 'Email Change Security Alert',
-                  eventBody: `A security notice has been sent to ${user.email} regarding the email address change request.`,
-                  eventDescription: `Security alert sent to old address ${user.email} for email change to ${newEmail} (user id: ${user.id}).`,
+                  internalNote: `Email change security alert to ${user.email} — new address: ${newEmail}`,
                 });
-                */
               },
             },
           },
@@ -190,62 +175,40 @@ export class AuthModule {
             enabled: true,
             sendResetPassword: async ({ user, token }, _) => {
               const deepLink = `citylinkapp://auth/reset-password?token=${token}`;
-              const resetUrl = `${appConfig.frontEndUrl}/auth/reset-password?token=${token}`;
-              this.logger.log(`Initiate reset password for user ${user.email}`);
-              this.logger.debug(
-                `Generated token ${token} for reset password. Deep link: ${deepLink}, Reset Url: ${resetUrl}`,
-              );
-              await Promise.resolve();
-              /*
+              const actionUrl = `${appConfig.frontEndUrl}/auth/reset-password?token=${token}`;
               await notificationDispatch.sendFromTemplate({
                 templateKey: 'auth.password.reset',
-                recipient: { email: user.email },
+                recipient: { userId: user.id, email: user.email },
                 data: {
                   user,
+                  actionUrl,
                   deepLink,
-                  resetUrl,
                   year: new Date().getFullYear(),
                 },
-                userId: user.id,
                 priority: NotificationPriority.HIGH,
                 force: true,
-                eventTitle: 'Password Reset Requested',
-                eventBody: `A password reset email has been sent to ${user.email}.`,
-                eventDescription: `Password reset requested for user ${user.email} (id: ${user.id}).`,
+                internalNote: `Password reset requested for ${user.email}`,
               });
-              */
             },
             requireEmailVerification: true,
           },
           emailVerification: {
             sendVerificationEmail: async ({ user, token }, _) => {
               const deepLink = `citylinkapp://auth/verify-email?token=${token}`;
-              const verificationUrl = `${appConfig.frontEndUrl}/auth/verify-email?token=${token}`;
-              this.logger.log(
-                `Initiate email verification for user ${user.email}`,
-              );
-              this.logger.debug(
-                `Generated token ${token} for email verification. Deeplink ${deepLink}, Verification link ${verificationUrl}`,
-              );
-              await Promise.resolve();
-              /*
+              const actionUrl = `${appConfig.frontEndUrl}/auth/verify-email?token=${token}`;
               await notificationDispatch.sendFromTemplate({
                 templateKey: 'auth.email.verification',
-                recipient: { email: user.email },
+                recipient: { userId: user.id, email: user.email },
                 data: {
                   user,
+                  actionUrl,
                   deepLink,
-                  verificationUrl,
                   year: new Date().getFullYear(),
                 },
-                userId: user.id,
                 priority: NotificationPriority.HIGH,
                 force: true,
-                eventTitle: 'Verify Your Email',
-                eventBody: `A verification email has been sent to ${user.email}. Please verify your email address to activate your account.`,
-                eventDescription: `Email verification triggered for new user ${user.email} (id: ${user.id}) on sign-up.`,
+                internalNote: `Email verification for new user ${user.email}`,
               });
-              */
             },
             autoSignInAfterVerification: true,
             sendOnSignUp: true,
@@ -254,7 +217,12 @@ export class AuthModule {
           hooks: {},
         }),
       }),
-      inject: [PrismaService, AppConfig, AuthConfig],
+      inject: [
+        PrismaService,
+        AppConfig,
+        AuthConfig,
+        NotificationDispatchService,
+      ],
     });
   }
 }
