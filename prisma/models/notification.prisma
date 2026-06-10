@@ -1,8 +1,7 @@
 enum NotificationChannel {
-    EMAIL  // delivered via email (e.g. Sendgrid, SMTP)
-    PUSH   // mobile push notification (Expo, FCM, APNs)
-    SMS    // text message (Twilio, Africa's Talking)
-    IN_APP // written to notification_inbox for the in-app feed
+    EMAIL // delivered via email (e.g. Sendgrid, SMTP)
+    PUSH  // mobile push notification (Expo, FCM, APNs)
+    SMS   // text message (Twilio, Africa's Talking)
 }
 
 enum NotificationStatus {
@@ -62,7 +61,7 @@ model NotificationLog {
     createdAt   DateTime  @default(now())
     updatedAt   DateTime  @updatedAt
 
-    @@unique([dispatchId, channel, attemptNumber])
+    @@unique([dispatchId, channel, recipientRef, attemptNumber])
     @@index([dispatchId, channel])
     @@index([provider, status])
     @@index([recipientId])
@@ -91,10 +90,12 @@ model NotificationInbox {
     templateKey  String?
     internalNote String // mandatory admin/ops context — never exposed to the end user
 
+    visible   Boolean   @default(true) // false = hidden from user feed (OTPs, security alerts, etc.)
     read      Boolean   @default(false)
     readAt    DateTime?
     createdAt DateTime  @default(now())
 
+    @@index([userId, visible, createdAt])
     @@index([userId, read])
     @@index([userId, createdAt])
     @@index([organizationId])

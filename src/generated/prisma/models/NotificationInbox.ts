@@ -33,6 +33,7 @@ export type NotificationInboxMinAggregateOutputType = {
   body: string | null
   templateKey: string | null
   internalNote: string | null
+  visible: boolean | null
   read: boolean | null
   readAt: Date | null
   createdAt: Date | null
@@ -47,6 +48,7 @@ export type NotificationInboxMaxAggregateOutputType = {
   body: string | null
   templateKey: string | null
   internalNote: string | null
+  visible: boolean | null
   read: boolean | null
   readAt: Date | null
   createdAt: Date | null
@@ -62,6 +64,7 @@ export type NotificationInboxCountAggregateOutputType = {
   data: number
   templateKey: number
   internalNote: number
+  visible: number
   read: number
   readAt: number
   createdAt: number
@@ -78,6 +81,7 @@ export type NotificationInboxMinAggregateInputType = {
   body?: true
   templateKey?: true
   internalNote?: true
+  visible?: true
   read?: true
   readAt?: true
   createdAt?: true
@@ -92,6 +96,7 @@ export type NotificationInboxMaxAggregateInputType = {
   body?: true
   templateKey?: true
   internalNote?: true
+  visible?: true
   read?: true
   readAt?: true
   createdAt?: true
@@ -107,6 +112,7 @@ export type NotificationInboxCountAggregateInputType = {
   data?: true
   templateKey?: true
   internalNote?: true
+  visible?: true
   read?: true
   readAt?: true
   createdAt?: true
@@ -195,6 +201,7 @@ export type NotificationInboxGroupByOutputType = {
   data: runtime.JsonValue | null
   templateKey: string | null
   internalNote: string
+  visible: boolean
   read: boolean
   readAt: Date | null
   createdAt: Date
@@ -231,6 +238,7 @@ export type NotificationInboxWhereInput = {
   data?: Prisma.JsonNullableFilter<"NotificationInbox">
   templateKey?: Prisma.StringNullableFilter<"NotificationInbox"> | string | null
   internalNote?: Prisma.StringFilter<"NotificationInbox"> | string
+  visible?: Prisma.BoolFilter<"NotificationInbox"> | boolean
   read?: Prisma.BoolFilter<"NotificationInbox"> | boolean
   readAt?: Prisma.DateTimeNullableFilter<"NotificationInbox"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"NotificationInbox"> | Date | string
@@ -248,6 +256,7 @@ export type NotificationInboxOrderByWithRelationInput = {
   data?: Prisma.SortOrderInput | Prisma.SortOrder
   templateKey?: Prisma.SortOrderInput | Prisma.SortOrder
   internalNote?: Prisma.SortOrder
+  visible?: Prisma.SortOrder
   read?: Prisma.SortOrder
   readAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -268,6 +277,7 @@ export type NotificationInboxWhereUniqueInput = Prisma.AtLeast<{
   data?: Prisma.JsonNullableFilter<"NotificationInbox">
   templateKey?: Prisma.StringNullableFilter<"NotificationInbox"> | string | null
   internalNote?: Prisma.StringFilter<"NotificationInbox"> | string
+  visible?: Prisma.BoolFilter<"NotificationInbox"> | boolean
   read?: Prisma.BoolFilter<"NotificationInbox"> | boolean
   readAt?: Prisma.DateTimeNullableFilter<"NotificationInbox"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"NotificationInbox"> | Date | string
@@ -285,6 +295,7 @@ export type NotificationInboxOrderByWithAggregationInput = {
   data?: Prisma.SortOrderInput | Prisma.SortOrder
   templateKey?: Prisma.SortOrderInput | Prisma.SortOrder
   internalNote?: Prisma.SortOrder
+  visible?: Prisma.SortOrder
   read?: Prisma.SortOrder
   readAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -306,6 +317,7 @@ export type NotificationInboxScalarWhereWithAggregatesInput = {
   data?: Prisma.JsonNullableWithAggregatesFilter<"NotificationInbox">
   templateKey?: Prisma.StringNullableWithAggregatesFilter<"NotificationInbox"> | string | null
   internalNote?: Prisma.StringWithAggregatesFilter<"NotificationInbox"> | string
+  visible?: Prisma.BoolWithAggregatesFilter<"NotificationInbox"> | boolean
   read?: Prisma.BoolWithAggregatesFilter<"NotificationInbox"> | boolean
   readAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NotificationInbox"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"NotificationInbox"> | Date | string
@@ -319,6 +331,7 @@ export type NotificationInboxCreateInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -336,6 +349,7 @@ export type NotificationInboxUncheckedCreateInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -349,6 +363,7 @@ export type NotificationInboxUpdateInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -366,6 +381,7 @@ export type NotificationInboxUncheckedUpdateInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -381,6 +397,7 @@ export type NotificationInboxCreateManyInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -394,6 +411,7 @@ export type NotificationInboxUpdateManyMutationInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -409,6 +427,7 @@ export type NotificationInboxUncheckedUpdateManyInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -434,6 +453,7 @@ export type NotificationInboxCountOrderByAggregateInput = {
   data?: Prisma.SortOrder
   templateKey?: Prisma.SortOrder
   internalNote?: Prisma.SortOrder
+  visible?: Prisma.SortOrder
   read?: Prisma.SortOrder
   readAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -448,6 +468,7 @@ export type NotificationInboxMaxOrderByAggregateInput = {
   body?: Prisma.SortOrder
   templateKey?: Prisma.SortOrder
   internalNote?: Prisma.SortOrder
+  visible?: Prisma.SortOrder
   read?: Prisma.SortOrder
   readAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -462,6 +483,7 @@ export type NotificationInboxMinOrderByAggregateInput = {
   body?: Prisma.SortOrder
   templateKey?: Prisma.SortOrder
   internalNote?: Prisma.SortOrder
+  visible?: Prisma.SortOrder
   read?: Prisma.SortOrder
   readAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -559,6 +581,7 @@ export type NotificationInboxCreateWithoutUserInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -574,6 +597,7 @@ export type NotificationInboxUncheckedCreateWithoutUserInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -618,6 +642,7 @@ export type NotificationInboxScalarWhereInput = {
   data?: Prisma.JsonNullableFilter<"NotificationInbox">
   templateKey?: Prisma.StringNullableFilter<"NotificationInbox"> | string | null
   internalNote?: Prisma.StringFilter<"NotificationInbox"> | string
+  visible?: Prisma.BoolFilter<"NotificationInbox"> | boolean
   read?: Prisma.BoolFilter<"NotificationInbox"> | boolean
   readAt?: Prisma.DateTimeNullableFilter<"NotificationInbox"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"NotificationInbox"> | Date | string
@@ -631,6 +656,7 @@ export type NotificationInboxCreateWithoutOrganizationInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -646,6 +672,7 @@ export type NotificationInboxUncheckedCreateWithoutOrganizationInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -686,6 +713,7 @@ export type NotificationInboxCreateManyUserInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -699,6 +727,7 @@ export type NotificationInboxUpdateWithoutUserInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -714,6 +743,7 @@ export type NotificationInboxUncheckedUpdateWithoutUserInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -728,6 +758,7 @@ export type NotificationInboxUncheckedUpdateManyWithoutUserInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -742,6 +773,7 @@ export type NotificationInboxCreateManyOrganizationInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: string | null
   internalNote: string
+  visible?: boolean
   read?: boolean
   readAt?: Date | string | null
   createdAt?: Date | string
@@ -755,6 +787,7 @@ export type NotificationInboxUpdateWithoutOrganizationInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -770,6 +803,7 @@ export type NotificationInboxUncheckedUpdateWithoutOrganizationInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -784,6 +818,7 @@ export type NotificationInboxUncheckedUpdateManyWithoutOrganizationInput = {
   data?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   templateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   internalNote?: Prisma.StringFieldUpdateOperationsInput | string
+  visible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -801,6 +836,7 @@ export type NotificationInboxSelect<ExtArgs extends runtime.Types.Extensions.Int
   data?: boolean
   templateKey?: boolean
   internalNote?: boolean
+  visible?: boolean
   read?: boolean
   readAt?: boolean
   createdAt?: boolean
@@ -818,6 +854,7 @@ export type NotificationInboxSelectCreateManyAndReturn<ExtArgs extends runtime.T
   data?: boolean
   templateKey?: boolean
   internalNote?: boolean
+  visible?: boolean
   read?: boolean
   readAt?: boolean
   createdAt?: boolean
@@ -835,6 +872,7 @@ export type NotificationInboxSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   data?: boolean
   templateKey?: boolean
   internalNote?: boolean
+  visible?: boolean
   read?: boolean
   readAt?: boolean
   createdAt?: boolean
@@ -852,12 +890,13 @@ export type NotificationInboxSelectScalar = {
   data?: boolean
   templateKey?: boolean
   internalNote?: boolean
+  visible?: boolean
   read?: boolean
   readAt?: boolean
   createdAt?: boolean
 }
 
-export type NotificationInboxOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dispatchId" | "userId" | "organizationId" | "title" | "body" | "data" | "templateKey" | "internalNote" | "read" | "readAt" | "createdAt", ExtArgs["result"]["notificationInbox"]>
+export type NotificationInboxOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dispatchId" | "userId" | "organizationId" | "title" | "body" | "data" | "templateKey" | "internalNote" | "visible" | "read" | "readAt" | "createdAt", ExtArgs["result"]["notificationInbox"]>
 export type NotificationInboxInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.NotificationInbox$organizationArgs<ExtArgs>
@@ -887,6 +926,7 @@ export type $NotificationInboxPayload<ExtArgs extends runtime.Types.Extensions.I
     data: runtime.JsonValue | null
     templateKey: string | null
     internalNote: string
+    visible: boolean
     read: boolean
     readAt: Date | null
     createdAt: Date
@@ -1324,6 +1364,7 @@ export interface NotificationInboxFieldRefs {
   readonly data: Prisma.FieldRef<"NotificationInbox", 'Json'>
   readonly templateKey: Prisma.FieldRef<"NotificationInbox", 'String'>
   readonly internalNote: Prisma.FieldRef<"NotificationInbox", 'String'>
+  readonly visible: Prisma.FieldRef<"NotificationInbox", 'Boolean'>
   readonly read: Prisma.FieldRef<"NotificationInbox", 'Boolean'>
   readonly readAt: Prisma.FieldRef<"NotificationInbox", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"NotificationInbox", 'DateTime'>

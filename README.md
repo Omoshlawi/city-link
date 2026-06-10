@@ -135,6 +135,12 @@ pnpm run format
 
 ---
 
+## Modules
+
+- [Notifications](src/notifications/README.md) — multichannel notification dispatch (email, push, SMS), inbox feed, delivery audit log
+
+---
+
 ## Project structure
 
 ```

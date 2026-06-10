@@ -363,7 +363,7 @@ export type NotificationLogOrderByWithRelationInput = {
 
 export type NotificationLogWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  dispatchId_channel_attemptNumber?: Prisma.NotificationLogDispatchIdChannelAttemptNumberCompoundUniqueInput
+  dispatchId_channel_recipientRef_attemptNumber?: Prisma.NotificationLogDispatchIdChannelRecipientRefAttemptNumberCompoundUniqueInput
   AND?: Prisma.NotificationLogWhereInput | Prisma.NotificationLogWhereInput[]
   OR?: Prisma.NotificationLogWhereInput[]
   NOT?: Prisma.NotificationLogWhereInput | Prisma.NotificationLogWhereInput[]
@@ -388,7 +388,7 @@ export type NotificationLogWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"NotificationLog"> | Date | string
   recipient?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
-}, "id" | "dispatchId_channel_attemptNumber">
+}, "id" | "dispatchId_channel_recipientRef_attemptNumber">
 
 export type NotificationLogOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -613,9 +613,10 @@ export type NotificationLogOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type NotificationLogDispatchIdChannelAttemptNumberCompoundUniqueInput = {
+export type NotificationLogDispatchIdChannelRecipientRefAttemptNumberCompoundUniqueInput = {
   dispatchId: string
   channel: $Enums.NotificationChannel
+  recipientRef: string
   attemptNumber: number
 }
 

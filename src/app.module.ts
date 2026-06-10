@@ -9,6 +9,7 @@ import { AddressHierarchyModule } from './address-hierarchy/address-hierarchy.mo
 import { TemplatesModule } from './templates/templates.module';
 import { SettingsModule } from './settings/settings.module';
 import { QueueModule } from './queue/queue.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { QueueModule } from './queue/queue.module';
     TemplatesModule,
     SettingsModule,
     QueueModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

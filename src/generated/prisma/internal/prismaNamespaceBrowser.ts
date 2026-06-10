@@ -305,6 +305,7 @@ export const NotificationInboxScalarFieldEnum = {
   data: 'data',
   templateKey: 'templateKey',
   internalNote: 'internalNote',
+  visible: 'visible',
   read: 'read',
   readAt: 'readAt',
   createdAt: 'createdAt'

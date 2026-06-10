@@ -12,8 +12,7 @@
 export const NotificationChannel = {
   EMAIL: 'EMAIL',
   PUSH: 'PUSH',
-  SMS: 'SMS',
-  IN_APP: 'IN_APP'
+  SMS: 'SMS'
 } as const
 
 export type NotificationChannel = (typeof NotificationChannel)[keyof typeof NotificationChannel]
