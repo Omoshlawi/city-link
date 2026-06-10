@@ -85,8 +85,20 @@ export class OrgTemplateOverridesService {
       });
 
       if (existing) {
-        await tx.orgTemplateOverrideVersion.create({
-          data: {
+        const { _max } = await tx.orgTemplateOverrideVersion.aggregate({
+          where: { overrideId: existing.id },
+          _max: { version: true },
+        });
+        const newVersion = Math.max(_max.version ?? 0, existing.version) + 1;
+
+        await tx.orgTemplateOverrideVersion.upsert({
+          where: {
+            overrideId_version: {
+              overrideId: existing.id,
+              version: existing.version,
+            },
+          },
+          create: {
             overrideId: existing.id,
             version: existing.version,
             slots: existing.slots as unknown as Prisma.InputJsonValue,
@@ -95,6 +107,7 @@ export class OrgTemplateOverridesService {
             changedById: userId ?? null,
             changeNote: dto.changeNote ?? null,
           },
+          update: {},
         });
 
         return tx.orgTemplateOverride.update({
@@ -103,7 +116,7 @@ export class OrgTemplateOverridesService {
             slots: dto.slots,
             metadata: (dto.metadata ??
               Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
-            version: { increment: 1 },
+            version: newVersion,
             voided: false,
           },
         });
@@ -149,7 +162,6 @@ export class OrgTemplateOverridesService {
     orgId: string,
     version: number,
     dto: RestoreVersionDto,
-    userId?: string,
   ) {
     return this.prisma.$transaction(async (tx) => {
       const current = await tx.orgTemplateOverride.findUnique({
@@ -170,17 +182,34 @@ export class OrgTemplateOverridesService {
         );
       }
 
-      await tx.orgTemplateOverrideVersion.create({
-        data: {
-          overrideId: current.id,
-          version: current.version,
-          slots: current.slots as unknown as Prisma.InputJsonValue,
-          metadata: (current.metadata ??
-            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
-          changedById: userId ?? null,
-          changeNote: dto.changeNote ?? null,
-        },
-      });
+      if (dto.saveCurrentSnapshot) {
+        const { _max } = await tx.orgTemplateOverrideVersion.aggregate({
+          where: { overrideId: current.id },
+          _max: { version: true },
+        });
+        const snapshotVersion = (_max.version ?? 0) + 1;
+
+        await tx.orgTemplateOverrideVersion.create({
+          data: {
+            overrideId: current.id,
+            version: snapshotVersion,
+            slots: current.slots as unknown as Prisma.InputJsonValue,
+            metadata: (current.metadata ??
+              Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+            changeNote: dto.changeNote ?? null,
+          },
+        });
+
+        return tx.orgTemplateOverride.update({
+          where: orgKey(key, orgId),
+          data: {
+            slots: target.slots as unknown as Prisma.InputJsonValue,
+            metadata: (target.metadata ??
+              Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+            version,
+          },
+        });
+      }
 
       return tx.orgTemplateOverride.update({
         where: orgKey(key, orgId),
@@ -188,9 +217,33 @@ export class OrgTemplateOverridesService {
           slots: target.slots as unknown as Prisma.InputJsonValue,
           metadata: (target.metadata ??
             Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
-          version: { increment: 1 },
+          version,
         },
       });
+    });
+  }
+
+  async deleteVersion(key: string, orgId: string, version: number) {
+    const override = await this.prisma.orgTemplateOverride.findUnique({
+      where: orgKey(key, orgId),
+    });
+    if (!override) {
+      throw new NotFoundException(
+        `Override for template '${key}' and org '${orgId}' not found`,
+      );
+    }
+
+    const existing = await this.prisma.orgTemplateOverrideVersion.findUnique({
+      where: { overrideId_version: { overrideId: override.id, version } },
+    });
+    if (!existing) {
+      throw new NotFoundException(
+        `Version ${version} of override for template '${key}' not found`,
+      );
+    }
+
+    return this.prisma.orgTemplateOverrideVersion.delete({
+      where: { overrideId_version: { overrideId: override.id, version } },
     });
   }
 

@@ -115,4 +115,16 @@ export class OrgTemplateOverridesController {
   ) {
     return this.orgOverridesService.restoreToVersion(key, orgId, version, dto);
   }
+
+  @Delete('/:key/overrides/:orgId/versions/:version')
+  @MemberHasPermission({ permissions: { orgTemplates: ['delete'] } })
+  @ApiOperation({ summary: 'Delete an org override version snapshot' })
+  @ApiErrorsResponse()
+  deleteOrgOverrideVersion(
+    @Param('key') key: string,
+    @Param('orgId') orgId: string,
+    @Param('version', ParseIntPipe) version: number,
+  ) {
+    return this.orgOverridesService.deleteVersion(key, orgId, version);
+  }
 }

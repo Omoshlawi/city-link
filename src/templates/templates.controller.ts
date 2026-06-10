@@ -119,4 +119,15 @@ export class TemplatesController {
   ) {
     return this.templatesService.restoreToVersion(key, version, dto);
   }
+
+  @Delete('/:key/versions/:version')
+  @UserHasPermission({ permission: { templates: ['delete'] } })
+  @ApiOperation({ summary: 'Delete a version snapshot' })
+  @ApiErrorsResponse()
+  deleteTemplateVersion(
+    @Param('key') key: string,
+    @Param('version', ParseIntPipe) version: number,
+  ) {
+    return this.templatesService.deleteVersion(key, version);
+  }
 }

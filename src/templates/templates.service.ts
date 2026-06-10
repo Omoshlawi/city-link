@@ -82,8 +82,20 @@ export class TemplatesService {
       const current = await tx.template.findUnique({ where: { key } });
       if (!current) throw new NotFoundException(`Template '${key}' not found`);
 
-      await tx.templateVersion.create({
-        data: {
+      const { _max } = await tx.templateVersion.aggregate({
+        where: { templateId: current.id },
+        _max: { version: true },
+      });
+      const newVersion = Math.max(_max.version ?? 0, current.version) + 1;
+
+      await tx.templateVersion.upsert({
+        where: {
+          templateId_version: {
+            templateId: current.id,
+            version: current.version,
+          },
+        },
+        create: {
           templateId: current.id,
           version: current.version,
           slots: current.slots as unknown as Prisma.InputJsonValue,
@@ -94,6 +106,7 @@ export class TemplatesService {
           changedById: userId ?? null,
           changeNote: dto.changeNote ?? null,
         },
+        update: {},
       });
 
       return tx.template.update({
@@ -104,7 +117,7 @@ export class TemplatesService {
             Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
           metadata: (dto.metadata ??
             Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
-          version: { increment: 1 },
+          version: newVersion,
         },
       });
     });
@@ -138,12 +151,7 @@ export class TemplatesService {
     });
   }
 
-  async restoreToVersion(
-    key: string,
-    version: number,
-    dto: RestoreVersionDto,
-    userId?: string,
-  ) {
+  async restoreToVersion(key: string, version: number, dto: RestoreVersionDto) {
     return this.prisma.$transaction(async (tx) => {
       const current = await tx.template.findUnique({ where: { key } });
       if (!current) throw new NotFoundException(`Template '${key}' not found`);
@@ -157,19 +165,38 @@ export class TemplatesService {
         );
       }
 
-      await tx.templateVersion.create({
-        data: {
-          templateId: current.id,
-          version: current.version,
-          slots: current.slots as unknown as Prisma.InputJsonValue,
-          schema: (current.schema ??
-            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
-          metadata: (current.metadata ??
-            Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
-          changedById: userId ?? null,
-          changeNote: dto.changeNote ?? null,
-        },
-      });
+      if (dto.saveCurrentSnapshot) {
+        const { _max } = await tx.templateVersion.aggregate({
+          where: { templateId: current.id },
+          _max: { version: true },
+        });
+        const snapshotVersion = (_max.version ?? 0) + 1;
+
+        await tx.templateVersion.create({
+          data: {
+            templateId: current.id,
+            version: snapshotVersion,
+            slots: current.slots as unknown as Prisma.InputJsonValue,
+            schema: (current.schema ??
+              Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+            metadata: (current.metadata ??
+              Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+            changeNote: dto.changeNote ?? null,
+          },
+        });
+
+        return tx.template.update({
+          where: { key },
+          data: {
+            slots: target.slots as unknown as Prisma.InputJsonValue,
+            schema: (target.schema ??
+              Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+            metadata: (target.metadata ??
+              Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
+            version,
+          },
+        });
+      }
 
       return tx.template.update({
         where: { key },
@@ -179,9 +206,27 @@ export class TemplatesService {
             Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
           metadata: (target.metadata ??
             Prisma.DbNull) as unknown as Prisma.NullableJsonNullValueInput,
-          version: { increment: 1 },
+          version,
         },
       });
+    });
+  }
+
+  async deleteVersion(key: string, version: number) {
+    const template = await this.prisma.template.findUnique({ where: { key } });
+    if (!template) throw new NotFoundException(`Template '${key}' not found`);
+
+    const existing = await this.prisma.templateVersion.findUnique({
+      where: { templateId_version: { templateId: template.id, version } },
+    });
+    if (!existing) {
+      throw new NotFoundException(
+        `Version ${version} of template '${key}' not found`,
+      );
+    }
+
+    return this.prisma.templateVersion.delete({
+      where: { templateId_version: { templateId: template.id, version } },
     });
   }
 

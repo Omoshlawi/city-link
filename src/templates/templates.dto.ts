@@ -71,6 +71,7 @@ export class UpsertOrgOverrideDto extends createZodDto(
 
 const RestoreVersionSchema = z.object({
   changeNote: z.string().optional(),
+  saveCurrentSnapshot: z.boolean().optional().default(false),
 });
 export class RestoreVersionDto extends createZodDto(RestoreVersionSchema) {}
 

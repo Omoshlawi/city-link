@@ -90,7 +90,8 @@ export class CreateAddressHierarchyDto extends createZodDto(
   CreateAddressHierarchySchema,
 ) {}
 
-export const UpdateAddressHierarchySchema = CreateAddressHierarchySchema.partial();
+export const UpdateAddressHierarchySchema =
+  CreateAddressHierarchySchema.partial();
 
 export class UpdateAddressHierarchyDto extends createZodDto(
   UpdateAddressHierarchySchema,
