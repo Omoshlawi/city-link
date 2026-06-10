@@ -25,6 +25,9 @@ model User {
     templateVersions            TemplateVersion[]
     orgTemplateOverrideVersions OrgTemplateOverrideVersion[]
     settings                    Setting[]                    @relation("UserSettings")
+    pushTokens                  PushToken[]
+    notificationLogs            NotificationLog[]
+    notificationInbox           NotificationInbox[]
 
     @@unique([email])
     @@unique([username])
@@ -96,6 +99,8 @@ model Organization {
     invitations          Invitation[]
     templateOverrides    OrgTemplateOverride[]
     settings             Setting[]            @relation("OrganizationSettings")
+    notificationLogs     NotificationLog[]
+    notificationInbox    NotificationInbox[]
 
     @@unique([slug])
     @@map("organization")

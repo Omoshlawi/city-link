@@ -1,0 +1,102 @@
+enum NotificationChannel {
+    EMAIL  // delivered via email (e.g. Sendgrid, SMTP)
+    PUSH   // mobile push notification (Expo, FCM, APNs)
+    SMS    // text message (Twilio, Africa's Talking)
+    IN_APP // written to notification_inbox for the in-app feed
+}
+
+enum NotificationStatus {
+    PENDING   // job queued, not yet attempted
+    SENT      // provider accepted the message
+    DELIVERED // confirmed delivery (push receipts / email webhooks)
+    FAILED    // all retry attempts exhausted
+    SKIPPED   // intentionally not sent (opted out, channel not configured, etc.)
+}
+
+// Device push tokens — one user can have many devices.
+model PushToken {
+    id       String  @id @default(uuid())
+    userId   String
+    user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    token    String  @unique // ExponentPushToken[...] or FCM/APNs token
+    provider String  // "expo" | "fcm" | "apns" — enforced at service level
+    deviceId String? // client-supplied device fingerprint
+    platform String? // "ios" | "android"
+    voided   Boolean @default(false)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([userId, voided])
+    @@map("push_tokens")
+}
+
+// One row per channel per delivery attempt.
+// All attempts for a single dispatch share the same dispatchId.
+// provider is a String (not DB enum) so new providers don't require migrations;
+// enforce valid values at the service layer.
+model NotificationLog {
+    id            String              @id @default(uuid())
+    dispatchId    String // correlation id — ties all channel attempts for one event
+    templateKey   String
+    channel       NotificationChannel
+    provider      String // "sendgrid" | "twilio" | "expo" | "africas_talking" etc.
+    status        NotificationStatus  @default(PENDING)
+    attemptNumber Int                 @default(1)
+
+    recipientId    String?
+    recipient      User?         @relation(fields: [recipientId], references: [id], onDelete: SetNull)
+    recipientRef   String // actual delivery address: email, phone number, or push token
+    organizationId String?
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+    subject      String? // rendered email subject
+    body         String? // rendered body — stored for debugging
+    jobId        String? // BullMQ job id
+    error        String? // last error message
+    providerMeta Json? // raw provider response (e.g. SES message id, Expo receipt id)
+
+    sentAt      DateTime?
+    deliveredAt DateTime?
+    failedAt    DateTime?
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+
+    @@unique([dispatchId, channel, attemptNumber])
+    @@index([dispatchId, channel])
+    @@index([provider, status])
+    @@index([recipientId])
+    @@index([organizationId])
+    @@index([templateKey, channel])
+    @@index([status, createdAt])
+    @@map("notification_logs")
+}
+
+// One row per logical notification event — the user-facing inbox feed.
+// internalNote is mandatory: the caller must explicitly describe the intent
+// (e.g. "User arrived at Station A — Trip #4821") for audit and ops visibility.
+model NotificationInbox {
+    id         String @id @default(uuid())
+    dispatchId String @unique // one inbox entry per dispatch
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    organizationId String?
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+    title        String
+    body         String
+    data         Json? // deep-link payload or action metadata for the mobile app
+    templateKey  String?
+    internalNote String // mandatory admin/ops context — never exposed to the end user
+
+    read      Boolean   @default(false)
+    readAt    DateTime?
+    createdAt DateTime  @default(now())
+
+    @@index([userId, read])
+    @@index([userId, createdAt])
+    @@index([organizationId])
+    @@map("notification_inbox")
+}
