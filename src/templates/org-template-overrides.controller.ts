@@ -76,9 +76,7 @@ export class OrgTemplateOverridesController {
 
   @Delete('/:key/overrides/:orgId')
   @MemberHasPermission({ permissions: { orgTemplates: ['delete'] } })
-  @ApiOperation({
-    summary: 'Soft-delete an org override (purge=true to hard delete)',
-  })
+  @ApiOperation({ summary: 'Delete an org template override' })
   @ApiOkResponse({ type: OrgTemplateOverrideResponseDto })
   @ApiErrorsResponse()
   deleteOrgOverride(

@@ -73,9 +73,7 @@ export class TemplatesController {
 
   @Delete('/:key')
   @UserHasPermission({ permission: { templates: ['delete'] } })
-  @ApiOperation({
-    summary: 'Soft-delete a template (purge=true to hard delete)',
-  })
+  @ApiOperation({ summary: 'Delete a template' })
   @ApiOkResponse({ type: TemplateResponseDto })
   @ApiErrorsResponse()
   deleteTemplate(@Param('key') key: string, @Query() query: DeleteQueryDto) {

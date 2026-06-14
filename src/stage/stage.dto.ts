@@ -69,9 +69,23 @@ export class UpdateStageLinkDto extends createZodDto(UpdateStageLinkSchema) {}
 
 export const QueryStageLinkSchema = z.object({
   ...QueryBuilderSchema.shape,
-  toStageId: z.uuid().optional(),
-  fromStageId: z.uuid().optional(),
-  direction: StageLinkDirectionSchema.optional().default('outgoing'),
+  toStageId: z
+    .uuid()
+    .optional()
+    .describe(
+      'Outgoing only. Filter results to links whose destination matches this stage ID.',
+    ),
+  fromStageId: z
+    .uuid()
+    .optional()
+    .describe(
+      'Incoming only. Filter results to links whose origin matches this stage ID.',
+    ),
+  direction: StageLinkDirectionSchema.optional()
+    .default('outgoing')
+    .describe(
+      'outgoing (default) — links leaving this stage. incoming — links arriving at this stage. both — all adjacent edges (toStageId/fromStageId filters are ignored).',
+    ),
   includeVoided: z
     .stringbool({ truthy: ['true', '1'], falsy: ['false', '0'] })
     .optional()

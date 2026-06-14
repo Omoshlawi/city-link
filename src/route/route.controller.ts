@@ -98,9 +98,7 @@ export class RouteController {
 
   @Delete('/:id')
   @MemberHasPermission({ permissions: { routes: ['manage'] } })
-  @ApiOperation({
-    summary: 'Delete a route (soft by default, purge=true to hard delete)',
-  })
+  @ApiOperation({ summary: 'Delete a route' })
   @ApiOkResponse({ type: GetRouteResponseDto })
   @ApiErrorsResponse()
   deleteRoute(
@@ -198,10 +196,7 @@ export class RouteController {
 
   @Delete('/:id/pricing/:pricingId')
   @MemberHasPermission({ permissions: { pricing: ['manage'] } })
-  @ApiOperation({
-    summary:
-      'Delete a pricing entry (soft by default, purge=true to hard delete)',
-  })
+  @ApiOperation({ summary: 'Delete a pricing entry' })
   @ApiOkResponse({ type: GetLinkPricingResponseDto })
   @ApiErrorsResponse()
   deletePricing(

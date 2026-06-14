@@ -61,9 +61,7 @@ export class SystemSettingsController {
 
   @Delete('/:id')
   @UserHasPermission({ permission: { setting: ['manage-system'] } })
-  @ApiOperation({
-    summary: 'Delete a system setting (purge=true to hard delete)',
-  })
+  @ApiOperation({ summary: 'Delete a system setting' })
   @ApiOkResponse({ type: SettingResponseDto })
   @ApiErrorsResponse()
   delete(

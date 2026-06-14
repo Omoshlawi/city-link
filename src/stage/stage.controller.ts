@@ -86,9 +86,7 @@ export class StageController {
 
   @Delete('/:id')
   @UserHasPermission({ permission: { network: ['manage'] } })
-  @ApiOperation({
-    summary: 'Delete a stage (soft by default, purge=true to hard delete)',
-  })
+  @ApiOperation({ summary: 'Delete a stage' })
   @ApiOkResponse({ type: GetStageResponseDto })
   @ApiErrorsResponse()
   deleteStage(
@@ -114,11 +112,7 @@ export class StageController {
 
   @Get('/:id/links')
   @OptionalAuth()
-  @ApiOperation({
-    summary:
-      'List stage links. direction=outgoing (default) | incoming | both. ' +
-      'Use toStageId to narrow outgoing links by destination; fromStageId to narrow incoming links by source.',
-  })
+  @ApiOperation({ summary: 'List stage links from or to this stage' })
   @ApiOkResponse({ type: QueryStageLinkResponseDto })
   @ApiErrorsResponse({ unauthorized: false, forbidden: false })
   queryLinks(
@@ -168,9 +162,7 @@ export class StageController {
 
   @Delete('/:id/links/:linkId')
   @UserHasPermission({ permission: { network: ['manage'] } })
-  @ApiOperation({
-    summary: 'Delete a stage link (soft by default, purge=true to hard delete)',
-  })
+  @ApiOperation({ summary: 'Delete a stage link' })
   @ApiOkResponse({ type: GetStageLinkResponseDto })
   @ApiErrorsResponse()
   deleteLink(

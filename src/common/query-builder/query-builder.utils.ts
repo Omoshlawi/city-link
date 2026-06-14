@@ -36,7 +36,10 @@ export const DeleteQuerySchema = CustomRepresentationQuerySchema.extend({
   purge: z
     .stringbool({ truthy: ['true', '1'], falsy: ['false', '0'] })
     .optional()
-    .default(false),
+    .default(false)
+    .describe(
+      'Set to true to permanently delete the record. Omit or set to false for a soft-delete (sets voided=true).',
+    ),
 });
 
 export function hasBalancedParentheses(str: string): boolean {

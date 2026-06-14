@@ -67,7 +67,7 @@ export class UserSettingsController {
   }
 
   @Delete('/:id')
-  @ApiOperation({ summary: 'Delete own setting (purge=true to hard delete)' })
+  @ApiOperation({ summary: 'Delete own setting' })
   @ApiOkResponse({ type: SettingResponseDto })
   @ApiErrorsResponse()
   delete(

@@ -81,9 +81,7 @@ export class OrgSettingsController {
 
   @Delete('/:id')
   @MemberHasPermission({ permissions: { orgSettings: ['manage'] } })
-  @ApiOperation({
-    summary: 'Delete an org setting (purge=true to hard delete)',
-  })
+  @ApiOperation({ summary: 'Delete an org setting' })
   @ApiOkResponse({ type: SettingResponseDto })
   @ApiErrorsResponse()
   delete(
