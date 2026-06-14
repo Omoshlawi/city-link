@@ -10,6 +10,12 @@ import { PaginatedListBase } from '../common/query-builder/pagination.dto';
 export const CreateRouteSchema = z.object({
   code: z.string().min(1),
   name: z.string().min(1),
+  serviceClassId: z
+    .uuid()
+    .optional()
+    .describe(
+      'QoS classification for this route. See /service-classes for available options.',
+    ),
 });
 export class CreateRouteDto extends createZodDto(CreateRouteSchema) {}
 
@@ -21,6 +27,10 @@ export const QueryRouteSchema = z.object({
   search: z.string().optional(),
   code: z.string().optional(),
   name: z.string().optional(),
+  serviceClassId: z
+    .uuid()
+    .optional()
+    .describe('Filter routes by service class (QoS level)'),
   includeVoided: z
     .stringbool({ truthy: ['true', '1'], falsy: ['false', '0'] })
     .optional()
@@ -32,6 +42,7 @@ export class GetRouteResponseDto {
   @ApiProperty() id!: string;
   @ApiProperty() code!: string;
   @ApiProperty() name!: string;
+  @ApiProperty({ nullable: true }) serviceClassId!: string | null;
   @ApiProperty() voided!: boolean;
   @ApiProperty() createdAt!: Date;
   @ApiProperty() updatedAt!: Date;

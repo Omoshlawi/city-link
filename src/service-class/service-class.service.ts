@@ -8,11 +8,14 @@ import {
 } from '../common/query-builder';
 import { Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-
-import { CreateRouteDto, QueryRouteDto, UpdateRouteDto } from './route.dto';
+import {
+  CreateServiceClassDto,
+  QueryServiceClassDto,
+  UpdateServiceClassDto,
+} from './service-class.dto';
 
 @Injectable()
-export class RouteService {
+export class ServiceClassService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly sortService: SortService,
@@ -20,29 +23,22 @@ export class RouteService {
     private readonly representationService: CustomRepresentationService,
   ) {}
 
-  // ─── Route ────────────────────────────────────────────────────────────────
-
-  async getAllRoutes(query: QueryRouteDto, originalUrl: string) {
-    const where: Prisma.RouteWhereInput = {
+  async getAll(query: QueryServiceClassDto, originalUrl: string) {
+    const where: Prisma.ServiceClassWhereInput = {
       AND: [
-        {
-          voided: query.includeVoided ? undefined : false,
-          code: query.code,
-          name: query.name,
-          serviceClassId: query.serviceClassId,
-        },
+        { voided: query.includeVoided ? undefined : false },
         {
           OR: query.search
             ? [
-                { name: { contains: query.search, mode: 'insensitive' } },
                 { code: { contains: query.search, mode: 'insensitive' } },
+                { name: { contains: query.search, mode: 'insensitive' } },
               ]
             : undefined,
         },
       ],
     };
-    const totalCount = await this.prisma.route.count({ where });
-    const data = await this.prisma.route.findMany({
+    const totalCount = await this.prisma.serviceClass.count({ where });
+    const data = await this.prisma.serviceClass.findMany({
       where,
       ...this.paginationService.buildSafePaginationQuery(query, totalCount),
       ...this.representationService.buildCustomRepresentationQuery(query.v),
@@ -58,43 +54,44 @@ export class RouteService {
     };
   }
 
-  async getOneRoute(id: string) {
-    const route = await this.prisma.route.findUnique({ where: { id } });
-    if (!route) throw new NotFoundException('Route not found');
-    return route;
+  async getOne(id: string) {
+    const serviceClass = await this.prisma.serviceClass.findUnique({
+      where: { id },
+    });
+    if (!serviceClass) throw new NotFoundException('Service class not found');
+    return serviceClass;
   }
 
-  createRoute(dto: CreateRouteDto) {
-    return this.prisma.route.create({ data: dto });
+  create(dto: CreateServiceClassDto) {
+    return this.prisma.serviceClass.create({ data: dto });
   }
 
-  async updateRoute(id: string, dto: UpdateRouteDto) {
-    await this.getOneRoute(id);
-    return this.prisma.route.update({ where: { id }, data: dto });
+  async update(id: string, dto: UpdateServiceClassDto) {
+    await this.getOne(id);
+    return this.prisma.serviceClass.update({ where: { id }, data: dto });
   }
 
-  async deleteRoute(id: string, query: DeleteQueryDto) {
-    await this.getOneRoute(id);
+  async delete(id: string, query: DeleteQueryDto) {
+    await this.getOne(id);
     if (query.purge) {
-      return this.prisma.route.delete({
+      return this.prisma.serviceClass.delete({
         where: { id },
         ...this.representationService.buildCustomRepresentationQuery(query.v),
       });
     }
-    return this.prisma.route.update({
+    return this.prisma.serviceClass.update({
       where: { id },
       data: { voided: true },
       ...this.representationService.buildCustomRepresentationQuery(query.v),
     });
   }
 
-  async restoreRoute(id: string, query: CustomRepresentationQueryDto) {
-    await this.prisma.route.findUniqueOrThrow({ where: { id } });
-    return this.prisma.route.update({
+  async restore(id: string, query: CustomRepresentationQueryDto) {
+    await this.prisma.serviceClass.findUniqueOrThrow({ where: { id } });
+    return this.prisma.serviceClass.update({
       where: { id },
       data: { voided: false },
       ...this.representationService.buildCustomRepresentationQuery(query.v),
     });
   }
-
 }

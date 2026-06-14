@@ -36,7 +36,8 @@ AppModule
 ├── QueueModule             — BullMQ queue registration + global job options
 ├── NotificationsModule     — dispatch, inbox, audit log, push token management (global)
 ├── StageModule             — Stage + StageLink (system-managed network dictionary)
-└── RouteModule             — Route + RouteLink + LinkPricing (operator-managed)
+├── RouteModule             — Route + RouteLink + LinkPricing (operator-managed)
+└── ServiceClassModule      — QoS service class lookup table (system-managed)
 ```
 
 Domain modules not yet registered in AppModule (schema defined, services pending):

@@ -88,6 +88,22 @@ model LinkPricing {
     @@index([operatorId])
 }
 
+/// Extensible Quality-of-Service classification for routes.
+/// Operators define their own classes (e.g. LOCAL, EXPRESS, PEAK) without schema changes.
+model ServiceClass {
+    id          String   @id @default(uuid())
+    /// Short unique identifier e.g. "EXPRESS", "LOCAL", "PEAK".
+    code        String   @unique
+    /// Display name e.g. "Express Service". Globally unique.
+    name        String   @unique
+    description String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    voided      Boolean  @default(false)
+
+    routes Route[]
+}
+
 /// A named, licensed transit route — identity and metadata only.
 /// The actual path through the network is defined by the ordered RouteLinks.
 model Route {
@@ -96,14 +112,19 @@ model Route {
     code      String   @unique
     /// Full human-readable name e.g. "CBD - Rongai". Globally unique.
     name      String   @unique
+    /// Optional QoS classification — null means unclassified.
+    serviceClassId String?
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     voided    Boolean  @default(false)
 
+    serviceClass ServiceClass? @relation(fields: [serviceClassId], references: [id])
     links        RouteLink[]
     trips        Trip[]
     fleets       FleetRoute[]
     linkPricings LinkPricing[]
+
+    @@index([serviceClassId])
 }
 
 /// Ordered directed StageLinks that define a route's path through the network.

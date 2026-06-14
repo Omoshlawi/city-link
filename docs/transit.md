@@ -95,6 +95,21 @@ GET /stages/cbd-id/links?direction=both
 
 ---
 
+### ServiceClass
+
+Extensible Quality-of-Service classification for routes. Operators define their own classes
+at runtime — no schema migration needed for new service types.
+
+| Field | Type | Description |
+|---|---|---|
+| `code` | `String @unique` | Short identifier e.g. `"EXPRESS"`, `"LOCAL"`, `"PEAK"` |
+| `name` | `String @unique` | Display name e.g. `"Express Service"` |
+| `description` | `String?` | Optional explanation of what this service class means |
+
+Managed at `GET/POST/PATCH/DELETE /service-classes` — requires `network: manage` permission to write, public to read.
+
+---
+
 ### Route
 
 A named licensed transit route. Identity only — the actual path is defined by its `RouteLinks`.
@@ -103,8 +118,25 @@ A named licensed transit route. Identity only — the actual path is defined by 
 |---|---|---|
 | `code` | `String @unique` | Short operator code e.g. `"34"`, `"CBD-RONGAI"` |
 | `name` | `String @unique` | Full display name e.g. `"CBD - Rongai"`. Globally unique. |
+| `serviceClassId` | `String?` | Optional FK to `ServiceClass` — QoS level for this route |
 
 Route has no `startStageId`/`endStageId` — those are derivable from the first and last `RouteLink`. This avoids redundant denormalized data.
+
+#### QoS and service variants (express / local)
+
+Express and local services on the same corridor traverse different `StageLink` sequences,
+so they are modelled as separate `Route` records — each with its own `RouteLink` sequence
+and a `serviceClassId` pointing to the appropriate `ServiceClass`:
+
+```
+ServiceClass "EXPRESS" → Route "34-EXPRESS"  RouteLinks: [CBD→Railways, Railways→Rongai]
+ServiceClass "LOCAL"   → Route "34-LOCAL"    RouteLinks: [CBD→Univ, Univ→GPO, GPO→Railways, Railways→Rongai]
+```
+
+Benefits of this approach:
+- Pricing varies by route naturally via `LinkPricing.routeId` — express can carry a higher fare
+- `GET /routes?serviceClassId=<id>` retrieves all express (or local, peak, etc.) routes
+- Adding a new service type in future = one `POST /service-classes`, no migration
 
 ---
 

@@ -12,6 +12,7 @@ import { QueueModule } from './queue/queue.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { StageModule } from './stage/stage.module';
 import { RouteModule } from './route/route.module';
+import { ServiceClassModule } from './service-class/service-class.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { RouteModule } from './route/route.module';
     NotificationsModule,
     StageModule,
     RouteModule,
+    ServiceClassModule,
   ],
   controllers: [AppController],
   providers: [AppService],
