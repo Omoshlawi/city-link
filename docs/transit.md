@@ -213,7 +213,18 @@ Extensible registry of vehicle types. Stored as a model (not an enum) so operato
 | `code` | `String @unique` | Short identifier e.g. `"MATATU"`, `"BUS"` |
 | `name` | `String @unique` | Display name e.g. `"Matatu"`, `"Bus"` |
 
-Seed with common types at startup. Operators add custom types via API.
+Seed with common types at startup. System admins add custom types via API.
+
+#### REST API — `/vehicle-types`
+
+| Method | Path | Auth | Description |
+|---|---|---|---|
+| `GET` | `/vehicle-types` | Public | List vehicle types (paginated, searchable) |
+| `GET` | `/vehicle-types/:id` | Public | Get a single vehicle type |
+| `POST` | `/vehicle-types` | `network: manage` | Create a vehicle type |
+| `PATCH` | `/vehicle-types/:id` | `network: manage` | Update a vehicle type |
+| `DELETE` | `/vehicle-types/:id` | `network: manage` | Soft-delete (or purge with `?purge=true`) |
+| `POST` | `/vehicle-types/:id/restore` | `network: manage` | Restore a soft-deleted vehicle type |
 
 ---
 

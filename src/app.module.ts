@@ -13,6 +13,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { StageModule } from './stage/stage.module';
 import { RouteModule } from './route/route.module';
 import { ServiceClassModule } from './service-class/service-class.module';
+import { VehicleTypeModule } from './vehicle-type/vehicle-type.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ServiceClassModule } from './service-class/service-class.module';
     StageModule,
     RouteModule,
     ServiceClassModule,
+    VehicleTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

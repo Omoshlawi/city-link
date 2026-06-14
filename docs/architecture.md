@@ -37,12 +37,13 @@ AppModule
 ├── NotificationsModule     — dispatch, inbox, audit log, push token management (global)
 ├── StageModule             — Stage + StageLink (system-managed network dictionary)
 ├── RouteModule             — Route + RouteLink + LinkPricing (operator-managed)
-└── ServiceClassModule      — QoS service class lookup table (system-managed)
+├── ServiceClassModule      — QoS service class lookup table (system-managed)
+└── VehicleTypeModule       — Vehicle type registry (system-managed)
 ```
 
 Domain modules not yet registered in AppModule (schema defined, services pending):
 - Transit: Trip
-- Fleet management: VehicleType, Fleet, FleetRoute
+- Fleet management: Fleet, FleetRoute
 - Ticketing: Passenger, Ticket
 
 ---
