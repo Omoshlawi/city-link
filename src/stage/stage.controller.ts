@@ -29,12 +29,16 @@ import {
   UpdateStageLinkDto,
   UpdateStageDto,
 } from './stage.dto';
+import { StageLinkService } from './stage-link.service';
 import { StageService } from './stage.service';
 
 @ApiTags('Stages')
 @Controller('stages')
 export class StageController {
-  constructor(private readonly service: StageService) {}
+  constructor(
+    private readonly service: StageService,
+    private readonly linkService: StageLinkService,
+  ) {}
 
   // ─── Stage endpoints ──────────────────────────────────────────────────────
 
@@ -120,7 +124,7 @@ export class StageController {
     @Query() query: QueryStageLinkDto,
     @OriginalUrl() originalUrl: string,
   ) {
-    return this.service.getAllLinks(id, query, originalUrl);
+    return this.linkService.getAllLinks(id, query, originalUrl);
   }
 
   @Get('/:id/links/:linkId')
@@ -132,7 +136,7 @@ export class StageController {
     @Param('id', ParseUUIDPipe) id: string,
     @Param('linkId', ParseUUIDPipe) linkId: string,
   ) {
-    return this.service.getOneLink(id, linkId);
+    return this.linkService.getOneLink(id, linkId);
   }
 
   @Post('/:id/links')
@@ -144,7 +148,7 @@ export class StageController {
     @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: CreateStageLinkDto,
   ) {
-    return this.service.createLink(id, dto);
+    return this.linkService.createLink(id, dto);
   }
 
   @Patch('/:id/links/:linkId')
@@ -157,7 +161,7 @@ export class StageController {
     @Param('linkId', ParseUUIDPipe) linkId: string,
     @Body() dto: UpdateStageLinkDto,
   ) {
-    return this.service.updateLink(id, linkId, dto);
+    return this.linkService.updateLink(id, linkId, dto);
   }
 
   @Delete('/:id/links/:linkId')
@@ -172,7 +176,7 @@ export class StageController {
     @Param('linkId', ParseUUIDPipe) linkId: string,
     @Query() query: DeleteQueryDto,
   ) {
-    return this.service.deleteLink(id, linkId, query);
+    return this.linkService.deleteLink(id, linkId, query);
   }
 
   @Post('/:id/links/:linkId/restore')
@@ -185,6 +189,6 @@ export class StageController {
     @Param('linkId', ParseUUIDPipe) linkId: string,
     @Query() query: CustomRepresentationQueryDto,
   ) {
-    return this.service.restoreLink(id, linkId, query);
+    return this.linkService.restoreLink(id, linkId, query);
   }
 }

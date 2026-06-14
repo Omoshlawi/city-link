@@ -38,13 +38,19 @@ import {
   UpdateLinkPricingDto,
   UpdateRouteDto,
 } from './route.dto';
+import { LinkPricingService } from './link-pricing.service';
+import { RouteLinkService } from './route-link.service';
 import { RouteService } from './route.service';
 
 @ApiTags('Routes')
 @RequireActiveOrganization()
 @Controller('routes')
 export class RouteController {
-  constructor(private readonly service: RouteService) {}
+  constructor(
+    private readonly service: RouteService,
+    private readonly linkService: RouteLinkService,
+    private readonly pricingService: LinkPricingService,
+  ) {}
 
   // ─── Route CRUD ───────────────────────────────────────────────────────────
 
@@ -124,7 +130,7 @@ export class RouteController {
   @ApiOkResponse({ isArray: true, type: GetRouteLinkResponseDto })
   @ApiErrorsResponse({ unauthorized: false, forbidden: false })
   getRouteLinks(@Param('id', ParseUUIDPipe) id: string) {
-    return this.service.getRouteLinks(id);
+    return this.linkService.getRouteLinks(id);
   }
 
   @Put('/:id/links')
@@ -136,7 +142,7 @@ export class RouteController {
     @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: SetRouteLinksDto,
   ) {
-    return this.service.setRouteLinks(id, dto);
+    return this.linkService.setRouteLinks(id, dto);
   }
 
   // ─── LinkPricing ──────────────────────────────────────────────────────────
@@ -152,7 +158,7 @@ export class RouteController {
     @OriginalUrl() originalUrl: string,
     @Session() { session }: UserSession,
   ) {
-    return this.service.getAllPricing(
+    return this.pricingService.getAllPricing(
       id,
       session.activeOrganizationId!,
       query,
@@ -170,7 +176,7 @@ export class RouteController {
     @Body() dto: CreateLinkPricingDto,
     @Session() { session }: UserSession,
   ) {
-    return this.service.createPricing(id, session.activeOrganizationId!, dto);
+    return this.pricingService.createPricing(id, session.activeOrganizationId!, dto);
   }
 
   @Patch('/:id/pricing/:pricingId')
@@ -183,7 +189,7 @@ export class RouteController {
     @Body() dto: UpdateLinkPricingDto,
     @Session() { session }: UserSession,
   ) {
-    return this.service.updatePricing(
+    return this.pricingService.updatePricing(
       pricingId,
       session.activeOrganizationId!,
       dto,
@@ -203,7 +209,7 @@ export class RouteController {
     @Query() query: DeleteQueryDto,
     @Session() { session }: UserSession,
   ) {
-    return this.service.deletePricing(
+    return this.pricingService.deletePricing(
       pricingId,
       session.activeOrganizationId!,
       query,
@@ -220,7 +226,7 @@ export class RouteController {
     @Query() query: CustomRepresentationQueryDto,
     @Session() { session }: UserSession,
   ) {
-    return this.service.restorePricing(
+    return this.pricingService.restorePricing(
       pricingId,
       session.activeOrganizationId!,
       query,
