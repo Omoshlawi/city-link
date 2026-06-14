@@ -83,11 +83,6 @@ export type TwoFactor = Prisma.TwoFactorModel
  */
 export type VehicleType = Prisma.VehicleTypeModel
 /**
- * Model Passenger
- * A passenger — may be a registered user or a walk-in contact.
- */
-export type Passenger = Prisma.PassengerModel
-/**
  * Model Fleet
  * A vehicle registered on the transit network, owned by an operator organisation.
  */
@@ -98,11 +93,6 @@ export type Fleet = Prisma.FleetModel
  * Which assignment is currently active is tracked via Fleet.activeFleetRouteId.
  */
 export type FleetRoute = Prisma.FleetRouteModel
-/**
- * Model Ticket
- * A passenger's fare record for a trip segment between two stages.
- */
-export type Ticket = Prisma.TicketModel
 /**
  * Model PushToken
  * 
@@ -118,6 +108,41 @@ export type NotificationLog = Prisma.NotificationLogModel
  * 
  */
 export type NotificationInbox = Prisma.NotificationInboxModel
+/**
+ * Model Setting
+ * 
+ */
+export type Setting = Prisma.SettingModel
+/**
+ * Model Template
+ * 
+ */
+export type Template = Prisma.TemplateModel
+/**
+ * Model TemplateVersion
+ * 
+ */
+export type TemplateVersion = Prisma.TemplateVersionModel
+/**
+ * Model OrgTemplateOverride
+ * 
+ */
+export type OrgTemplateOverride = Prisma.OrgTemplateOverrideModel
+/**
+ * Model OrgTemplateOverrideVersion
+ * 
+ */
+export type OrgTemplateOverrideVersion = Prisma.OrgTemplateOverrideVersionModel
+/**
+ * Model Passenger
+ * A passenger — may be a registered user or a walk-in contact.
+ */
+export type Passenger = Prisma.PassengerModel
+/**
+ * Model Ticket
+ * A passenger's fare record for a trip segment between two stages.
+ */
+export type Ticket = Prisma.TicketModel
 /**
  * Model Stage
  * A physical pickup or drop-off point on the transit network.
@@ -155,31 +180,6 @@ export type RouteLink = Prisma.RouteLinkModel
  * A single vehicle run along a route.
  */
 export type Trip = Prisma.TripModel
-/**
- * Model Setting
- * 
- */
-export type Setting = Prisma.SettingModel
-/**
- * Model Template
- * 
- */
-export type Template = Prisma.TemplateModel
-/**
- * Model TemplateVersion
- * 
- */
-export type TemplateVersion = Prisma.TemplateVersionModel
-/**
- * Model OrgTemplateOverride
- * 
- */
-export type OrgTemplateOverride = Prisma.OrgTemplateOverrideModel
-/**
- * Model OrgTemplateOverrideVersion
- * 
- */
-export type OrgTemplateOverrideVersion = Prisma.OrgTemplateOverrideVersionModel
 /**
  * Model AddressHierarchy
  * 

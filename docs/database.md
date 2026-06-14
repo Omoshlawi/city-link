@@ -11,8 +11,9 @@ prisma/
 ├── schema.prisma          # generator, datasource, AddressHierarchy model
 └── models/
     ├── auth.prisma        # User, Session, Account, Organization, Team, Member, ...
-    ├── routes.prisma      # Stage, StageLink, LinkPricing, Route, RouteLink, Trip
-    ├── fleet.prisma       # VehicleType, Fleet, FleetRoute, Passenger, Ticket
+    ├── transit.prisma     # Stage, StageLink, LinkPricing, Route, RouteLink, Trip
+    ├── fleet.prisma       # VehicleType, Fleet, FleetRoute
+    ├── ticketing.prisma   # Passenger, Ticket
     ├── notification.prisma# PushToken, NotificationLog, NotificationInbox
     ├── settings.prisma    # Setting
     └── templates.prisma   # Template, TemplateVersion, OrgTemplateOverride, ...
@@ -28,8 +29,9 @@ prisma/
 |---|---|
 | `schema.prisma` | `AddressHierarchy` |
 | `auth.prisma` | `User`, `Session`, `Account`, `Verification`, `Organization`, `OrganizationRole`, `Team`, `TeamMember`, `Member`, `Invitation`, `Jwks`, `TwoFactor` |
-| `routes.prisma` | `Stage`, `StageLink`, `LinkPricing`, `Route`, `RouteLink`, `Trip` + enums `TraversalDirection`, `DayOfWeek` |
-| `fleet.prisma` | `VehicleType`, `Passenger`, `Fleet`, `FleetRoute`, `Ticket` + enums `FleetStatus`, `PaymentStatus` |
+| `transit.prisma` | `Stage`, `StageLink`, `LinkPricing`, `Route`, `RouteLink`, `Trip` + enums `TraversalDirection`, `DayOfWeek` |
+| `fleet.prisma` | `VehicleType`, `Fleet`, `FleetRoute` + enum `FleetStatus` |
+| `ticketing.prisma` | `Passenger`, `Ticket` + enum `PaymentStatus` |
 | `notification.prisma` | `PushToken`, `NotificationLog`, `NotificationInbox` + enums `NotificationChannel`, `NotificationStatus` |
 | `settings.prisma` | `Setting` + enums `SettingScope`, `SettingType` |
 | `templates.prisma` | `Template`, `TemplateVersion`, `OrgTemplateOverride`, `OrgTemplateOverrideVersion` + enum `TemplateEngine` |

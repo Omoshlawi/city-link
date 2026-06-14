@@ -64,24 +64,24 @@ export const ModelName = {
   Jwks: 'Jwks',
   TwoFactor: 'TwoFactor',
   VehicleType: 'VehicleType',
-  Passenger: 'Passenger',
   Fleet: 'Fleet',
   FleetRoute: 'FleetRoute',
-  Ticket: 'Ticket',
   PushToken: 'PushToken',
   NotificationLog: 'NotificationLog',
   NotificationInbox: 'NotificationInbox',
+  Setting: 'Setting',
+  Template: 'Template',
+  TemplateVersion: 'TemplateVersion',
+  OrgTemplateOverride: 'OrgTemplateOverride',
+  OrgTemplateOverrideVersion: 'OrgTemplateOverrideVersion',
+  Passenger: 'Passenger',
+  Ticket: 'Ticket',
   Stage: 'Stage',
   StageLink: 'StageLink',
   LinkPricing: 'LinkPricing',
   Route: 'Route',
   RouteLink: 'RouteLink',
   Trip: 'Trip',
-  Setting: 'Setting',
-  Template: 'Template',
-  TemplateVersion: 'TemplateVersion',
-  OrgTemplateOverride: 'OrgTemplateOverride',
-  OrgTemplateOverrideVersion: 'OrgTemplateOverrideVersion',
   AddressHierarchy: 'AddressHierarchy'
 } as const
 
@@ -277,19 +277,6 @@ export const VehicleTypeScalarFieldEnum = {
 export type VehicleTypeScalarFieldEnum = (typeof VehicleTypeScalarFieldEnum)[keyof typeof VehicleTypeScalarFieldEnum]
 
 
-export const PassengerScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  contact: 'contact',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  voided: 'voided'
-} as const
-
-export type PassengerScalarFieldEnum = (typeof PassengerScalarFieldEnum)[keyof typeof PassengerScalarFieldEnum]
-
-
 export const FleetScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -317,23 +304,6 @@ export const FleetRouteScalarFieldEnum = {
 } as const
 
 export type FleetRouteScalarFieldEnum = (typeof FleetRouteScalarFieldEnum)[keyof typeof FleetRouteScalarFieldEnum]
-
-
-export const TicketScalarFieldEnum = {
-  id: 'id',
-  passengerId: 'passengerId',
-  tripId: 'tripId',
-  fromStageId: 'fromStageId',
-  toStageId: 'toStageId',
-  price: 'price',
-  seatNumber: 'seatNumber',
-  paymentStatus: 'paymentStatus',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  voided: 'voided'
-} as const
-
-export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
 
 
 export const PushTokenScalarFieldEnum = {
@@ -394,6 +364,119 @@ export const NotificationInboxScalarFieldEnum = {
 } as const
 
 export type NotificationInboxScalarFieldEnum = (typeof NotificationInboxScalarFieldEnum)[keyof typeof NotificationInboxScalarFieldEnum]
+
+
+export const SettingScalarFieldEnum = {
+  id: 'id',
+  scope: 'scope',
+  namespace: 'namespace',
+  key: 'key',
+  userId: 'userId',
+  organizationId: 'organizationId',
+  value: 'value',
+  valueType: 'valueType',
+  description: 'description',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  updatedBy: 'updatedBy',
+  deletedAt: 'deletedAt'
+} as const
+
+export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
+
+
+export const TemplateScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  type: 'type',
+  name: 'name',
+  description: 'description',
+  engine: 'engine',
+  slots: 'slots',
+  schema: 'schema',
+  metadata: 'metadata',
+  version: 'version',
+  voided: 'voided',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TemplateScalarFieldEnum = (typeof TemplateScalarFieldEnum)[keyof typeof TemplateScalarFieldEnum]
+
+
+export const TemplateVersionScalarFieldEnum = {
+  id: 'id',
+  templateId: 'templateId',
+  version: 'version',
+  slots: 'slots',
+  schema: 'schema',
+  metadata: 'metadata',
+  changedById: 'changedById',
+  changeNote: 'changeNote',
+  createdAt: 'createdAt'
+} as const
+
+export type TemplateVersionScalarFieldEnum = (typeof TemplateVersionScalarFieldEnum)[keyof typeof TemplateVersionScalarFieldEnum]
+
+
+export const OrgTemplateOverrideScalarFieldEnum = {
+  id: 'id',
+  templateKey: 'templateKey',
+  organizationId: 'organizationId',
+  slots: 'slots',
+  metadata: 'metadata',
+  version: 'version',
+  voided: 'voided',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrgTemplateOverrideScalarFieldEnum = (typeof OrgTemplateOverrideScalarFieldEnum)[keyof typeof OrgTemplateOverrideScalarFieldEnum]
+
+
+export const OrgTemplateOverrideVersionScalarFieldEnum = {
+  id: 'id',
+  overrideId: 'overrideId',
+  version: 'version',
+  slots: 'slots',
+  metadata: 'metadata',
+  changedById: 'changedById',
+  changeNote: 'changeNote',
+  createdAt: 'createdAt'
+} as const
+
+export type OrgTemplateOverrideVersionScalarFieldEnum = (typeof OrgTemplateOverrideVersionScalarFieldEnum)[keyof typeof OrgTemplateOverrideVersionScalarFieldEnum]
+
+
+export const PassengerScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  contact: 'contact',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type PassengerScalarFieldEnum = (typeof PassengerScalarFieldEnum)[keyof typeof PassengerScalarFieldEnum]
+
+
+export const TicketScalarFieldEnum = {
+  id: 'id',
+  passengerId: 'passengerId',
+  tripId: 'tripId',
+  fromStageId: 'fromStageId',
+  toStageId: 'toStageId',
+  price: 'price',
+  seatNumber: 'seatNumber',
+  paymentStatus: 'paymentStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
 
 
 export const StageScalarFieldEnum = {
@@ -481,89 +564,6 @@ export const TripScalarFieldEnum = {
 } as const
 
 export type TripScalarFieldEnum = (typeof TripScalarFieldEnum)[keyof typeof TripScalarFieldEnum]
-
-
-export const SettingScalarFieldEnum = {
-  id: 'id',
-  scope: 'scope',
-  namespace: 'namespace',
-  key: 'key',
-  userId: 'userId',
-  organizationId: 'organizationId',
-  value: 'value',
-  valueType: 'valueType',
-  description: 'description',
-  isPublic: 'isPublic',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  updatedBy: 'updatedBy',
-  deletedAt: 'deletedAt'
-} as const
-
-export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
-
-
-export const TemplateScalarFieldEnum = {
-  id: 'id',
-  key: 'key',
-  type: 'type',
-  name: 'name',
-  description: 'description',
-  engine: 'engine',
-  slots: 'slots',
-  schema: 'schema',
-  metadata: 'metadata',
-  version: 'version',
-  voided: 'voided',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TemplateScalarFieldEnum = (typeof TemplateScalarFieldEnum)[keyof typeof TemplateScalarFieldEnum]
-
-
-export const TemplateVersionScalarFieldEnum = {
-  id: 'id',
-  templateId: 'templateId',
-  version: 'version',
-  slots: 'slots',
-  schema: 'schema',
-  metadata: 'metadata',
-  changedById: 'changedById',
-  changeNote: 'changeNote',
-  createdAt: 'createdAt'
-} as const
-
-export type TemplateVersionScalarFieldEnum = (typeof TemplateVersionScalarFieldEnum)[keyof typeof TemplateVersionScalarFieldEnum]
-
-
-export const OrgTemplateOverrideScalarFieldEnum = {
-  id: 'id',
-  templateKey: 'templateKey',
-  organizationId: 'organizationId',
-  slots: 'slots',
-  metadata: 'metadata',
-  version: 'version',
-  voided: 'voided',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type OrgTemplateOverrideScalarFieldEnum = (typeof OrgTemplateOverrideScalarFieldEnum)[keyof typeof OrgTemplateOverrideScalarFieldEnum]
-
-
-export const OrgTemplateOverrideVersionScalarFieldEnum = {
-  id: 'id',
-  overrideId: 'overrideId',
-  version: 'version',
-  slots: 'slots',
-  metadata: 'metadata',
-  changedById: 'changedById',
-  changeNote: 'changeNote',
-  createdAt: 'createdAt'
-} as const
-
-export type OrgTemplateOverrideVersionScalarFieldEnum = (typeof OrgTemplateOverrideVersionScalarFieldEnum)[keyof typeof OrgTemplateOverrideVersionScalarFieldEnum]
 
 
 export const AddressHierarchyScalarFieldEnum = {

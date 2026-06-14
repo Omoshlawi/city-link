@@ -18,16 +18,6 @@ export const FleetStatus = {
 export type FleetStatus = (typeof FleetStatus)[keyof typeof FleetStatus]
 
 
-export const PaymentStatus = {
-  PENDING: 'PENDING',
-  PAID: 'PAID',
-  FAILED: 'FAILED',
-  REFUNDED: 'REFUNDED'
-} as const
-
-export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
-
-
 export const NotificationChannel = {
   EMAIL: 'EMAIL',
   PUSH: 'PUSH',
@@ -46,27 +36,6 @@ export const NotificationStatus = {
 } as const
 
 export type NotificationStatus = (typeof NotificationStatus)[keyof typeof NotificationStatus]
-
-
-export const DayOfWeek = {
-  MONDAY: 'MONDAY',
-  TUESDAY: 'TUESDAY',
-  WEDNESDAY: 'WEDNESDAY',
-  THURSDAY: 'THURSDAY',
-  FRIDAY: 'FRIDAY',
-  SATURDAY: 'SATURDAY',
-  SUNDAY: 'SUNDAY'
-} as const
-
-export type DayOfWeek = (typeof DayOfWeek)[keyof typeof DayOfWeek]
-
-
-export const TraversalDirection = {
-  FORWARD: 'FORWARD',
-  BACKWARD: 'BACKWARD'
-} as const
-
-export type TraversalDirection = (typeof TraversalDirection)[keyof typeof TraversalDirection]
 
 
 export const SettingScope = {
@@ -95,3 +64,34 @@ export const TemplateEngine = {
 } as const
 
 export type TemplateEngine = (typeof TemplateEngine)[keyof typeof TemplateEngine]
+
+
+export const PaymentStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
+export const DayOfWeek = {
+  MONDAY: 'MONDAY',
+  TUESDAY: 'TUESDAY',
+  WEDNESDAY: 'WEDNESDAY',
+  THURSDAY: 'THURSDAY',
+  FRIDAY: 'FRIDAY',
+  SATURDAY: 'SATURDAY',
+  SUNDAY: 'SUNDAY'
+} as const
+
+export type DayOfWeek = (typeof DayOfWeek)[keyof typeof DayOfWeek]
+
+
+export const TraversalDirection = {
+  FORWARD: 'FORWARD',
+  BACKWARD: 'BACKWARD'
+} as const
+
+export type TraversalDirection = (typeof TraversalDirection)[keyof typeof TraversalDirection]

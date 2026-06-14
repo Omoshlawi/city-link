@@ -778,22 +778,6 @@ export type UserUpdateOneRequiredWithoutTwofactorsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTwofactorsInput, Prisma.UserUpdateWithoutTwofactorsInput>, Prisma.UserUncheckedUpdateWithoutTwofactorsInput>
 }
 
-export type UserCreateNestedOneWithoutPassengerInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPassengerInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneWithoutPassengerNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPassengerInput
-  upsert?: Prisma.UserUpsertWithoutPassengerInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPassengerInput, Prisma.UserUpdateWithoutPassengerInput>, Prisma.UserUncheckedUpdateWithoutPassengerInput>
-}
-
 export type UserCreateNestedOneWithoutPushTokensInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutPushTokensInput, Prisma.UserUncheckedCreateWithoutPushTokensInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutPushTokensInput
@@ -884,6 +868,22 @@ export type UserUpdateOneWithoutOrgTemplateOverrideVersionsNestedInput = {
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrgTemplateOverrideVersionsInput, Prisma.UserUpdateWithoutOrgTemplateOverrideVersionsInput>, Prisma.UserUncheckedUpdateWithoutOrgTemplateOverrideVersionsInput>
+}
+
+export type UserCreateNestedOneWithoutPassengerInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPassengerInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutPassengerNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPassengerInput
+  upsert?: Prisma.UserUpsertWithoutPassengerInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPassengerInput, Prisma.UserUpdateWithoutPassengerInput>, Prisma.UserUncheckedUpdateWithoutPassengerInput>
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -1750,150 +1750,6 @@ export type UserUncheckedUpdateWithoutTwofactorsInput = {
   passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
-export type UserCreateWithoutPassengerInput = {
-  id: string
-  name: string
-  email: string
-  emailVerified?: boolean
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  username?: string | null
-  displayUsername?: string | null
-  isAnonymous?: boolean | null
-  role?: string | null
-  banned?: boolean | null
-  banReason?: string | null
-  banExpires?: Date | string | null
-  twoFactorEnabled?: boolean | null
-  phoneNumber?: string | null
-  phoneNumberVerified?: boolean | null
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  teammembers?: Prisma.TeamMemberCreateNestedManyWithoutUserInput
-  members?: Prisma.MemberCreateNestedManyWithoutUserInput
-  invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
-  twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
-  templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
-  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
-  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
-  pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
-  notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
-  notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutPassengerInput = {
-  id: string
-  name: string
-  email: string
-  emailVerified?: boolean
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  username?: string | null
-  displayUsername?: string | null
-  isAnonymous?: boolean | null
-  role?: string | null
-  banned?: boolean | null
-  banReason?: string | null
-  banExpires?: Date | string | null
-  twoFactorEnabled?: boolean | null
-  phoneNumber?: string | null
-  phoneNumberVerified?: boolean | null
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  teammembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutUserInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
-  twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
-  templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
-  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
-  pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
-  notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
-  notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutPassengerInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
-}
-
-export type UserUpsertWithoutPassengerInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPassengerInput, Prisma.UserUncheckedUpdateWithoutPassengerInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutPassengerInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPassengerInput, Prisma.UserUncheckedUpdateWithoutPassengerInput>
-}
-
-export type UserUpdateWithoutPassengerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAnonymous?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  twoFactorEnabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneNumberVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  teammembers?: Prisma.TeamMemberUpdateManyWithoutUserNestedInput
-  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
-  invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
-  twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
-  templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
-  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
-  pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
-  notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
-  notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutPassengerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAnonymous?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  twoFactorEnabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneNumberVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  teammembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutUserNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
-  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
-  twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
-  templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
-  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
-  pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
-  notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
-  notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
-}
-
 export type UserCreateWithoutPushTokensInput = {
   id: string
   name: string
@@ -2756,6 +2612,150 @@ export type UserUncheckedUpdateWithoutOrgTemplateOverrideVersionsInput = {
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
   passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPassengerInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  username?: string | null
+  displayUsername?: string | null
+  isAnonymous?: boolean | null
+  role?: string | null
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  twoFactorEnabled?: boolean | null
+  phoneNumber?: string | null
+  phoneNumberVerified?: boolean | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  teammembers?: Prisma.TeamMemberCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberCreateNestedManyWithoutUserInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
+  templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
+  pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
+  notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
+  notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPassengerInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  username?: string | null
+  displayUsername?: string | null
+  isAnonymous?: boolean | null
+  role?: string | null
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  twoFactorEnabled?: boolean | null
+  phoneNumber?: string | null
+  phoneNumberVerified?: boolean | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  teammembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
+  templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
+  pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
+  notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
+  notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPassengerInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
+}
+
+export type UserUpsertWithoutPassengerInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPassengerInput, Prisma.UserUncheckedUpdateWithoutPassengerInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPassengerInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPassengerInput, Prisma.UserUncheckedUpdateWithoutPassengerInput>
+}
+
+export type UserUpdateWithoutPassengerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAnonymous?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumberVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  teammembers?: Prisma.TeamMemberUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
+  templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
+  pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
+  notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
+  notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPassengerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAnonymous?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumberVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  teammembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
+  templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
+  pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
+  notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
+  notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
 }
 
 

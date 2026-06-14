@@ -18,45 +18,20 @@ enum FleetStatus {
     MAINTENANCE
 }
 
-enum PaymentStatus {
-    PENDING
-    PAID
-    FAILED
-    REFUNDED
-}
-
-/// A passenger — may be a registered user or a walk-in contact.
-model Passenger {
-    id        String   @id @default(uuid())
-    /// Links to a registered User account when the passenger has signed up.
-    userId    String?  @unique
-    name      String
-    /// Phone or email used to identify and contact the passenger.
-    contact   String   @unique
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    voided    Boolean  @default(false)
-
-    user    User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-    tickets Ticket[]
-
-    @@index([userId])
-}
-
 /// A vehicle registered on the transit network, owned by an operator organisation.
 model Fleet {
-    id                 String      @id @default(uuid())
-    name               String      @unique
-    vehicleTypeId      String
-    capacity           Int
-    plateNumber        String      @unique
-    operatorId         String
-    status             FleetStatus @default(ACTIVE)
+    id            String      @id @default(uuid())
+    name          String      @unique
+    vehicleTypeId String
+    capacity      Int
+    plateNumber   String      @unique
+    operatorId    String
+    status        FleetStatus @default(ACTIVE)
     /// FK to the currently active FleetRoute — @unique enforces one active route per vehicle at DB level.
-    activeFleetRouteId String?     @unique
-    createdAt          DateTime    @default(now())
-    updatedAt          DateTime    @updatedAt
-    voided             Boolean     @default(false)
+    activeFleetRouteId String? @unique
+    createdAt     DateTime    @default(now())
+    updatedAt     DateTime    @updatedAt
+    voided        Boolean     @default(false)
 
     vehicleType      VehicleType  @relation(fields: [vehicleTypeId], references: [id])
     operator         Organization @relation(fields: [operatorId], references: [id])
@@ -86,29 +61,4 @@ model FleetRoute {
     @@unique([routeId, fleetId])
     @@index([fleetId])
     @@index([routeId])
-}
-
-/// A passenger's fare record for a trip segment between two stages.
-model Ticket {
-    id            String        @id @default(uuid())
-    passengerId   String
-    tripId        String
-    fromStageId   String
-    toStageId     String
-    price         Decimal
-    /// Optional fixed seat assignment.
-    seatNumber    Int?
-    paymentStatus PaymentStatus @default(PENDING)
-    createdAt     DateTime      @default(now())
-    updatedAt     DateTime      @updatedAt
-    voided        Boolean       @default(false)
-
-    passenger Passenger @relation(fields: [passengerId], references: [id])
-    trip      Trip      @relation(fields: [tripId], references: [id])
-    fromStage Stage     @relation("FromStage", fields: [fromStageId], references: [id])
-    toStage   Stage     @relation("ToStage", fields: [toStageId], references: [id])
-
-    @@index([passengerId])
-    @@index([tripId])
-    @@index([fromStageId, toStageId])
 }
