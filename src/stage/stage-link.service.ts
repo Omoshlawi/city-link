@@ -48,6 +48,7 @@ export class StageLinkService {
         {
           voided: query.includeVoided ? undefined : false,
           toStageId: direction === 'outgoing' ? query.toStageId : undefined,
+          fromStageId: direction === 'incoming' ? query.fromStageId : undefined,
         },
       ],
     };

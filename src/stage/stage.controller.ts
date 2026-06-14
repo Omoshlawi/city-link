@@ -115,7 +115,9 @@ export class StageController {
   @Get('/:id/links')
   @OptionalAuth()
   @ApiOperation({
-    summary: 'List stage links. direction=outgoing (default) | incoming | both',
+    summary:
+      'List stage links. direction=outgoing (default) | incoming | both. ' +
+      'Use toStageId to narrow outgoing links by destination; fromStageId to narrow incoming links by source.',
   })
   @ApiOkResponse({ type: QueryStageLinkResponseDto })
   @ApiErrorsResponse({ unauthorized: false, forbidden: false })

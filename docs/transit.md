@@ -61,6 +61,38 @@ A directed edge between two adjacent stages.
 
 A→B and B→A are stored as separate `StageLink` rows. This allows different distance/time values in each direction (one-way roads, traffic patterns).
 
+#### REST API — `GET /stages/:id/links`
+
+Query params:
+
+| Param | Type | Default | Description |
+|---|---|---|---|
+| `direction` | `outgoing \| incoming \| both` | `outgoing` | Which edges to return relative to stage `:id` |
+| `toStageId` | UUID | — | **`outgoing` only.** Filter by destination stage |
+| `fromStageId` | UUID | — | **`incoming` only.** Filter by source stage |
+| `includeVoided` | boolean | `false` | Include soft-deleted links |
+
+When `direction=both` the `toStageId` and `fromStageId` params are ignored — the full neighbourhood is returned.
+
+**Examples:**
+
+```
+# All links leaving CBD
+GET /stages/cbd-id/links
+
+# The direct link from CBD to University
+GET /stages/cbd-id/links?toStageId=university-id
+
+# All links arriving at CBD
+GET /stages/cbd-id/links?direction=incoming
+
+# The specific link arriving at CBD that originates from Railways
+GET /stages/cbd-id/links?direction=incoming&fromStageId=railways-id
+
+# All links in either direction from/to CBD
+GET /stages/cbd-id/links?direction=both
+```
+
 ---
 
 ### Route

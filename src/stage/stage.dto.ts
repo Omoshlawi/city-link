@@ -70,6 +70,7 @@ export class UpdateStageLinkDto extends createZodDto(UpdateStageLinkSchema) {}
 export const QueryStageLinkSchema = z.object({
   ...QueryBuilderSchema.shape,
   toStageId: z.uuid().optional(),
+  fromStageId: z.uuid().optional(),
   direction: StageLinkDirectionSchema.optional().default('outgoing'),
   includeVoided: z
     .stringbool({ truthy: ['true', '1'], falsy: ['false', '0'] })
