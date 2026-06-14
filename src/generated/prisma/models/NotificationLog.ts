@@ -787,14 +787,6 @@ export type EnumNotificationStatusFieldUpdateOperationsInput = {
   set?: $Enums.NotificationStatus
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type NotificationLogCreateWithoutRecipientInput = {
   id?: string
   dispatchId: string

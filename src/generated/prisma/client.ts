@@ -100,6 +100,32 @@ export type Jwks = Prisma.JwksModel
  */
 export type TwoFactor = Prisma.TwoFactorModel
 /**
+ * Model VehicleType
+ * Extensible vehicle type registry — operators can add types without schema changes.
+ */
+export type VehicleType = Prisma.VehicleTypeModel
+/**
+ * Model Passenger
+ * A passenger — may be a registered user or a walk-in contact.
+ */
+export type Passenger = Prisma.PassengerModel
+/**
+ * Model Fleet
+ * A vehicle registered on the transit network, owned by an operator organisation.
+ */
+export type Fleet = Prisma.FleetModel
+/**
+ * Model FleetRoute
+ * Assignment of a fleet vehicle to a route.
+ * Which assignment is currently active is tracked via Fleet.activeFleetRouteId.
+ */
+export type FleetRoute = Prisma.FleetRouteModel
+/**
+ * Model Ticket
+ * A passenger's fare record for a trip segment between two stages.
+ */
+export type Ticket = Prisma.TicketModel
+/**
  * Model PushToken
  * 
  */
@@ -114,6 +140,41 @@ export type NotificationLog = Prisma.NotificationLogModel
  * 
  */
 export type NotificationInbox = Prisma.NotificationInboxModel
+/**
+ * Model Stage
+ * A physical pickup or drop-off point on the transit network.
+ * Exists independently of any route — stages are the nodes of the graph.
+ */
+export type Stage = Prisma.StageModel
+/**
+ * Model StageLink
+ * Directed connection between two adjacent stages — an edge in the transit graph.
+ * A→B and B→A are stored as separate records to allow asymmetric distance/time.
+ */
+export type StageLink = Prisma.StageLinkModel
+/**
+ * Model LinkPricing
+ * Fare for traversing a StageLink, scoped per operator and time window.
+ * Different operators (organisations) can charge different fares on the same link.
+ */
+export type LinkPricing = Prisma.LinkPricingModel
+/**
+ * Model Route
+ * A named, licensed transit route — identity and metadata only.
+ * The actual path through the network is defined by the ordered RouteLinks.
+ */
+export type Route = Prisma.RouteModel
+/**
+ * Model RouteLink
+ * Ordered directed StageLinks that define a route's path through the network.
+ * Replaces RouteStage — capturing both stages and traversal direction per segment.
+ */
+export type RouteLink = Prisma.RouteLinkModel
+/**
+ * Model Trip
+ * A single vehicle run along a route.
+ */
+export type Trip = Prisma.TripModel
 /**
  * Model Setting
  * 

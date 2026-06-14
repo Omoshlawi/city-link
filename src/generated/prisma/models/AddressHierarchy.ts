@@ -242,6 +242,7 @@ export type AddressHierarchyWhereInput = {
   voided?: Prisma.BoolFilter<"AddressHierarchy"> | boolean
   parent?: Prisma.XOR<Prisma.AddressHierarchyNullableScalarRelationFilter, Prisma.AddressHierarchyWhereInput> | null
   children?: Prisma.AddressHierarchyListRelationFilter
+  stages?: Prisma.StageListRelationFilter
 }
 
 export type AddressHierarchyOrderByWithRelationInput = {
@@ -255,6 +256,7 @@ export type AddressHierarchyOrderByWithRelationInput = {
   voided?: Prisma.SortOrder
   parent?: Prisma.AddressHierarchyOrderByWithRelationInput
   children?: Prisma.AddressHierarchyOrderByRelationAggregateInput
+  stages?: Prisma.StageOrderByRelationAggregateInput
 }
 
 export type AddressHierarchyWhereUniqueInput = Prisma.AtLeast<{
@@ -272,6 +274,7 @@ export type AddressHierarchyWhereUniqueInput = Prisma.AtLeast<{
   voided?: Prisma.BoolFilter<"AddressHierarchy"> | boolean
   parent?: Prisma.XOR<Prisma.AddressHierarchyNullableScalarRelationFilter, Prisma.AddressHierarchyWhereInput> | null
   children?: Prisma.AddressHierarchyListRelationFilter
+  stages?: Prisma.StageListRelationFilter
 }, "id" | "country_code">
 
 export type AddressHierarchyOrderByWithAggregationInput = {
@@ -314,6 +317,7 @@ export type AddressHierarchyCreateInput = {
   voided?: boolean
   parent?: Prisma.AddressHierarchyCreateNestedOneWithoutChildrenInput
   children?: Prisma.AddressHierarchyCreateNestedManyWithoutParentInput
+  stages?: Prisma.StageCreateNestedManyWithoutAreaInput
 }
 
 export type AddressHierarchyUncheckedCreateInput = {
@@ -326,6 +330,7 @@ export type AddressHierarchyUncheckedCreateInput = {
   nameLocal?: string | null
   voided?: boolean
   children?: Prisma.AddressHierarchyUncheckedCreateNestedManyWithoutParentInput
+  stages?: Prisma.StageUncheckedCreateNestedManyWithoutAreaInput
 }
 
 export type AddressHierarchyUpdateInput = {
@@ -338,6 +343,7 @@ export type AddressHierarchyUpdateInput = {
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   parent?: Prisma.AddressHierarchyUpdateOneWithoutChildrenNestedInput
   children?: Prisma.AddressHierarchyUpdateManyWithoutParentNestedInput
+  stages?: Prisma.StageUpdateManyWithoutAreaNestedInput
 }
 
 export type AddressHierarchyUncheckedUpdateInput = {
@@ -350,6 +356,7 @@ export type AddressHierarchyUncheckedUpdateInput = {
   nameLocal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   children?: Prisma.AddressHierarchyUncheckedUpdateManyWithoutParentNestedInput
+  stages?: Prisma.StageUncheckedUpdateManyWithoutAreaNestedInput
 }
 
 export type AddressHierarchyCreateManyInput = {
@@ -382,6 +389,11 @@ export type AddressHierarchyUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   nameLocal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type AddressHierarchyScalarRelationFilter = {
+  is?: Prisma.AddressHierarchyWhereInput
+  isNot?: Prisma.AddressHierarchyWhereInput
 }
 
 export type AddressHierarchyNullableScalarRelationFilter = {
@@ -445,6 +457,20 @@ export type AddressHierarchySumOrderByAggregateInput = {
   level?: Prisma.SortOrder
 }
 
+export type AddressHierarchyCreateNestedOneWithoutStagesInput = {
+  create?: Prisma.XOR<Prisma.AddressHierarchyCreateWithoutStagesInput, Prisma.AddressHierarchyUncheckedCreateWithoutStagesInput>
+  connectOrCreate?: Prisma.AddressHierarchyCreateOrConnectWithoutStagesInput
+  connect?: Prisma.AddressHierarchyWhereUniqueInput
+}
+
+export type AddressHierarchyUpdateOneRequiredWithoutStagesNestedInput = {
+  create?: Prisma.XOR<Prisma.AddressHierarchyCreateWithoutStagesInput, Prisma.AddressHierarchyUncheckedCreateWithoutStagesInput>
+  connectOrCreate?: Prisma.AddressHierarchyCreateOrConnectWithoutStagesInput
+  upsert?: Prisma.AddressHierarchyUpsertWithoutStagesInput
+  connect?: Prisma.AddressHierarchyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AddressHierarchyUpdateToOneWithWhereWithoutStagesInput, Prisma.AddressHierarchyUpdateWithoutStagesInput>, Prisma.AddressHierarchyUncheckedUpdateWithoutStagesInput>
+}
+
 export type AddressHierarchyCreateNestedOneWithoutChildrenInput = {
   create?: Prisma.XOR<Prisma.AddressHierarchyCreateWithoutChildrenInput, Prisma.AddressHierarchyUncheckedCreateWithoutChildrenInput>
   connectOrCreate?: Prisma.AddressHierarchyCreateOrConnectWithoutChildrenInput
@@ -503,6 +529,70 @@ export type AddressHierarchyUncheckedUpdateManyWithoutParentNestedInput = {
   deleteMany?: Prisma.AddressHierarchyScalarWhereInput | Prisma.AddressHierarchyScalarWhereInput[]
 }
 
+export type AddressHierarchyCreateWithoutStagesInput = {
+  id?: string
+  country: string
+  level: number
+  code: string
+  name: string
+  nameLocal?: string | null
+  voided?: boolean
+  parent?: Prisma.AddressHierarchyCreateNestedOneWithoutChildrenInput
+  children?: Prisma.AddressHierarchyCreateNestedManyWithoutParentInput
+}
+
+export type AddressHierarchyUncheckedCreateWithoutStagesInput = {
+  id?: string
+  country: string
+  level: number
+  parentId?: string | null
+  code: string
+  name: string
+  nameLocal?: string | null
+  voided?: boolean
+  children?: Prisma.AddressHierarchyUncheckedCreateNestedManyWithoutParentInput
+}
+
+export type AddressHierarchyCreateOrConnectWithoutStagesInput = {
+  where: Prisma.AddressHierarchyWhereUniqueInput
+  create: Prisma.XOR<Prisma.AddressHierarchyCreateWithoutStagesInput, Prisma.AddressHierarchyUncheckedCreateWithoutStagesInput>
+}
+
+export type AddressHierarchyUpsertWithoutStagesInput = {
+  update: Prisma.XOR<Prisma.AddressHierarchyUpdateWithoutStagesInput, Prisma.AddressHierarchyUncheckedUpdateWithoutStagesInput>
+  create: Prisma.XOR<Prisma.AddressHierarchyCreateWithoutStagesInput, Prisma.AddressHierarchyUncheckedCreateWithoutStagesInput>
+  where?: Prisma.AddressHierarchyWhereInput
+}
+
+export type AddressHierarchyUpdateToOneWithWhereWithoutStagesInput = {
+  where?: Prisma.AddressHierarchyWhereInput
+  data: Prisma.XOR<Prisma.AddressHierarchyUpdateWithoutStagesInput, Prisma.AddressHierarchyUncheckedUpdateWithoutStagesInput>
+}
+
+export type AddressHierarchyUpdateWithoutStagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nameLocal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parent?: Prisma.AddressHierarchyUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.AddressHierarchyUpdateManyWithoutParentNestedInput
+}
+
+export type AddressHierarchyUncheckedUpdateWithoutStagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nameLocal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  children?: Prisma.AddressHierarchyUncheckedUpdateManyWithoutParentNestedInput
+}
+
 export type AddressHierarchyCreateWithoutChildrenInput = {
   id?: string
   country: string
@@ -512,6 +602,7 @@ export type AddressHierarchyCreateWithoutChildrenInput = {
   nameLocal?: string | null
   voided?: boolean
   parent?: Prisma.AddressHierarchyCreateNestedOneWithoutChildrenInput
+  stages?: Prisma.StageCreateNestedManyWithoutAreaInput
 }
 
 export type AddressHierarchyUncheckedCreateWithoutChildrenInput = {
@@ -523,6 +614,7 @@ export type AddressHierarchyUncheckedCreateWithoutChildrenInput = {
   name: string
   nameLocal?: string | null
   voided?: boolean
+  stages?: Prisma.StageUncheckedCreateNestedManyWithoutAreaInput
 }
 
 export type AddressHierarchyCreateOrConnectWithoutChildrenInput = {
@@ -539,6 +631,7 @@ export type AddressHierarchyCreateWithoutParentInput = {
   nameLocal?: string | null
   voided?: boolean
   children?: Prisma.AddressHierarchyCreateNestedManyWithoutParentInput
+  stages?: Prisma.StageCreateNestedManyWithoutAreaInput
 }
 
 export type AddressHierarchyUncheckedCreateWithoutParentInput = {
@@ -550,6 +643,7 @@ export type AddressHierarchyUncheckedCreateWithoutParentInput = {
   nameLocal?: string | null
   voided?: boolean
   children?: Prisma.AddressHierarchyUncheckedCreateNestedManyWithoutParentInput
+  stages?: Prisma.StageUncheckedCreateNestedManyWithoutAreaInput
 }
 
 export type AddressHierarchyCreateOrConnectWithoutParentInput = {
@@ -582,6 +676,7 @@ export type AddressHierarchyUpdateWithoutChildrenInput = {
   nameLocal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   parent?: Prisma.AddressHierarchyUpdateOneWithoutChildrenNestedInput
+  stages?: Prisma.StageUpdateManyWithoutAreaNestedInput
 }
 
 export type AddressHierarchyUncheckedUpdateWithoutChildrenInput = {
@@ -593,6 +688,7 @@ export type AddressHierarchyUncheckedUpdateWithoutChildrenInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   nameLocal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  stages?: Prisma.StageUncheckedUpdateManyWithoutAreaNestedInput
 }
 
 export type AddressHierarchyUpsertWithWhereUniqueWithoutParentInput = {
@@ -644,6 +740,7 @@ export type AddressHierarchyUpdateWithoutParentInput = {
   nameLocal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   children?: Prisma.AddressHierarchyUpdateManyWithoutParentNestedInput
+  stages?: Prisma.StageUpdateManyWithoutAreaNestedInput
 }
 
 export type AddressHierarchyUncheckedUpdateWithoutParentInput = {
@@ -655,6 +752,7 @@ export type AddressHierarchyUncheckedUpdateWithoutParentInput = {
   nameLocal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   children?: Prisma.AddressHierarchyUncheckedUpdateManyWithoutParentNestedInput
+  stages?: Prisma.StageUncheckedUpdateManyWithoutAreaNestedInput
 }
 
 export type AddressHierarchyUncheckedUpdateManyWithoutParentInput = {
@@ -674,10 +772,12 @@ export type AddressHierarchyUncheckedUpdateManyWithoutParentInput = {
 
 export type AddressHierarchyCountOutputType = {
   children: number
+  stages: number
 }
 
 export type AddressHierarchyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   children?: boolean | AddressHierarchyCountOutputTypeCountChildrenArgs
+  stages?: boolean | AddressHierarchyCountOutputTypeCountStagesArgs
 }
 
 /**
@@ -697,6 +797,13 @@ export type AddressHierarchyCountOutputTypeCountChildrenArgs<ExtArgs extends run
   where?: Prisma.AddressHierarchyWhereInput
 }
 
+/**
+ * AddressHierarchyCountOutputType without action
+ */
+export type AddressHierarchyCountOutputTypeCountStagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StageWhereInput
+}
+
 
 export type AddressHierarchySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -709,6 +816,7 @@ export type AddressHierarchySelect<ExtArgs extends runtime.Types.Extensions.Inte
   voided?: boolean
   parent?: boolean | Prisma.AddressHierarchy$parentArgs<ExtArgs>
   children?: boolean | Prisma.AddressHierarchy$childrenArgs<ExtArgs>
+  stages?: boolean | Prisma.AddressHierarchy$stagesArgs<ExtArgs>
   _count?: boolean | Prisma.AddressHierarchyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["addressHierarchy"]>
 
@@ -751,6 +859,7 @@ export type AddressHierarchyOmit<ExtArgs extends runtime.Types.Extensions.Intern
 export type AddressHierarchyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   parent?: boolean | Prisma.AddressHierarchy$parentArgs<ExtArgs>
   children?: boolean | Prisma.AddressHierarchy$childrenArgs<ExtArgs>
+  stages?: boolean | Prisma.AddressHierarchy$stagesArgs<ExtArgs>
   _count?: boolean | Prisma.AddressHierarchyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AddressHierarchyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -765,6 +874,7 @@ export type $AddressHierarchyPayload<ExtArgs extends runtime.Types.Extensions.In
   objects: {
     parent: Prisma.$AddressHierarchyPayload<ExtArgs> | null
     children: Prisma.$AddressHierarchyPayload<ExtArgs>[]
+    stages: Prisma.$StagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1171,6 +1281,7 @@ export interface Prisma__AddressHierarchyClient<T, Null = never, ExtArgs extends
   readonly [Symbol.toStringTag]: "PrismaPromise"
   parent<T extends Prisma.AddressHierarchy$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressHierarchy$parentArgs<ExtArgs>>): Prisma.Prisma__AddressHierarchyClient<runtime.Types.Result.GetResult<Prisma.$AddressHierarchyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   children<T extends Prisma.AddressHierarchy$childrenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressHierarchy$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AddressHierarchyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  stages<T extends Prisma.AddressHierarchy$stagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressHierarchy$stagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1649,6 +1760,30 @@ export type AddressHierarchy$childrenArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.AddressHierarchyScalarFieldEnum | Prisma.AddressHierarchyScalarFieldEnum[]
+}
+
+/**
+ * AddressHierarchy.stages
+ */
+export type AddressHierarchy$stagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Stage
+   */
+  select?: Prisma.StageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Stage
+   */
+  omit?: Prisma.StageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StageInclude<ExtArgs> | null
+  where?: Prisma.StageWhereInput
+  orderBy?: Prisma.StageOrderByWithRelationInput | Prisma.StageOrderByWithRelationInput[]
+  cursor?: Prisma.StageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StageScalarFieldEnum | Prisma.StageScalarFieldEnum[]
 }
 
 /**

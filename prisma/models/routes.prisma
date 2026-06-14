@@ -1,0 +1,139 @@
+/// A physical pickup or drop-off point on the transit network.
+/// Exists independently of any route — stages are the nodes of the graph.
+model Stage {
+    id             String           @id @default(uuid())
+    /// Short operator-defined identifier e.g. "CBD", "RONGAI". Globally unique.
+    code           String           @unique
+    /// Human-readable name, unique within the same administrative area.
+    name           String
+    areaId         String
+    area           AddressHierarchy @relation(fields: [areaId], references: [id])
+    latitude       Decimal
+    longitude      Decimal
+    /// Geofence radius in metres — used to detect when a fleet is at this stage.
+    radiusInMeters Int
+    createdAt      DateTime         @default(now())
+    updatedAt      DateTime         @updatedAt
+    voided         Boolean          @default(false)
+
+    fromLinks   StageLink[] @relation("FromStage")
+    toLinks     StageLink[] @relation("ToStage")
+    startTrips  Trip[]      @relation("StartStage")
+    endTrips    Trip[]      @relation("EndStage")
+    fromTickets Ticket[]    @relation("FromStage")
+    toTickets   Ticket[]    @relation("ToStage")
+
+    @@unique([areaId, name])
+    @@index([areaId])
+}
+
+/// Directed connection between two adjacent stages — an edge in the transit graph.
+/// A→B and B→A are stored as separate records to allow asymmetric distance/time.
+model StageLink {
+    id                        String   @id @default(uuid())
+    fromStageId               String
+    toStageId                 String
+    approximateDistanceMeters Decimal
+    approximateTimeMinutes    Int
+    createdAt                 DateTime @default(now())
+    updatedAt                 DateTime @updatedAt
+    voided                    Boolean  @default(false)
+
+    fromStage  Stage         @relation("FromStage", fields: [fromStageId], references: [id])
+    toStage    Stage         @relation("ToStage", fields: [toStageId], references: [id])
+    pricings   LinkPricing[]
+    routeLinks RouteLink[]
+
+    @@unique([fromStageId, toStageId])
+    @@index([fromStageId])
+}
+
+/// Fare for traversing a StageLink, scoped per operator and time window.
+/// Different operators (organisations) can charge different fares on the same link.
+model LinkPricing {
+    id          String   @id @default(uuid())
+    stageLinkId String
+    /// The fleet operating organisation setting this fare.
+    operatorId  String
+    price       Decimal
+    /// 24h time string e.g. "06:00"
+    timeStart   String
+    /// 24h time string e.g. "20:00"
+    timeEnd     String
+    /// Days this pricing is active e.g. ["Monday", "Tuesday"]
+    activeDays  String[]
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    voided      Boolean  @default(false)
+
+    stageLink StageLink    @relation(fields: [stageLinkId], references: [id])
+    operator  Organization @relation(fields: [operatorId], references: [id])
+
+    @@unique([stageLinkId, operatorId, timeStart, timeEnd])
+    @@index([stageLinkId])
+    @@index([operatorId])
+}
+
+/// A named, licensed transit route — identity and metadata only.
+/// The actual path through the network is defined by the ordered RouteLinks.
+model Route {
+    id        String    @id @default(uuid())
+    /// Short operator-facing code e.g. "34", "CBD-RONGAI"
+    code      String    @unique
+    /// Full human-readable name e.g. "CBD - Rongai". Globally unique.
+    name      String    @unique
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    voided    Boolean   @default(false)
+
+    links  RouteLink[]
+    trips  Trip[]
+    fleets FleetRoute[]
+}
+
+/// Ordered directed StageLinks that define a route's path through the network.
+/// Replaces RouteStage — capturing both stages and traversal direction per segment.
+model RouteLink {
+    id          String   @id @default(uuid())
+    routeId     String
+    stageLinkId String
+    /// 1-based position in the route sequence.
+    order       Int
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    route     Route     @relation(fields: [routeId], references: [id])
+    stageLink StageLink @relation(fields: [stageLinkId], references: [id])
+
+    @@unique([routeId, stageLinkId])
+    @@unique([routeId, order])
+    @@index([routeId])
+}
+
+enum TraversalDirection {
+    FORWARD
+    BACKWARD
+}
+
+/// A single vehicle run along a route.
+model Trip {
+    id           String             @id @default(uuid())
+    fleetId      String
+    routeId      String
+    /// The stage where this trip began — may be mid-route, not necessarily the terminal.
+    startStageId String
+    /// Populated when the trip ends.
+    endStageId   String?
+    direction    TraversalDirection
+    createdAt    DateTime           @default(now())
+    endedAt      DateTime?
+    updatedAt    DateTime           @updatedAt
+    voided       Boolean            @default(false)
+
+    fleet      Fleet    @relation(fields: [fleetId], references: [id])
+    route      Route    @relation(fields: [routeId], references: [id])
+    startStage Stage    @relation("StartStage", fields: [startStageId], references: [id])
+    endStage   Stage?   @relation("EndStage", fields: [endStageId], references: [id])
+    tickets    Ticket[]
+    // notifications Notification[]   // wire when Notification model is defined
+}

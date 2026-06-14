@@ -27,6 +27,8 @@ model AddressHierarchy {
 
   voided Boolean @default(false)
 
+  stages Stage[]
+
   @@unique([country, code])
   @@index([country, level])
   @@index([parentId])

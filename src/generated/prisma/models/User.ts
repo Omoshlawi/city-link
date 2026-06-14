@@ -290,6 +290,7 @@ export type UserWhereInput = {
   pushTokens?: Prisma.PushTokenListRelationFilter
   notificationLogs?: Prisma.NotificationLogListRelationFilter
   notificationInbox?: Prisma.NotificationInboxListRelationFilter
+  passenger?: Prisma.XOR<Prisma.PassengerNullableScalarRelationFilter, Prisma.PassengerWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
@@ -322,6 +323,7 @@ export type UserOrderByWithRelationInput = {
   pushTokens?: Prisma.PushTokenOrderByRelationAggregateInput
   notificationLogs?: Prisma.NotificationLogOrderByRelationAggregateInput
   notificationInbox?: Prisma.NotificationInboxOrderByRelationAggregateInput
+  passenger?: Prisma.PassengerOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -357,6 +359,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   pushTokens?: Prisma.PushTokenListRelationFilter
   notificationLogs?: Prisma.NotificationLogListRelationFilter
   notificationInbox?: Prisma.NotificationInboxListRelationFilter
+  passenger?: Prisma.XOR<Prisma.PassengerNullableScalarRelationFilter, Prisma.PassengerWhereInput> | null
 }, "id" | "email" | "username" | "phoneNumber">
 
 export type UserOrderByWithAggregationInput = {
@@ -435,6 +438,7 @@ export type UserCreateInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -467,6 +471,7 @@ export type UserUncheckedCreateInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -499,6 +504,7 @@ export type UserUpdateInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -531,6 +537,7 @@ export type UserUncheckedUpdateInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -771,6 +778,22 @@ export type UserUpdateOneRequiredWithoutTwofactorsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTwofactorsInput, Prisma.UserUpdateWithoutTwofactorsInput>, Prisma.UserUncheckedUpdateWithoutTwofactorsInput>
 }
 
+export type UserCreateNestedOneWithoutPassengerInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPassengerInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutPassengerNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPassengerInput
+  upsert?: Prisma.UserUpsertWithoutPassengerInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPassengerInput, Prisma.UserUpdateWithoutPassengerInput>, Prisma.UserUncheckedUpdateWithoutPassengerInput>
+}
+
 export type UserCreateNestedOneWithoutPushTokensInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutPushTokensInput, Prisma.UserUncheckedCreateWithoutPushTokensInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutPushTokensInput
@@ -892,6 +915,7 @@ export type UserCreateWithoutSessionsInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -923,6 +947,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -970,6 +995,7 @@ export type UserUpdateWithoutSessionsInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -1001,6 +1027,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -1032,6 +1059,7 @@ export type UserCreateWithoutAccountsInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -1063,6 +1091,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -1110,6 +1139,7 @@ export type UserUpdateWithoutAccountsInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -1141,6 +1171,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTeammembersInput = {
@@ -1172,6 +1203,7 @@ export type UserCreateWithoutTeammembersInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTeammembersInput = {
@@ -1203,6 +1235,7 @@ export type UserUncheckedCreateWithoutTeammembersInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTeammembersInput = {
@@ -1250,6 +1283,7 @@ export type UserUpdateWithoutTeammembersInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTeammembersInput = {
@@ -1281,6 +1315,7 @@ export type UserUncheckedUpdateWithoutTeammembersInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMembersInput = {
@@ -1312,6 +1347,7 @@ export type UserCreateWithoutMembersInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMembersInput = {
@@ -1343,6 +1379,7 @@ export type UserUncheckedCreateWithoutMembersInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMembersInput = {
@@ -1390,6 +1427,7 @@ export type UserUpdateWithoutMembersInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembersInput = {
@@ -1421,6 +1459,7 @@ export type UserUncheckedUpdateWithoutMembersInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutInvitationsInput = {
@@ -1452,6 +1491,7 @@ export type UserCreateWithoutInvitationsInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -1483,6 +1523,7 @@ export type UserUncheckedCreateWithoutInvitationsInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -1530,6 +1571,7 @@ export type UserUpdateWithoutInvitationsInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -1561,6 +1603,7 @@ export type UserUncheckedUpdateWithoutInvitationsInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTwofactorsInput = {
@@ -1592,6 +1635,7 @@ export type UserCreateWithoutTwofactorsInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTwofactorsInput = {
@@ -1623,6 +1667,7 @@ export type UserUncheckedCreateWithoutTwofactorsInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTwofactorsInput = {
@@ -1670,6 +1715,7 @@ export type UserUpdateWithoutTwofactorsInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTwofactorsInput = {
@@ -1695,6 +1741,151 @@ export type UserUncheckedUpdateWithoutTwofactorsInput = {
   teammembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutUserNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
+  pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
+  notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
+  notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPassengerInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  username?: string | null
+  displayUsername?: string | null
+  isAnonymous?: boolean | null
+  role?: string | null
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  twoFactorEnabled?: boolean | null
+  phoneNumber?: string | null
+  phoneNumberVerified?: boolean | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  teammembers?: Prisma.TeamMemberCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberCreateNestedManyWithoutUserInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  twofactors?: Prisma.TwoFactorCreateNestedManyWithoutUserInput
+  templateVersions?: Prisma.TemplateVersionCreateNestedManyWithoutChangedByInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingCreateNestedManyWithoutUserInput
+  pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
+  notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
+  notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPassengerInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  username?: string | null
+  displayUsername?: string | null
+  isAnonymous?: boolean | null
+  role?: string | null
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  twoFactorEnabled?: boolean | null
+  phoneNumber?: string | null
+  phoneNumberVerified?: boolean | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  teammembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  twofactors?: Prisma.TwoFactorUncheckedCreateNestedManyWithoutUserInput
+  templateVersions?: Prisma.TemplateVersionUncheckedCreateNestedManyWithoutChangedByInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedCreateNestedManyWithoutChangedByInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
+  pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
+  notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
+  notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPassengerInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
+}
+
+export type UserUpsertWithoutPassengerInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPassengerInput, Prisma.UserUncheckedUpdateWithoutPassengerInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPassengerInput, Prisma.UserUncheckedCreateWithoutPassengerInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPassengerInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPassengerInput, Prisma.UserUncheckedUpdateWithoutPassengerInput>
+}
+
+export type UserUpdateWithoutPassengerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAnonymous?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumberVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  teammembers?: Prisma.TeamMemberUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  twofactors?: Prisma.TwoFactorUpdateManyWithoutUserNestedInput
+  templateVersions?: Prisma.TemplateVersionUpdateManyWithoutChangedByNestedInput
+  orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUpdateManyWithoutChangedByNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
+  pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
+  notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
+  notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPassengerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAnonymous?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumberVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  teammembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  twofactors?: Prisma.TwoFactorUncheckedUpdateManyWithoutUserNestedInput
   templateVersions?: Prisma.TemplateVersionUncheckedUpdateManyWithoutChangedByNestedInput
   orgTemplateOverrideVersions?: Prisma.OrgTemplateOverrideVersionUncheckedUpdateManyWithoutChangedByNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
@@ -1732,6 +1923,7 @@ export type UserCreateWithoutPushTokensInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPushTokensInput = {
@@ -1763,6 +1955,7 @@ export type UserUncheckedCreateWithoutPushTokensInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPushTokensInput = {
@@ -1810,6 +2003,7 @@ export type UserUpdateWithoutPushTokensInput = {
   settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPushTokensInput = {
@@ -1841,6 +2035,7 @@ export type UserUncheckedUpdateWithoutPushTokensInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationLogsInput = {
@@ -1872,6 +2067,7 @@ export type UserCreateWithoutNotificationLogsInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutUserInput
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationLogsInput = {
@@ -1903,6 +2099,7 @@ export type UserUncheckedCreateWithoutNotificationLogsInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationLogsInput = {
@@ -1950,6 +2147,7 @@ export type UserUpdateWithoutNotificationLogsInput = {
   settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationLogsInput = {
@@ -1981,6 +2179,7 @@ export type UserUncheckedUpdateWithoutNotificationLogsInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationInboxInput = {
@@ -2012,6 +2211,7 @@ export type UserCreateWithoutNotificationInboxInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutUserInput
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationInboxInput = {
@@ -2043,6 +2243,7 @@ export type UserUncheckedCreateWithoutNotificationInboxInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutUserInput
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationInboxInput = {
@@ -2090,6 +2291,7 @@ export type UserUpdateWithoutNotificationInboxInput = {
   settings?: Prisma.SettingUpdateManyWithoutUserNestedInput
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationInboxInput = {
@@ -2121,6 +2323,7 @@ export type UserUncheckedUpdateWithoutNotificationInboxInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutUserNestedInput
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSettingsInput = {
@@ -2152,6 +2355,7 @@ export type UserCreateWithoutSettingsInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSettingsInput = {
@@ -2183,6 +2387,7 @@ export type UserUncheckedCreateWithoutSettingsInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSettingsInput = {
@@ -2230,6 +2435,7 @@ export type UserUpdateWithoutSettingsInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSettingsInput = {
@@ -2261,6 +2467,7 @@ export type UserUncheckedUpdateWithoutSettingsInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTemplateVersionsInput = {
@@ -2292,6 +2499,7 @@ export type UserCreateWithoutTemplateVersionsInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTemplateVersionsInput = {
@@ -2323,6 +2531,7 @@ export type UserUncheckedCreateWithoutTemplateVersionsInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTemplateVersionsInput = {
@@ -2370,6 +2579,7 @@ export type UserUpdateWithoutTemplateVersionsInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTemplateVersionsInput = {
@@ -2401,6 +2611,7 @@ export type UserUncheckedUpdateWithoutTemplateVersionsInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOrgTemplateOverrideVersionsInput = {
@@ -2432,6 +2643,7 @@ export type UserCreateWithoutOrgTemplateOverrideVersionsInput = {
   pushTokens?: Prisma.PushTokenCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrgTemplateOverrideVersionsInput = {
@@ -2463,6 +2675,7 @@ export type UserUncheckedCreateWithoutOrgTemplateOverrideVersionsInput = {
   pushTokens?: Prisma.PushTokenUncheckedCreateNestedManyWithoutUserInput
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutRecipientInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutUserInput
+  passenger?: Prisma.PassengerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrgTemplateOverrideVersionsInput = {
@@ -2510,6 +2723,7 @@ export type UserUpdateWithoutOrgTemplateOverrideVersionsInput = {
   pushTokens?: Prisma.PushTokenUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrgTemplateOverrideVersionsInput = {
@@ -2541,6 +2755,7 @@ export type UserUncheckedUpdateWithoutOrgTemplateOverrideVersionsInput = {
   pushTokens?: Prisma.PushTokenUncheckedUpdateManyWithoutUserNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutRecipientNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutUserNestedInput
+  passenger?: Prisma.PassengerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -2703,6 +2918,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   pushTokens?: boolean | Prisma.User$pushTokensArgs<ExtArgs>
   notificationLogs?: boolean | Prisma.User$notificationLogsArgs<ExtArgs>
   notificationInbox?: boolean | Prisma.User$notificationInboxArgs<ExtArgs>
+  passenger?: boolean | Prisma.User$passengerArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2780,6 +2996,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   pushTokens?: boolean | Prisma.User$pushTokensArgs<ExtArgs>
   notificationLogs?: boolean | Prisma.User$notificationLogsArgs<ExtArgs>
   notificationInbox?: boolean | Prisma.User$notificationInboxArgs<ExtArgs>
+  passenger?: boolean | Prisma.User$passengerArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2800,6 +3017,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     pushTokens: Prisma.$PushTokenPayload<ExtArgs>[]
     notificationLogs: Prisma.$NotificationLogPayload<ExtArgs>[]
     notificationInbox: Prisma.$NotificationInboxPayload<ExtArgs>[]
+    passenger: Prisma.$PassengerPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3225,6 +3443,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   pushTokens<T extends Prisma.User$pushTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pushTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PushTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notificationLogs<T extends Prisma.User$notificationLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notificationInbox<T extends Prisma.User$notificationInboxArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationInboxArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationInboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  passenger<T extends Prisma.User$passengerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$passengerArgs<ExtArgs>>): Prisma.Prisma__PassengerClient<runtime.Types.Result.GetResult<Prisma.$PassengerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3949,6 +4168,25 @@ export type User$notificationInboxArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.NotificationInboxScalarFieldEnum | Prisma.NotificationInboxScalarFieldEnum[]
+}
+
+/**
+ * User.passenger
+ */
+export type User$passengerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Passenger
+   */
+  select?: Prisma.PassengerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Passenger
+   */
+  omit?: Prisma.PassengerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PassengerInclude<ExtArgs> | null
+  where?: Prisma.PassengerWhereInput
 }
 
 /**

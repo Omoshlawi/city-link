@@ -28,6 +28,7 @@ model User {
     pushTokens                  PushToken[]
     notificationLogs            NotificationLog[]
     notificationInbox           NotificationInbox[]
+    passenger                   Passenger?
 
     @@unique([email])
     @@unique([username])
@@ -101,6 +102,8 @@ model Organization {
     settings             Setting[]            @relation("OrganizationSettings")
     notificationLogs     NotificationLog[]
     notificationInbox    NotificationInbox[]
+    linkPricings         LinkPricing[]
+    fleets               Fleet[]
 
     @@unique([slug])
     @@map("organization")

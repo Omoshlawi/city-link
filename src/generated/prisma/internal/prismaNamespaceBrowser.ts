@@ -63,9 +63,20 @@ export const ModelName = {
   Invitation: 'Invitation',
   Jwks: 'Jwks',
   TwoFactor: 'TwoFactor',
+  VehicleType: 'VehicleType',
+  Passenger: 'Passenger',
+  Fleet: 'Fleet',
+  FleetRoute: 'FleetRoute',
+  Ticket: 'Ticket',
   PushToken: 'PushToken',
   NotificationLog: 'NotificationLog',
   NotificationInbox: 'NotificationInbox',
+  Stage: 'Stage',
+  StageLink: 'StageLink',
+  LinkPricing: 'LinkPricing',
+  Route: 'Route',
+  RouteLink: 'RouteLink',
+  Trip: 'Trip',
   Setting: 'Setting',
   Template: 'Template',
   TemplateVersion: 'TemplateVersion',
@@ -254,6 +265,77 @@ export const TwoFactorScalarFieldEnum = {
 export type TwoFactorScalarFieldEnum = (typeof TwoFactorScalarFieldEnum)[keyof typeof TwoFactorScalarFieldEnum]
 
 
+export const VehicleTypeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type VehicleTypeScalarFieldEnum = (typeof VehicleTypeScalarFieldEnum)[keyof typeof VehicleTypeScalarFieldEnum]
+
+
+export const PassengerScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  contact: 'contact',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type PassengerScalarFieldEnum = (typeof PassengerScalarFieldEnum)[keyof typeof PassengerScalarFieldEnum]
+
+
+export const FleetScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  vehicleTypeId: 'vehicleTypeId',
+  capacity: 'capacity',
+  plateNumber: 'plateNumber',
+  operatorId: 'operatorId',
+  status: 'status',
+  activeFleetRouteId: 'activeFleetRouteId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type FleetScalarFieldEnum = (typeof FleetScalarFieldEnum)[keyof typeof FleetScalarFieldEnum]
+
+
+export const FleetRouteScalarFieldEnum = {
+  id: 'id',
+  routeId: 'routeId',
+  fleetId: 'fleetId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type FleetRouteScalarFieldEnum = (typeof FleetRouteScalarFieldEnum)[keyof typeof FleetRouteScalarFieldEnum]
+
+
+export const TicketScalarFieldEnum = {
+  id: 'id',
+  passengerId: 'passengerId',
+  tripId: 'tripId',
+  fromStageId: 'fromStageId',
+  toStageId: 'toStageId',
+  price: 'price',
+  seatNumber: 'seatNumber',
+  paymentStatus: 'paymentStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
 export const PushTokenScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -312,6 +394,92 @@ export const NotificationInboxScalarFieldEnum = {
 } as const
 
 export type NotificationInboxScalarFieldEnum = (typeof NotificationInboxScalarFieldEnum)[keyof typeof NotificationInboxScalarFieldEnum]
+
+
+export const StageScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  areaId: 'areaId',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  radiusInMeters: 'radiusInMeters',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type StageScalarFieldEnum = (typeof StageScalarFieldEnum)[keyof typeof StageScalarFieldEnum]
+
+
+export const StageLinkScalarFieldEnum = {
+  id: 'id',
+  fromStageId: 'fromStageId',
+  toStageId: 'toStageId',
+  approximateDistanceMeters: 'approximateDistanceMeters',
+  approximateTimeMinutes: 'approximateTimeMinutes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type StageLinkScalarFieldEnum = (typeof StageLinkScalarFieldEnum)[keyof typeof StageLinkScalarFieldEnum]
+
+
+export const LinkPricingScalarFieldEnum = {
+  id: 'id',
+  stageLinkId: 'stageLinkId',
+  operatorId: 'operatorId',
+  price: 'price',
+  timeStart: 'timeStart',
+  timeEnd: 'timeEnd',
+  activeDays: 'activeDays',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type LinkPricingScalarFieldEnum = (typeof LinkPricingScalarFieldEnum)[keyof typeof LinkPricingScalarFieldEnum]
+
+
+export const RouteScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type RouteScalarFieldEnum = (typeof RouteScalarFieldEnum)[keyof typeof RouteScalarFieldEnum]
+
+
+export const RouteLinkScalarFieldEnum = {
+  id: 'id',
+  routeId: 'routeId',
+  stageLinkId: 'stageLinkId',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RouteLinkScalarFieldEnum = (typeof RouteLinkScalarFieldEnum)[keyof typeof RouteLinkScalarFieldEnum]
+
+
+export const TripScalarFieldEnum = {
+  id: 'id',
+  fleetId: 'fleetId',
+  routeId: 'routeId',
+  startStageId: 'startStageId',
+  endStageId: 'endStageId',
+  direction: 'direction',
+  createdAt: 'createdAt',
+  endedAt: 'endedAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type TripScalarFieldEnum = (typeof TripScalarFieldEnum)[keyof typeof TripScalarFieldEnum]
 
 
 export const SettingScalarFieldEnum = {
