@@ -104,6 +104,7 @@ model Organization {
     notificationInbox    NotificationInbox[]
     linkPricings         LinkPricing[]
     fleets               Fleet[]
+    serviceClasses       ServiceClass[]
 
     @@unique([slug])
     @@map("organization")

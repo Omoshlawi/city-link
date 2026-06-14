@@ -200,6 +200,7 @@ export type OrganizationWhereInput = {
   notificationInbox?: Prisma.NotificationInboxListRelationFilter
   linkPricings?: Prisma.LinkPricingListRelationFilter
   fleets?: Prisma.FleetListRelationFilter
+  serviceClasses?: Prisma.ServiceClassListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -219,6 +220,7 @@ export type OrganizationOrderByWithRelationInput = {
   notificationInbox?: Prisma.NotificationInboxOrderByRelationAggregateInput
   linkPricings?: Prisma.LinkPricingOrderByRelationAggregateInput
   fleets?: Prisma.FleetOrderByRelationAggregateInput
+  serviceClasses?: Prisma.ServiceClassOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -241,6 +243,7 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   notificationInbox?: Prisma.NotificationInboxListRelationFilter
   linkPricings?: Prisma.LinkPricingListRelationFilter
   fleets?: Prisma.FleetListRelationFilter
+  serviceClasses?: Prisma.ServiceClassListRelationFilter
 }, "id" | "slug">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -284,6 +287,7 @@ export type OrganizationCreateInput = {
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -303,6 +307,7 @@ export type OrganizationUncheckedCreateInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -322,6 +327,7 @@ export type OrganizationUpdateInput = {
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -341,6 +347,7 @@ export type OrganizationUncheckedUpdateInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -553,6 +560,20 @@ export type OrganizationUpdateOneRequiredWithoutLinkPricingsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutLinkPricingsInput, Prisma.OrganizationUpdateWithoutLinkPricingsInput>, Prisma.OrganizationUncheckedUpdateWithoutLinkPricingsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutServiceClassesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutServiceClassesInput, Prisma.OrganizationUncheckedCreateWithoutServiceClassesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutServiceClassesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutServiceClassesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutServiceClassesInput, Prisma.OrganizationUncheckedCreateWithoutServiceClassesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutServiceClassesInput
+  upsert?: Prisma.OrganizationUpsertWithoutServiceClassesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutServiceClassesInput, Prisma.OrganizationUpdateWithoutServiceClassesInput>, Prisma.OrganizationUncheckedUpdateWithoutServiceClassesInput>
+}
+
 export type OrganizationCreateWithoutOrganizationrolesInput = {
   id: string
   name: string
@@ -569,6 +590,7 @@ export type OrganizationCreateWithoutOrganizationrolesInput = {
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOrganizationrolesInput = {
@@ -587,6 +609,7 @@ export type OrganizationUncheckedCreateWithoutOrganizationrolesInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOrganizationrolesInput = {
@@ -621,6 +644,7 @@ export type OrganizationUpdateWithoutOrganizationrolesInput = {
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOrganizationrolesInput = {
@@ -639,6 +663,7 @@ export type OrganizationUncheckedUpdateWithoutOrganizationrolesInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTeamsInput = {
@@ -657,6 +682,7 @@ export type OrganizationCreateWithoutTeamsInput = {
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamsInput = {
@@ -675,6 +701,7 @@ export type OrganizationUncheckedCreateWithoutTeamsInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamsInput = {
@@ -709,6 +736,7 @@ export type OrganizationUpdateWithoutTeamsInput = {
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamsInput = {
@@ -727,6 +755,7 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutMembersInput = {
@@ -745,6 +774,7 @@ export type OrganizationCreateWithoutMembersInput = {
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -763,6 +793,7 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -797,6 +828,7 @@ export type OrganizationUpdateWithoutMembersInput = {
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -815,6 +847,7 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutInvitationsInput = {
@@ -833,6 +866,7 @@ export type OrganizationCreateWithoutInvitationsInput = {
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutInvitationsInput = {
@@ -851,6 +885,7 @@ export type OrganizationUncheckedCreateWithoutInvitationsInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutInvitationsInput = {
@@ -885,6 +920,7 @@ export type OrganizationUpdateWithoutInvitationsInput = {
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutInvitationsInput = {
@@ -903,6 +939,7 @@ export type OrganizationUncheckedUpdateWithoutInvitationsInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutFleetsInput = {
@@ -921,6 +958,7 @@ export type OrganizationCreateWithoutFleetsInput = {
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutOrganizationInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutFleetsInput = {
@@ -939,6 +977,7 @@ export type OrganizationUncheckedCreateWithoutFleetsInput = {
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutOrganizationInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutFleetsInput = {
@@ -973,6 +1012,7 @@ export type OrganizationUpdateWithoutFleetsInput = {
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutOrganizationNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutFleetsInput = {
@@ -991,6 +1031,7 @@ export type OrganizationUncheckedUpdateWithoutFleetsInput = {
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutOrganizationNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutNotificationLogsInput = {
@@ -1009,6 +1050,7 @@ export type OrganizationCreateWithoutNotificationLogsInput = {
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutNotificationLogsInput = {
@@ -1027,6 +1069,7 @@ export type OrganizationUncheckedCreateWithoutNotificationLogsInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutNotificationLogsInput = {
@@ -1061,6 +1104,7 @@ export type OrganizationUpdateWithoutNotificationLogsInput = {
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutNotificationLogsInput = {
@@ -1079,6 +1123,7 @@ export type OrganizationUncheckedUpdateWithoutNotificationLogsInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutNotificationInboxInput = {
@@ -1097,6 +1142,7 @@ export type OrganizationCreateWithoutNotificationInboxInput = {
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutNotificationInboxInput = {
@@ -1115,6 +1161,7 @@ export type OrganizationUncheckedCreateWithoutNotificationInboxInput = {
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutNotificationInboxInput = {
@@ -1149,6 +1196,7 @@ export type OrganizationUpdateWithoutNotificationInboxInput = {
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutNotificationInboxInput = {
@@ -1167,6 +1215,7 @@ export type OrganizationUncheckedUpdateWithoutNotificationInboxInput = {
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSettingsInput = {
@@ -1185,6 +1234,7 @@ export type OrganizationCreateWithoutSettingsInput = {
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSettingsInput = {
@@ -1203,6 +1253,7 @@ export type OrganizationUncheckedCreateWithoutSettingsInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSettingsInput = {
@@ -1237,6 +1288,7 @@ export type OrganizationUpdateWithoutSettingsInput = {
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSettingsInput = {
@@ -1255,6 +1307,7 @@ export type OrganizationUncheckedUpdateWithoutSettingsInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTemplateOverridesInput = {
@@ -1273,6 +1326,7 @@ export type OrganizationCreateWithoutTemplateOverridesInput = {
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTemplateOverridesInput = {
@@ -1291,6 +1345,7 @@ export type OrganizationUncheckedCreateWithoutTemplateOverridesInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTemplateOverridesInput = {
@@ -1325,6 +1380,7 @@ export type OrganizationUpdateWithoutTemplateOverridesInput = {
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTemplateOverridesInput = {
@@ -1343,6 +1399,7 @@ export type OrganizationUncheckedUpdateWithoutTemplateOverridesInput = {
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutLinkPricingsInput = {
@@ -1361,6 +1418,7 @@ export type OrganizationCreateWithoutLinkPricingsInput = {
   notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutOrganizationInput
   notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
   fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutLinkPricingsInput = {
@@ -1379,6 +1437,7 @@ export type OrganizationUncheckedCreateWithoutLinkPricingsInput = {
   notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutOrganizationInput
   notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
   fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+  serviceClasses?: Prisma.ServiceClassUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutLinkPricingsInput = {
@@ -1413,6 +1472,7 @@ export type OrganizationUpdateWithoutLinkPricingsInput = {
   notificationLogs?: Prisma.NotificationLogUpdateManyWithoutOrganizationNestedInput
   notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
   fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutLinkPricingsInput = {
@@ -1430,6 +1490,99 @@ export type OrganizationUncheckedUpdateWithoutLinkPricingsInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutOrganizationNestedInput
   notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutOrganizationNestedInput
   notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
+  serviceClasses?: Prisma.ServiceClassUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutServiceClassesInput = {
+  id: string
+  name: string
+  slug: string
+  logo?: string | null
+  createdAt: Date | string
+  metadata?: string | null
+  organizationroles?: Prisma.OrganizationRoleCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  templateOverrides?: Prisma.OrgTemplateOverrideCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.SettingCreateNestedManyWithoutOrganizationInput
+  notificationLogs?: Prisma.NotificationLogCreateNestedManyWithoutOrganizationInput
+  notificationInbox?: Prisma.NotificationInboxCreateNestedManyWithoutOrganizationInput
+  linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutOperatorInput
+  fleets?: Prisma.FleetCreateNestedManyWithoutOperatorInput
+}
+
+export type OrganizationUncheckedCreateWithoutServiceClassesInput = {
+  id: string
+  name: string
+  slug: string
+  logo?: string | null
+  createdAt: Date | string
+  metadata?: string | null
+  organizationroles?: Prisma.OrganizationRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  templateOverrides?: Prisma.OrgTemplateOverrideUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutOrganizationInput
+  notificationLogs?: Prisma.NotificationLogUncheckedCreateNestedManyWithoutOrganizationInput
+  notificationInbox?: Prisma.NotificationInboxUncheckedCreateNestedManyWithoutOrganizationInput
+  linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutOperatorInput
+  fleets?: Prisma.FleetUncheckedCreateNestedManyWithoutOperatorInput
+}
+
+export type OrganizationCreateOrConnectWithoutServiceClassesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutServiceClassesInput, Prisma.OrganizationUncheckedCreateWithoutServiceClassesInput>
+}
+
+export type OrganizationUpsertWithoutServiceClassesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutServiceClassesInput, Prisma.OrganizationUncheckedUpdateWithoutServiceClassesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutServiceClassesInput, Prisma.OrganizationUncheckedCreateWithoutServiceClassesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutServiceClassesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutServiceClassesInput, Prisma.OrganizationUncheckedUpdateWithoutServiceClassesInput>
+}
+
+export type OrganizationUpdateWithoutServiceClassesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationroles?: Prisma.OrganizationRoleUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  templateOverrides?: Prisma.OrgTemplateOverrideUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutOrganizationNestedInput
+  notificationLogs?: Prisma.NotificationLogUpdateManyWithoutOrganizationNestedInput
+  notificationInbox?: Prisma.NotificationInboxUpdateManyWithoutOrganizationNestedInput
+  linkPricings?: Prisma.LinkPricingUpdateManyWithoutOperatorNestedInput
+  fleets?: Prisma.FleetUpdateManyWithoutOperatorNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutServiceClassesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationroles?: Prisma.OrganizationRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  templateOverrides?: Prisma.OrgTemplateOverrideUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutOrganizationNestedInput
+  notificationLogs?: Prisma.NotificationLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  notificationInbox?: Prisma.NotificationInboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutOperatorNestedInput
   fleets?: Prisma.FleetUncheckedUpdateManyWithoutOperatorNestedInput
 }
 
@@ -1449,6 +1602,7 @@ export type OrganizationCountOutputType = {
   notificationInbox: number
   linkPricings: number
   fleets: number
+  serviceClasses: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1462,6 +1616,7 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   notificationInbox?: boolean | OrganizationCountOutputTypeCountNotificationInboxArgs
   linkPricings?: boolean | OrganizationCountOutputTypeCountLinkPricingsArgs
   fleets?: boolean | OrganizationCountOutputTypeCountFleetsArgs
+  serviceClasses?: boolean | OrganizationCountOutputTypeCountServiceClassesArgs
 }
 
 /**
@@ -1544,6 +1699,13 @@ export type OrganizationCountOutputTypeCountFleetsArgs<ExtArgs extends runtime.T
   where?: Prisma.FleetWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountServiceClassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ServiceClassWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1562,6 +1724,7 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   notificationInbox?: boolean | Prisma.Organization$notificationInboxArgs<ExtArgs>
   linkPricings?: boolean | Prisma.Organization$linkPricingsArgs<ExtArgs>
   fleets?: boolean | Prisma.Organization$fleetsArgs<ExtArgs>
+  serviceClasses?: boolean | Prisma.Organization$serviceClassesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -1604,6 +1767,7 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   notificationInbox?: boolean | Prisma.Organization$notificationInboxArgs<ExtArgs>
   linkPricings?: boolean | Prisma.Organization$linkPricingsArgs<ExtArgs>
   fleets?: boolean | Prisma.Organization$fleetsArgs<ExtArgs>
+  serviceClasses?: boolean | Prisma.Organization$serviceClassesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1622,6 +1786,7 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     notificationInbox: Prisma.$NotificationInboxPayload<ExtArgs>[]
     linkPricings: Prisma.$LinkPricingPayload<ExtArgs>[]
     fleets: Prisma.$FleetPayload<ExtArgs>[]
+    serviceClasses: Prisma.$ServiceClassPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2034,6 +2199,7 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   notificationInbox<T extends Prisma.Organization$notificationInboxArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$notificationInboxArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationInboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   linkPricings<T extends Prisma.Organization$linkPricingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$linkPricingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LinkPricingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   fleets<T extends Prisma.Organization$fleetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$fleetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FleetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  serviceClasses<T extends Prisma.Organization$serviceClassesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$serviceClassesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2699,6 +2865,30 @@ export type Organization$fleetsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.FleetScalarFieldEnum | Prisma.FleetScalarFieldEnum[]
+}
+
+/**
+ * Organization.serviceClasses
+ */
+export type Organization$serviceClassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ServiceClass
+   */
+  select?: Prisma.ServiceClassSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ServiceClass
+   */
+  omit?: Prisma.ServiceClassOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceClassInclude<ExtArgs> | null
+  where?: Prisma.ServiceClassWhereInput
+  orderBy?: Prisma.ServiceClassOrderByWithRelationInput | Prisma.ServiceClassOrderByWithRelationInput[]
+  cursor?: Prisma.ServiceClassWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ServiceClassScalarFieldEnum | Prisma.ServiceClassScalarFieldEnum[]
 }
 
 /**

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import {
   CustomRepresentationQueryDto,
   CustomRepresentationService,
@@ -23,9 +23,10 @@ export class ServiceClassService {
     private readonly representationService: CustomRepresentationService,
   ) {}
 
-  async getAll(query: QueryServiceClassDto, originalUrl: string) {
+  async getAll(operatorId: string, query: QueryServiceClassDto, originalUrl: string) {
     const where: Prisma.ServiceClassWhereInput = {
       AND: [
+        { organizationId: operatorId },
         { voided: query.includeVoided ? undefined : false },
         {
           OR: query.search
@@ -54,25 +55,29 @@ export class ServiceClassService {
     };
   }
 
-  async getOne(id: string) {
+  async getOne(id: string, operatorId: string) {
     const serviceClass = await this.prisma.serviceClass.findUnique({
       where: { id },
     });
     if (!serviceClass) throw new NotFoundException('Service class not found');
+    if (serviceClass.organizationId !== operatorId)
+      throw new ForbiddenException('Service class not found');
     return serviceClass;
   }
 
-  create(dto: CreateServiceClassDto) {
-    return this.prisma.serviceClass.create({ data: dto });
+  create(operatorId: string, dto: CreateServiceClassDto) {
+    return this.prisma.serviceClass.create({
+      data: { ...dto, organizationId: operatorId },
+    });
   }
 
-  async update(id: string, dto: UpdateServiceClassDto) {
-    await this.getOne(id);
+  async update(id: string, operatorId: string, dto: UpdateServiceClassDto) {
+    await this.getOne(id, operatorId);
     return this.prisma.serviceClass.update({ where: { id }, data: dto });
   }
 
-  async delete(id: string, query: DeleteQueryDto) {
-    await this.getOne(id);
+  async delete(id: string, operatorId: string, query: DeleteQueryDto) {
+    await this.getOne(id, operatorId);
     if (query.purge) {
       return this.prisma.serviceClass.delete({
         where: { id },
@@ -86,8 +91,8 @@ export class ServiceClassService {
     });
   }
 
-  async restore(id: string, query: CustomRepresentationQueryDto) {
-    await this.prisma.serviceClass.findUniqueOrThrow({ where: { id } });
+  async restore(id: string, operatorId: string, query: CustomRepresentationQueryDto) {
+    await this.getOne(id, operatorId);
     return this.prisma.serviceClass.update({
       where: { id },
       data: { voided: false },

@@ -3344,6 +3344,7 @@ export type LinkPricingScalarFieldEnum = (typeof LinkPricingScalarFieldEnum)[key
 
 export const ServiceClassScalarFieldEnum = {
   id: 'id',
+  organizationId: 'organizationId',
   code: 'code',
   name: 'name',
   description: 'description',

@@ -188,7 +188,7 @@ export type LinkPricing = Prisma.LinkPricingModel
 /**
  * Model ServiceClass
  * Extensible Quality-of-Service classification for routes.
- * Operators define their own classes (e.g. LOCAL, EXPRESS, PEAK) without schema changes.
+ * Each operator defines their own classes (e.g. LOCAL, EXPRESS, PEAK) — scoped to their organization.
  */
 export type ServiceClass = Prisma.ServiceClassModel
 /**

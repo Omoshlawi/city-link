@@ -8,11 +8,11 @@ export const CreateServiceClassSchema = z.object({
   code: z
     .string()
     .min(1)
-    .describe('Short unique identifier e.g. "EXPRESS", "LOCAL", "PEAK"'),
+    .describe('Short identifier e.g. "EXPRESS", "LOCAL", "PEAK" — unique per operator'),
   name: z
     .string()
     .min(1)
-    .describe('Human-readable display name e.g. "Express Service"'),
+    .describe('Human-readable display name e.g. "Express Service" — unique per operator'),
   description: z.string().optional(),
 });
 export class CreateServiceClassDto extends createZodDto(
@@ -38,6 +38,7 @@ export class QueryServiceClassDto extends createZodDto(
 
 export class GetServiceClassResponseDto {
   @ApiProperty() id!: string;
+  @ApiProperty() organizationId!: string;
   @ApiProperty() code!: string;
   @ApiProperty() name!: string;
   @ApiProperty({ nullable: true }) description!: string | null;
