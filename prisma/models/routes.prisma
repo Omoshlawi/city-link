@@ -150,5 +150,4 @@ model Trip {
     startStage Stage    @relation("StartStage", fields: [startStageId], references: [id])
     endStage   Stage?   @relation("EndStage", fields: [endStageId], references: [id])
     tickets    Ticket[]
-    // notifications Notification[]   // wire when Notification model is defined
 }
