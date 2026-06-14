@@ -24,11 +24,13 @@ export class PushChannelService implements OnModuleInit {
     ]);
 
     if (ticket.status === 'error') {
-      const t = ticket as Extract<ExpoPushTicket, { status: 'error' }>;
-      throw new Error(`Expo push error: ${t.message} (${t.details?.error ?? 'unknown'})`);
+      const t = ticket;
+      throw new Error(
+        `Expo push error: ${t.message} (${t.details?.error ?? 'unknown'})`,
+      );
     }
 
-    const successTicket = ticket as Extract<ExpoPushTicket, { status: 'ok' }>;
+    const successTicket = ticket;
     this.logger.debug(`Push sent to ${token}, receipt id: ${successTicket.id}`);
     return successTicket.id;
   }

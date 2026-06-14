@@ -23,7 +23,9 @@ export class InboxController {
   constructor(private readonly inboxService: NotificationInboxService) {}
 
   @Get('/')
-  @ApiOperation({ summary: 'List notifications in the authenticated user\'s inbox' })
+  @ApiOperation({
+    summary: "List notifications in the authenticated user's inbox",
+  })
   @ApiErrorsResponse()
   findAll(
     @Query() query: QueryInboxDto,
@@ -37,7 +39,10 @@ export class InboxController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Mark a notification as read' })
   @ApiErrorsResponse()
-  markRead(@Param('id', ParseUUIDPipe) id: string, @Session() { user }: UserSession) {
+  markRead(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Session() { user }: UserSession,
+  ) {
     return this.inboxService.markRead(id, user.id);
   }
 
@@ -53,7 +58,10 @@ export class InboxController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete a notification from the inbox' })
   @ApiErrorsResponse()
-  remove(@Param('id', ParseUUIDPipe) id: string, @Session() { user }: UserSession) {
+  remove(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Session() { user }: UserSession,
+  ) {
     return this.inboxService.remove(id, user.id);
   }
 }

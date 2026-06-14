@@ -95,7 +95,11 @@ export class NotificationLogService {
 
     return {
       results,
-      ...this.paginationService.buildPaginationControls(totalCount, originalUrl, filters),
+      ...this.paginationService.buildPaginationControls(
+        totalCount,
+        originalUrl,
+        filters,
+      ),
     };
   }
 }

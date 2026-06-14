@@ -84,7 +84,7 @@ export class NotificationDispatchService {
     );
 
     const slots = rendered.slots;
-    const meta = rendered.metadata as Record<string, unknown> | null;
+    const meta = rendered.metadata;
 
     // 2. Resolve channels — template metadata defaults, overridden by caller
     let channels: NotificationChannel[] =

@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { NotificationInbox } from '../generated/prisma/client';
@@ -63,14 +67,21 @@ export class NotificationInboxService {
 
     return {
       results,
-      ...this.paginationService.buildPaginationControls(totalCount, originalUrl, query),
+      ...this.paginationService.buildPaginationControls(
+        totalCount,
+        originalUrl,
+        query,
+      ),
     };
   }
 
   async markRead(id: string, userId: string): Promise<void> {
-    const entry = await this.prisma.notificationInbox.findUnique({ where: { id } });
+    const entry = await this.prisma.notificationInbox.findUnique({
+      where: { id },
+    });
     if (!entry) throw new NotFoundException(`Notification '${id}' not found`);
-    if (entry.userId !== userId) throw new ForbiddenException('Cannot update another user\'s notification');
+    if (entry.userId !== userId)
+      throw new ForbiddenException("Cannot update another user's notification");
     await this.prisma.notificationInbox.update({
       where: { id },
       data: { read: true, readAt: new Date() },
@@ -85,9 +96,12 @@ export class NotificationInboxService {
   }
 
   async remove(id: string, userId: string): Promise<void> {
-    const entry = await this.prisma.notificationInbox.findUnique({ where: { id } });
+    const entry = await this.prisma.notificationInbox.findUnique({
+      where: { id },
+    });
     if (!entry) throw new NotFoundException(`Notification '${id}' not found`);
-    if (entry.userId !== userId) throw new ForbiddenException('Cannot delete another user\'s notification');
+    if (entry.userId !== userId)
+      throw new ForbiddenException("Cannot delete another user's notification");
     await this.prisma.notificationInbox.delete({ where: { id } });
   }
 }

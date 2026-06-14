@@ -10,6 +10,8 @@ import { TemplatesModule } from './templates/templates.module';
 import { SettingsModule } from './settings/settings.module';
 import { QueueModule } from './queue/queue.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { StageModule } from './stage/stage.module';
+import { RouteModule } from './route/route.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     SettingsModule,
     QueueModule,
     NotificationsModule,
+    StageModule,
+    RouteModule,
   ],
   controllers: [AppController],
   providers: [AppService],

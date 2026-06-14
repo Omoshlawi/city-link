@@ -34,11 +34,13 @@ AppModule
 ├── TemplatesModule         — notification/document templates + versioning
 ├── SettingsModule          — SYSTEM / ORG / USER scoped key-value store
 ├── QueueModule             — BullMQ queue registration + global job options
-└── NotificationsModule     — dispatch, inbox, audit log, push token management (global)
+├── NotificationsModule     — dispatch, inbox, audit log, push token management (global)
+├── StageModule             — Stage + StageLink (system-managed network dictionary)
+└── RouteModule             — Route + RouteLink + LinkPricing (operator-managed)
 ```
 
 Domain modules not yet registered in AppModule (schema defined, services pending):
-- Transit: Stage, StageLink, LinkPricing, Route, RouteLink, Trip
+- Transit: Trip
 - Fleet management: VehicleType, Fleet, FleetRoute
 - Ticketing: Passenger, Ticket
 
@@ -140,7 +142,9 @@ city-link/
 │   ├── templates/
 │   ├── settings/
 │   ├── queue/
-│   └── notifications/
+│   ├── notifications/
+│   ├── stage/
+│   └── route/
 │       ├── channels/
 │       ├── controllers/
 │       └── processors/

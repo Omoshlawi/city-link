@@ -1,11 +1,17 @@
 import { Logger } from '@nestjs/common';
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
-import { NotificationChannel, NotificationStatus } from '../../generated/prisma/client';
+import {
+  NotificationChannel,
+  NotificationStatus,
+} from '../../generated/prisma/client';
 import { PushChannelService } from '../channels/push-channel.service';
 import { NotificationLogService } from '../log.service';
 import { PushJobPayload } from '../dispatch.service';
-import { NOTIFICATION_PROVIDERS, QUEUE_NAMES } from '../notifications.constants';
+import {
+  NOTIFICATION_PROVIDERS,
+  QUEUE_NAMES,
+} from '../notifications.constants';
 
 @Processor(QUEUE_NAMES.PUSH)
 export class PushNotificationProcessor extends WorkerHost {
@@ -20,11 +26,24 @@ export class PushNotificationProcessor extends WorkerHost {
 
   async process(job: Job<PushJobPayload>): Promise<void> {
     const attemptNumber = job.attemptsMade + 1;
-    const { dispatchId, templateKey, recipientRef, recipientId, organizationId, title, body, data } =
-      job.data;
+    const {
+      dispatchId,
+      templateKey,
+      recipientRef,
+      recipientId,
+      organizationId,
+      title,
+      body,
+      data,
+    } = job.data;
 
     try {
-      const receiptId = await this.pushChannel.send(recipientRef, title, body, data);
+      const receiptId = await this.pushChannel.send(
+        recipientRef,
+        title,
+        body,
+        data,
+      );
 
       await this.logService.write({
         dispatchId,
@@ -42,7 +61,9 @@ export class PushNotificationProcessor extends WorkerHost {
         sentAt: new Date(),
       });
 
-      this.logger.debug(`Push sent to token …${recipientRef.slice(-8)} — dispatchId: ${dispatchId}`);
+      this.logger.debug(
+        `Push sent to token …${recipientRef.slice(-8)} — dispatchId: ${dispatchId}`,
+      );
     } catch (err: unknown) {
       const error = err instanceof Error ? err.message : String(err);
 
@@ -62,7 +83,9 @@ export class PushNotificationProcessor extends WorkerHost {
         failedAt: new Date(),
       });
 
-      this.logger.error(`Push failed for token …${recipientRef.slice(-8)} (attempt ${attemptNumber}): ${error}`);
+      this.logger.error(
+        `Push failed for token …${recipientRef.slice(-8)} (attempt ${attemptNumber}): ${error}`,
+      );
       throw err;
     }
   }

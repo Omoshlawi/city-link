@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, HttpCode, HttpStatus, Param, ParseUUIDPipe, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+  Post,
+} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Session } from '@thallesp/nestjs-better-auth';
 import { ApiErrorsResponse } from '../../common/common.decorators';
@@ -14,7 +23,10 @@ export class PushTokenController {
   @Post('/')
   @ApiOperation({ summary: 'Register a push token for the authenticated user' })
   @ApiErrorsResponse({ badRequest: true })
-  register(@Body() dto: RegisterPushTokenDto, @Session() { user }: UserSession) {
+  register(
+    @Body() dto: RegisterPushTokenDto,
+    @Session() { user }: UserSession,
+  ) {
     return this.pushTokenService.register(
       user.id,
       dto.token,
@@ -28,7 +40,10 @@ export class PushTokenController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Void (deregister) a push token' })
   @ApiErrorsResponse()
-  void(@Param('id', ParseUUIDPipe) id: string, @Session() { user }: UserSession) {
+  void(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Session() { user }: UserSession,
+  ) {
     return this.pushTokenService.void(id, user.id);
   }
 }

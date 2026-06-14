@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { PushToken } from '../generated/prisma/client';
 
@@ -23,8 +27,12 @@ export class PushTokenService {
   async void(id: string, userId: string): Promise<void> {
     const token = await this.prisma.pushToken.findUnique({ where: { id } });
     if (!token) throw new NotFoundException(`Push token '${id}' not found`);
-    if (token.userId !== userId) throw new ForbiddenException('Cannot void another user\'s token');
-    await this.prisma.pushToken.update({ where: { id }, data: { voided: true } });
+    if (token.userId !== userId)
+      throw new ForbiddenException("Cannot void another user's token");
+    await this.prisma.pushToken.update({
+      where: { id },
+      data: { voided: true },
+    });
   }
 
   async getActiveByUser(userId: string): Promise<PushToken[]> {

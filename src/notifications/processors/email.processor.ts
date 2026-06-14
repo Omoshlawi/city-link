@@ -1,11 +1,17 @@
 import { Logger } from '@nestjs/common';
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
-import { NotificationChannel, NotificationStatus } from '../../generated/prisma/client';
+import {
+  NotificationChannel,
+  NotificationStatus,
+} from '../../generated/prisma/client';
 import { EmailChannelService } from '../channels/email-channel.service';
 import { NotificationLogService } from '../log.service';
 import { EmailJobPayload } from '../dispatch.service';
-import { NOTIFICATION_PROVIDERS, QUEUE_NAMES } from '../notifications.constants';
+import {
+  NOTIFICATION_PROVIDERS,
+  QUEUE_NAMES,
+} from '../notifications.constants';
 
 @Processor(QUEUE_NAMES.EMAIL)
 export class EmailNotificationProcessor extends WorkerHost {
@@ -20,8 +26,15 @@ export class EmailNotificationProcessor extends WorkerHost {
 
   async process(job: Job<EmailJobPayload>): Promise<void> {
     const attemptNumber = job.attemptsMade + 1;
-    const { dispatchId, templateKey, recipientRef, recipientId, organizationId, subject, html } =
-      job.data;
+    const {
+      dispatchId,
+      templateKey,
+      recipientRef,
+      recipientId,
+      organizationId,
+      subject,
+      html,
+    } = job.data;
 
     try {
       await this.emailChannel.send(recipientRef, subject, html);
@@ -42,7 +55,9 @@ export class EmailNotificationProcessor extends WorkerHost {
         sentAt: new Date(),
       });
 
-      this.logger.debug(`Email sent to ${recipientRef} — dispatchId: ${dispatchId}`);
+      this.logger.debug(
+        `Email sent to ${recipientRef} — dispatchId: ${dispatchId}`,
+      );
     } catch (err: unknown) {
       const error = err instanceof Error ? err.message : String(err);
 
@@ -63,7 +78,9 @@ export class EmailNotificationProcessor extends WorkerHost {
         failedAt: new Date(),
       });
 
-      this.logger.error(`Email failed for ${recipientRef} (attempt ${attemptNumber}): ${error}`);
+      this.logger.error(
+        `Email failed for ${recipientRef} (attempt ${attemptNumber}): ${error}`,
+      );
       throw err; // rethrow so BullMQ handles retry
     }
   }

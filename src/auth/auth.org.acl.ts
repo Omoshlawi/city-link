@@ -11,18 +11,24 @@ const organizationPluginAcl = createAccessControl({
   ...defaultOrganizationStatements,
   orgTemplates: ['create', 'update', 'delete', 'restore'],
   orgSettings: ['manage', 'view'],
+  routes: ['manage'],
+  pricing: ['manage'],
 });
 
 const organizationAdminRole = organizationPluginAcl.newRole({
   ...organizationAdminAc.statements,
   orgTemplates: ['create', 'update', 'delete', 'restore'],
   orgSettings: ['manage', 'view'],
+  routes: ['manage'],
+  pricing: ['manage'],
 });
 
 const organizationOwnerRole = organizationPluginAcl.newRole({
   ...ownerAc.statements,
   orgTemplates: ['create', 'update', 'delete', 'restore'],
   orgSettings: ['manage', 'view'],
+  routes: ['manage'],
+  pricing: ['manage'],
 });
 
 const organizationMemberRole = organizationPluginAcl.newRole({
