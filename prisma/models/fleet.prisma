@@ -10,6 +10,8 @@ model VehicleType {
     voided    Boolean  @default(false)
 
     fleets Fleet[]
+
+    @@map("vehicle_types")
 }
 
 enum FleetStatus {
@@ -42,6 +44,7 @@ model Fleet {
     @@index([operatorId])
     @@index([status])
     @@index([vehicleTypeId])
+    @@map("fleets")
 }
 
 /// Assignment of a fleet vehicle to a route.
@@ -61,4 +64,5 @@ model FleetRoute {
     @@unique([routeId, fleetId])
     @@index([fleetId])
     @@index([routeId])
+    @@map("fleet_routes")
 }

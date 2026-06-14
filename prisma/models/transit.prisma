@@ -25,6 +25,7 @@ model Stage {
 
     @@unique([areaId, name])
     @@index([areaId])
+    @@map("stages")
 }
 
 /// Directed connection between two adjacent stages — an edge in the transit graph.
@@ -46,6 +47,7 @@ model StageLink {
 
     @@unique([fromStageId, toStageId])
     @@index([fromStageId])
+    @@map("stage_links")
 }
 
 enum DayOfWeek {
@@ -86,6 +88,7 @@ model LinkPricing {
     @@unique([stageLinkId, operatorId, routeId, day, timeStart, timeEnd])
     @@index([stageLinkId, day])
     @@index([operatorId])
+    @@map("link_pricing")
 }
 
 /// Extensible Quality-of-Service classification for routes.
@@ -102,6 +105,8 @@ model ServiceClass {
     voided      Boolean  @default(false)
 
     routes Route[]
+
+    @@map("service_classes")
 }
 
 /// A named, licensed transit route — identity and metadata only.
@@ -125,6 +130,7 @@ model Route {
     linkPricings LinkPricing[]
 
     @@index([serviceClassId])
+    @@map("routes")
 }
 
 /// Ordered directed StageLinks that define a route's path through the network.
@@ -144,6 +150,7 @@ model RouteLink {
     @@unique([routeId, stageLinkId])
     @@unique([routeId, order])
     @@index([routeId])
+    @@map("route_links")
 }
 
 enum TraversalDirection {
@@ -172,4 +179,6 @@ model Trip {
     endStage   Stage?   @relation("EndStage", fields: [endStageId], references: [id])
     tickets    Ticket[]
     // notifications Notification[]   // wire when Notification model is defined
+
+    @@map("trips")
 }

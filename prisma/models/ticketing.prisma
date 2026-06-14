@@ -21,6 +21,7 @@ model Passenger {
     tickets Ticket[]
 
     @@index([userId])
+    @@map("passengers")
 }
 
 /// A passenger's fare record for a trip segment between two stages.
@@ -46,4 +47,5 @@ model Ticket {
     @@index([passengerId])
     @@index([tripId])
     @@index([fromStageId, toStageId])
+    @@map("tickets")
 }
