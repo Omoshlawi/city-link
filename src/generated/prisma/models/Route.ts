@@ -29,6 +29,7 @@ export type RouteMinAggregateOutputType = {
   id: string | null
   code: string | null
   name: string | null
+  serviceClassId: string | null
   createdAt: Date | null
   updatedAt: Date | null
   voided: boolean | null
@@ -38,6 +39,7 @@ export type RouteMaxAggregateOutputType = {
   id: string | null
   code: string | null
   name: string | null
+  serviceClassId: string | null
   createdAt: Date | null
   updatedAt: Date | null
   voided: boolean | null
@@ -47,6 +49,7 @@ export type RouteCountAggregateOutputType = {
   id: number
   code: number
   name: number
+  serviceClassId: number
   createdAt: number
   updatedAt: number
   voided: number
@@ -58,6 +61,7 @@ export type RouteMinAggregateInputType = {
   id?: true
   code?: true
   name?: true
+  serviceClassId?: true
   createdAt?: true
   updatedAt?: true
   voided?: true
@@ -67,6 +71,7 @@ export type RouteMaxAggregateInputType = {
   id?: true
   code?: true
   name?: true
+  serviceClassId?: true
   createdAt?: true
   updatedAt?: true
   voided?: true
@@ -76,6 +81,7 @@ export type RouteCountAggregateInputType = {
   id?: true
   code?: true
   name?: true
+  serviceClassId?: true
   createdAt?: true
   updatedAt?: true
   voided?: true
@@ -158,6 +164,7 @@ export type RouteGroupByOutputType = {
   id: string
   code: string
   name: string
+  serviceClassId: string | null
   createdAt: Date
   updatedAt: Date
   voided: boolean
@@ -188,9 +195,11 @@ export type RouteWhereInput = {
   id?: Prisma.StringFilter<"Route"> | string
   code?: Prisma.StringFilter<"Route"> | string
   name?: Prisma.StringFilter<"Route"> | string
+  serviceClassId?: Prisma.StringNullableFilter<"Route"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Route"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Route"> | Date | string
   voided?: Prisma.BoolFilter<"Route"> | boolean
+  serviceClass?: Prisma.XOR<Prisma.ServiceClassNullableScalarRelationFilter, Prisma.ServiceClassWhereInput> | null
   links?: Prisma.RouteLinkListRelationFilter
   trips?: Prisma.TripListRelationFilter
   fleets?: Prisma.FleetRouteListRelationFilter
@@ -201,9 +210,11 @@ export type RouteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  serviceClassId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
+  serviceClass?: Prisma.ServiceClassOrderByWithRelationInput
   links?: Prisma.RouteLinkOrderByRelationAggregateInput
   trips?: Prisma.TripOrderByRelationAggregateInput
   fleets?: Prisma.FleetRouteOrderByRelationAggregateInput
@@ -217,9 +228,11 @@ export type RouteWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RouteWhereInput | Prisma.RouteWhereInput[]
   OR?: Prisma.RouteWhereInput[]
   NOT?: Prisma.RouteWhereInput | Prisma.RouteWhereInput[]
+  serviceClassId?: Prisma.StringNullableFilter<"Route"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Route"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Route"> | Date | string
   voided?: Prisma.BoolFilter<"Route"> | boolean
+  serviceClass?: Prisma.XOR<Prisma.ServiceClassNullableScalarRelationFilter, Prisma.ServiceClassWhereInput> | null
   links?: Prisma.RouteLinkListRelationFilter
   trips?: Prisma.TripListRelationFilter
   fleets?: Prisma.FleetRouteListRelationFilter
@@ -230,6 +243,7 @@ export type RouteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  serviceClassId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
@@ -245,6 +259,7 @@ export type RouteScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Route"> | string
   code?: Prisma.StringWithAggregatesFilter<"Route"> | string
   name?: Prisma.StringWithAggregatesFilter<"Route"> | string
+  serviceClassId?: Prisma.StringNullableWithAggregatesFilter<"Route"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Route"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Route"> | Date | string
   voided?: Prisma.BoolWithAggregatesFilter<"Route"> | boolean
@@ -257,6 +272,7 @@ export type RouteCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
+  serviceClass?: Prisma.ServiceClassCreateNestedOneWithoutRoutesInput
   links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
@@ -267,6 +283,7 @@ export type RouteUncheckedCreateInput = {
   id?: string
   code: string
   name: string
+  serviceClassId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -283,6 +300,7 @@ export type RouteUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  serviceClass?: Prisma.ServiceClassUpdateOneWithoutRoutesNestedInput
   links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
@@ -293,6 +311,7 @@ export type RouteUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceClassId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -306,6 +325,7 @@ export type RouteCreateManyInput = {
   id?: string
   code: string
   name: string
+  serviceClassId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -324,6 +344,7 @@ export type RouteUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceClassId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -339,10 +360,21 @@ export type RouteNullableScalarRelationFilter = {
   isNot?: Prisma.RouteWhereInput | null
 }
 
+export type RouteListRelationFilter = {
+  every?: Prisma.RouteWhereInput
+  some?: Prisma.RouteWhereInput
+  none?: Prisma.RouteWhereInput
+}
+
+export type RouteOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type RouteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  serviceClassId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
@@ -352,6 +384,7 @@ export type RouteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  serviceClassId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
@@ -361,6 +394,7 @@ export type RouteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  serviceClassId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
@@ -394,6 +428,48 @@ export type RouteUpdateOneWithoutLinkPricingsNestedInput = {
   delete?: Prisma.RouteWhereInput | boolean
   connect?: Prisma.RouteWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.RouteUpdateToOneWithWhereWithoutLinkPricingsInput, Prisma.RouteUpdateWithoutLinkPricingsInput>, Prisma.RouteUncheckedUpdateWithoutLinkPricingsInput>
+}
+
+export type RouteCreateNestedManyWithoutServiceClassInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutServiceClassInput, Prisma.RouteUncheckedCreateWithoutServiceClassInput> | Prisma.RouteCreateWithoutServiceClassInput[] | Prisma.RouteUncheckedCreateWithoutServiceClassInput[]
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutServiceClassInput | Prisma.RouteCreateOrConnectWithoutServiceClassInput[]
+  createMany?: Prisma.RouteCreateManyServiceClassInputEnvelope
+  connect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+}
+
+export type RouteUncheckedCreateNestedManyWithoutServiceClassInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutServiceClassInput, Prisma.RouteUncheckedCreateWithoutServiceClassInput> | Prisma.RouteCreateWithoutServiceClassInput[] | Prisma.RouteUncheckedCreateWithoutServiceClassInput[]
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutServiceClassInput | Prisma.RouteCreateOrConnectWithoutServiceClassInput[]
+  createMany?: Prisma.RouteCreateManyServiceClassInputEnvelope
+  connect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+}
+
+export type RouteUpdateManyWithoutServiceClassNestedInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutServiceClassInput, Prisma.RouteUncheckedCreateWithoutServiceClassInput> | Prisma.RouteCreateWithoutServiceClassInput[] | Prisma.RouteUncheckedCreateWithoutServiceClassInput[]
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutServiceClassInput | Prisma.RouteCreateOrConnectWithoutServiceClassInput[]
+  upsert?: Prisma.RouteUpsertWithWhereUniqueWithoutServiceClassInput | Prisma.RouteUpsertWithWhereUniqueWithoutServiceClassInput[]
+  createMany?: Prisma.RouteCreateManyServiceClassInputEnvelope
+  set?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  disconnect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  delete?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  connect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  update?: Prisma.RouteUpdateWithWhereUniqueWithoutServiceClassInput | Prisma.RouteUpdateWithWhereUniqueWithoutServiceClassInput[]
+  updateMany?: Prisma.RouteUpdateManyWithWhereWithoutServiceClassInput | Prisma.RouteUpdateManyWithWhereWithoutServiceClassInput[]
+  deleteMany?: Prisma.RouteScalarWhereInput | Prisma.RouteScalarWhereInput[]
+}
+
+export type RouteUncheckedUpdateManyWithoutServiceClassNestedInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutServiceClassInput, Prisma.RouteUncheckedCreateWithoutServiceClassInput> | Prisma.RouteCreateWithoutServiceClassInput[] | Prisma.RouteUncheckedCreateWithoutServiceClassInput[]
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutServiceClassInput | Prisma.RouteCreateOrConnectWithoutServiceClassInput[]
+  upsert?: Prisma.RouteUpsertWithWhereUniqueWithoutServiceClassInput | Prisma.RouteUpsertWithWhereUniqueWithoutServiceClassInput[]
+  createMany?: Prisma.RouteCreateManyServiceClassInputEnvelope
+  set?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  disconnect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  delete?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  connect?: Prisma.RouteWhereUniqueInput | Prisma.RouteWhereUniqueInput[]
+  update?: Prisma.RouteUpdateWithWhereUniqueWithoutServiceClassInput | Prisma.RouteUpdateWithWhereUniqueWithoutServiceClassInput[]
+  updateMany?: Prisma.RouteUpdateManyWithWhereWithoutServiceClassInput | Prisma.RouteUpdateManyWithWhereWithoutServiceClassInput[]
+  deleteMany?: Prisma.RouteScalarWhereInput | Prisma.RouteScalarWhereInput[]
 }
 
 export type RouteCreateNestedOneWithoutLinksInput = {
@@ -431,6 +507,7 @@ export type RouteCreateWithoutFleetsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
+  serviceClass?: Prisma.ServiceClassCreateNestedOneWithoutRoutesInput
   links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutRouteInput
@@ -440,6 +517,7 @@ export type RouteUncheckedCreateWithoutFleetsInput = {
   id?: string
   code: string
   name: string
+  serviceClassId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -471,6 +549,7 @@ export type RouteUpdateWithoutFleetsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  serviceClass?: Prisma.ServiceClassUpdateOneWithoutRoutesNestedInput
   links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutRouteNestedInput
@@ -480,6 +559,7 @@ export type RouteUncheckedUpdateWithoutFleetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceClassId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -495,6 +575,7 @@ export type RouteCreateWithoutLinkPricingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
+  serviceClass?: Prisma.ServiceClassCreateNestedOneWithoutRoutesInput
   links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
@@ -504,6 +585,7 @@ export type RouteUncheckedCreateWithoutLinkPricingsInput = {
   id?: string
   code: string
   name: string
+  serviceClassId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -535,6 +617,7 @@ export type RouteUpdateWithoutLinkPricingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  serviceClass?: Prisma.ServiceClassUpdateOneWithoutRoutesNestedInput
   links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
@@ -544,12 +627,78 @@ export type RouteUncheckedUpdateWithoutLinkPricingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceClassId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   links?: Prisma.RouteLinkUncheckedUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUncheckedUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUncheckedUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteCreateWithoutServiceClassInput = {
+  id?: string
+  code: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  voided?: boolean
+  links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
+  trips?: Prisma.TripCreateNestedManyWithoutRouteInput
+  fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutRouteInput
+}
+
+export type RouteUncheckedCreateWithoutServiceClassInput = {
+  id?: string
+  code: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  voided?: boolean
+  links?: Prisma.RouteLinkUncheckedCreateNestedManyWithoutRouteInput
+  trips?: Prisma.TripUncheckedCreateNestedManyWithoutRouteInput
+  fleets?: Prisma.FleetRouteUncheckedCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutRouteInput
+}
+
+export type RouteCreateOrConnectWithoutServiceClassInput = {
+  where: Prisma.RouteWhereUniqueInput
+  create: Prisma.XOR<Prisma.RouteCreateWithoutServiceClassInput, Prisma.RouteUncheckedCreateWithoutServiceClassInput>
+}
+
+export type RouteCreateManyServiceClassInputEnvelope = {
+  data: Prisma.RouteCreateManyServiceClassInput | Prisma.RouteCreateManyServiceClassInput[]
+  skipDuplicates?: boolean
+}
+
+export type RouteUpsertWithWhereUniqueWithoutServiceClassInput = {
+  where: Prisma.RouteWhereUniqueInput
+  update: Prisma.XOR<Prisma.RouteUpdateWithoutServiceClassInput, Prisma.RouteUncheckedUpdateWithoutServiceClassInput>
+  create: Prisma.XOR<Prisma.RouteCreateWithoutServiceClassInput, Prisma.RouteUncheckedCreateWithoutServiceClassInput>
+}
+
+export type RouteUpdateWithWhereUniqueWithoutServiceClassInput = {
+  where: Prisma.RouteWhereUniqueInput
+  data: Prisma.XOR<Prisma.RouteUpdateWithoutServiceClassInput, Prisma.RouteUncheckedUpdateWithoutServiceClassInput>
+}
+
+export type RouteUpdateManyWithWhereWithoutServiceClassInput = {
+  where: Prisma.RouteScalarWhereInput
+  data: Prisma.XOR<Prisma.RouteUpdateManyMutationInput, Prisma.RouteUncheckedUpdateManyWithoutServiceClassInput>
+}
+
+export type RouteScalarWhereInput = {
+  AND?: Prisma.RouteScalarWhereInput | Prisma.RouteScalarWhereInput[]
+  OR?: Prisma.RouteScalarWhereInput[]
+  NOT?: Prisma.RouteScalarWhereInput | Prisma.RouteScalarWhereInput[]
+  id?: Prisma.StringFilter<"Route"> | string
+  code?: Prisma.StringFilter<"Route"> | string
+  name?: Prisma.StringFilter<"Route"> | string
+  serviceClassId?: Prisma.StringNullableFilter<"Route"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Route"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Route"> | Date | string
+  voided?: Prisma.BoolFilter<"Route"> | boolean
 }
 
 export type RouteCreateWithoutLinksInput = {
@@ -559,6 +708,7 @@ export type RouteCreateWithoutLinksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
+  serviceClass?: Prisma.ServiceClassCreateNestedOneWithoutRoutesInput
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutRouteInput
@@ -568,6 +718,7 @@ export type RouteUncheckedCreateWithoutLinksInput = {
   id?: string
   code: string
   name: string
+  serviceClassId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -599,6 +750,7 @@ export type RouteUpdateWithoutLinksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  serviceClass?: Prisma.ServiceClassUpdateOneWithoutRoutesNestedInput
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutRouteNestedInput
@@ -608,6 +760,7 @@ export type RouteUncheckedUpdateWithoutLinksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceClassId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -623,6 +776,7 @@ export type RouteCreateWithoutTripsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
+  serviceClass?: Prisma.ServiceClassCreateNestedOneWithoutRoutesInput
   links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
   linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutRouteInput
@@ -632,6 +786,7 @@ export type RouteUncheckedCreateWithoutTripsInput = {
   id?: string
   code: string
   name: string
+  serviceClassId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -663,6 +818,7 @@ export type RouteUpdateWithoutTripsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  serviceClass?: Prisma.ServiceClassUpdateOneWithoutRoutesNestedInput
   links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
   linkPricings?: Prisma.LinkPricingUpdateManyWithoutRouteNestedInput
@@ -672,12 +828,57 @@ export type RouteUncheckedUpdateWithoutTripsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceClassId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   links?: Prisma.RouteLinkUncheckedUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUncheckedUpdateManyWithoutRouteNestedInput
   linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteCreateManyServiceClassInput = {
+  id?: string
+  code: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  voided?: boolean
+}
+
+export type RouteUpdateWithoutServiceClassInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
+  trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
+  fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteUncheckedUpdateWithoutServiceClassInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  links?: Prisma.RouteLinkUncheckedUpdateManyWithoutRouteNestedInput
+  trips?: Prisma.TripUncheckedUpdateManyWithoutRouteNestedInput
+  fleets?: Prisma.FleetRouteUncheckedUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteUncheckedUpdateManyWithoutServiceClassInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -742,9 +943,11 @@ export type RouteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   id?: boolean
   code?: boolean
   name?: boolean
+  serviceClassId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   voided?: boolean
+  serviceClass?: boolean | Prisma.Route$serviceClassArgs<ExtArgs>
   links?: boolean | Prisma.Route$linksArgs<ExtArgs>
   trips?: boolean | Prisma.Route$tripsArgs<ExtArgs>
   fleets?: boolean | Prisma.Route$fleetsArgs<ExtArgs>
@@ -756,43 +959,54 @@ export type RouteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   code?: boolean
   name?: boolean
+  serviceClassId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   voided?: boolean
+  serviceClass?: boolean | Prisma.Route$serviceClassArgs<ExtArgs>
 }, ExtArgs["result"]["route"]>
 
 export type RouteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
   name?: boolean
+  serviceClassId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   voided?: boolean
+  serviceClass?: boolean | Prisma.Route$serviceClassArgs<ExtArgs>
 }, ExtArgs["result"]["route"]>
 
 export type RouteSelectScalar = {
   id?: boolean
   code?: boolean
   name?: boolean
+  serviceClassId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   voided?: boolean
 }
 
-export type RouteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "createdAt" | "updatedAt" | "voided", ExtArgs["result"]["route"]>
+export type RouteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "serviceClassId" | "createdAt" | "updatedAt" | "voided", ExtArgs["result"]["route"]>
 export type RouteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  serviceClass?: boolean | Prisma.Route$serviceClassArgs<ExtArgs>
   links?: boolean | Prisma.Route$linksArgs<ExtArgs>
   trips?: boolean | Prisma.Route$tripsArgs<ExtArgs>
   fleets?: boolean | Prisma.Route$fleetsArgs<ExtArgs>
   linkPricings?: boolean | Prisma.Route$linkPricingsArgs<ExtArgs>
   _count?: boolean | Prisma.RouteCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type RouteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type RouteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type RouteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  serviceClass?: boolean | Prisma.Route$serviceClassArgs<ExtArgs>
+}
+export type RouteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  serviceClass?: boolean | Prisma.Route$serviceClassArgs<ExtArgs>
+}
 
 export type $RoutePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Route"
   objects: {
+    serviceClass: Prisma.$ServiceClassPayload<ExtArgs> | null
     links: Prisma.$RouteLinkPayload<ExtArgs>[]
     trips: Prisma.$TripPayload<ExtArgs>[]
     fleets: Prisma.$FleetRoutePayload<ExtArgs>[]
@@ -808,6 +1022,10 @@ export type $RoutePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
      * Full human-readable name e.g. "CBD - Rongai". Globally unique.
      */
     name: string
+    /**
+     * Optional QoS classification — null means unclassified.
+     */
+    serviceClassId: string | null
     createdAt: Date
     updatedAt: Date
     voided: boolean
@@ -1205,6 +1423,7 @@ readonly fields: RouteFieldRefs;
  */
 export interface Prisma__RouteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  serviceClass<T extends Prisma.Route$serviceClassArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$serviceClassArgs<ExtArgs>>): Prisma.Prisma__ServiceClassClient<runtime.Types.Result.GetResult<Prisma.$ServiceClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   links<T extends Prisma.Route$linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RouteLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trips<T extends Prisma.Route$tripsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$tripsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TripPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   fleets<T extends Prisma.Route$fleetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$fleetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FleetRoutePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1241,6 +1460,7 @@ export interface RouteFieldRefs {
   readonly id: Prisma.FieldRef<"Route", 'String'>
   readonly code: Prisma.FieldRef<"Route", 'String'>
   readonly name: Prisma.FieldRef<"Route", 'String'>
+  readonly serviceClassId: Prisma.FieldRef<"Route", 'String'>
   readonly createdAt: Prisma.FieldRef<"Route", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Route", 'DateTime'>
   readonly voided: Prisma.FieldRef<"Route", 'Boolean'>
@@ -1498,6 +1718,10 @@ export type RouteCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    */
   data: Prisma.RouteCreateManyInput | Prisma.RouteCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RouteIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1568,6 +1792,10 @@ export type RouteUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many Routes to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RouteIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1634,6 +1862,25 @@ export type RouteDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Routes to delete.
    */
   limit?: number
+}
+
+/**
+ * Route.serviceClass
+ */
+export type Route$serviceClassArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ServiceClass
+   */
+  select?: Prisma.ServiceClassSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ServiceClass
+   */
+  omit?: Prisma.ServiceClassOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceClassInclude<ExtArgs> | null
+  where?: Prisma.ServiceClassWhereInput
 }
 
 /**

@@ -412,6 +412,7 @@ export const ModelName = {
   Stage: 'Stage',
   StageLink: 'StageLink',
   LinkPricing: 'LinkPricing',
+  ServiceClass: 'ServiceClass',
   Route: 'Route',
   RouteLink: 'RouteLink',
   Trip: 'Trip',
@@ -431,7 +432,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "organization" | "organizationRole" | "team" | "teamMember" | "member" | "invitation" | "jwks" | "twoFactor" | "vehicleType" | "fleet" | "fleetRoute" | "pushToken" | "notificationLog" | "notificationInbox" | "setting" | "template" | "templateVersion" | "orgTemplateOverride" | "orgTemplateOverrideVersion" | "passenger" | "ticket" | "stage" | "stageLink" | "linkPricing" | "route" | "routeLink" | "trip" | "addressHierarchy"
+    modelProps: "user" | "session" | "account" | "verification" | "organization" | "organizationRole" | "team" | "teamMember" | "member" | "invitation" | "jwks" | "twoFactor" | "vehicleType" | "fleet" | "fleetRoute" | "pushToken" | "notificationLog" | "notificationInbox" | "setting" | "template" | "templateVersion" | "orgTemplateOverride" | "orgTemplateOverrideVersion" | "passenger" | "ticket" | "stage" | "stageLink" | "linkPricing" | "serviceClass" | "route" | "routeLink" | "trip" | "addressHierarchy"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2507,6 +2508,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ServiceClass: {
+      payload: Prisma.$ServiceClassPayload<ExtArgs>
+      fields: Prisma.ServiceClassFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ServiceClassFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ServiceClassFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>
+        }
+        findFirst: {
+          args: Prisma.ServiceClassFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ServiceClassFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>
+        }
+        findMany: {
+          args: Prisma.ServiceClassFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>[]
+        }
+        create: {
+          args: Prisma.ServiceClassCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>
+        }
+        createMany: {
+          args: Prisma.ServiceClassCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ServiceClassCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>[]
+        }
+        delete: {
+          args: Prisma.ServiceClassDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>
+        }
+        update: {
+          args: Prisma.ServiceClassUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>
+        }
+        deleteMany: {
+          args: Prisma.ServiceClassDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ServiceClassUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ServiceClassUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>[]
+        }
+        upsert: {
+          args: Prisma.ServiceClassUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceClassPayload>
+        }
+        aggregate: {
+          args: Prisma.ServiceClassAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateServiceClass>
+        }
+        groupBy: {
+          args: Prisma.ServiceClassGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ServiceClassGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ServiceClassCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ServiceClassCountAggregateOutputType> | number
+        }
+      }
+    }
     Route: {
       payload: Prisma.$RoutePayload<ExtArgs>
       fields: Prisma.RouteFieldRefs
@@ -3267,10 +3342,24 @@ export const LinkPricingScalarFieldEnum = {
 export type LinkPricingScalarFieldEnum = (typeof LinkPricingScalarFieldEnum)[keyof typeof LinkPricingScalarFieldEnum]
 
 
+export const ServiceClassScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type ServiceClassScalarFieldEnum = (typeof ServiceClassScalarFieldEnum)[keyof typeof ServiceClassScalarFieldEnum]
+
+
 export const RouteScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
+  serviceClassId: 'serviceClassId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   voided: 'voided'
@@ -3729,6 +3818,7 @@ export type GlobalOmitConfig = {
   stage?: Prisma.StageOmit
   stageLink?: Prisma.StageLinkOmit
   linkPricing?: Prisma.LinkPricingOmit
+  serviceClass?: Prisma.ServiceClassOmit
   route?: Prisma.RouteOmit
   routeLink?: Prisma.RouteLinkOmit
   trip?: Prisma.TripOmit

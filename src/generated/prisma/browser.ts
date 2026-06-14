@@ -164,6 +164,12 @@ export type StageLink = Prisma.StageLinkModel
  */
 export type LinkPricing = Prisma.LinkPricingModel
 /**
+ * Model ServiceClass
+ * Extensible Quality-of-Service classification for routes.
+ * Operators define their own classes (e.g. LOCAL, EXPRESS, PEAK) without schema changes.
+ */
+export type ServiceClass = Prisma.ServiceClassModel
+/**
  * Model Route
  * A named, licensed transit route — identity and metadata only.
  * The actual path through the network is defined by the ordered RouteLinks.

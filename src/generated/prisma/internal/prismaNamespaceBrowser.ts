@@ -79,6 +79,7 @@ export const ModelName = {
   Stage: 'Stage',
   StageLink: 'StageLink',
   LinkPricing: 'LinkPricing',
+  ServiceClass: 'ServiceClass',
   Route: 'Route',
   RouteLink: 'RouteLink',
   Trip: 'Trip',
@@ -526,10 +527,24 @@ export const LinkPricingScalarFieldEnum = {
 export type LinkPricingScalarFieldEnum = (typeof LinkPricingScalarFieldEnum)[keyof typeof LinkPricingScalarFieldEnum]
 
 
+export const ServiceClassScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  voided: 'voided'
+} as const
+
+export type ServiceClassScalarFieldEnum = (typeof ServiceClassScalarFieldEnum)[keyof typeof ServiceClassScalarFieldEnum]
+
+
 export const RouteScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
+  serviceClassId: 'serviceClassId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   voided: 'voided'
