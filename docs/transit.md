@@ -97,16 +97,20 @@ GET /stages/cbd-id/links?direction=both
 
 ### ServiceClass
 
-Extensible Quality-of-Service classification for routes. Operators define their own classes
-at runtime — no schema migration needed for new service types.
+Operator-scoped Quality-of-Service classification for routes. Each operator defines their own
+tiers (e.g. "Express", "Gold", "Peak") — one operator's labels are invisible to others.
+No schema migration is needed to introduce new tier names.
 
 | Field | Type | Description |
 |---|---|---|
-| `code` | `String @unique` | Short identifier e.g. `"EXPRESS"`, `"LOCAL"`, `"PEAK"` |
-| `name` | `String @unique` | Display name e.g. `"Express Service"` |
+| `organizationId` | `String` | FK to `Organization` — the operator that owns this class |
+| `code` | `String` | Short identifier e.g. `"EXPRESS"`, `"LOCAL"`, `"PEAK"` — unique per operator |
+| `name` | `String` | Display name e.g. `"Express Service"` — unique per operator |
 | `description` | `String?` | Optional explanation of what this service class means |
 
-Managed at `GET/POST/PATCH/DELETE /service-classes` — requires `network: manage` permission to write, public to read.
+`@@unique([code, organizationId])` and `@@unique([name, organizationId])` — codes and names are unique within an operator but two different operators can both have an "EXPRESS" class.
+
+Managed at `GET/POST/PATCH/DELETE /service-classes` — requires an active organization session. Write operations require `routes: manage` member permission. Reads return only the calling operator's classes.
 
 ---
 
@@ -321,6 +325,7 @@ A passenger's fare record for a trip segment between two stages.
 
 ```
 Organization
+    ├── ServiceClass (organizationId)   ← operator's own QoS tiers
     ├── Fleet (operatorId)
     │     ├── FleetRoute (fleetId)    ←── Route
     │     │     └── Trip (routeId)

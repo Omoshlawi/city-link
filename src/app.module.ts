@@ -14,6 +14,7 @@ import { StageModule } from './stage/stage.module';
 import { RouteModule } from './route/route.module';
 import { ServiceClassModule } from './service-class/service-class.module';
 import { VehicleTypeModule } from './vehicle-type/vehicle-type.module';
+import { FleetModule } from './fleet/fleet.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { VehicleTypeModule } from './vehicle-type/vehicle-type.module';
     RouteModule,
     ServiceClassModule,
     VehicleTypeModule,
+    FleetModule,
   ],
   controllers: [AppController],
   providers: [AppService],
