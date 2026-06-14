@@ -38,9 +38,9 @@ AppModule
 ```
 
 Domain modules not yet registered in AppModule (schema defined, services pending):
-- Transit: Stage, StageLink, Route, Fleet, Trip
-- Fleet management: Fleet, FleetRoute, VehicleType
-- Ticketing: Ticket, Passenger
+- Transit: Stage, StageLink, LinkPricing, Route, RouteLink, Trip
+- Fleet management: VehicleType, Fleet, FleetRoute
+- Ticketing: Passenger, Ticket
 
 ---
 
@@ -148,8 +148,9 @@ city-link/
 │   ├── schema.prisma              # Generator + datasource + AddressHierarchy
 │   ├── models/                    # Domain model files (auto-composed)
 │   │   ├── auth.prisma
-│   │   ├── routes.prisma
+│   │   ├── transit.prisma
 │   │   ├── fleet.prisma
+│   │   ├── ticketing.prisma
 │   │   ├── notification.prisma
 │   │   ├── settings.prisma
 │   │   └── templates.prisma

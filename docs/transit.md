@@ -1,6 +1,10 @@
 # Transit Domain
 
-The transit domain models the core business of City Link — physical stops, routes, fleets, pricing, trips, and ticketing. The schema lives in `prisma/models/routes.prisma` and `prisma/models/fleet.prisma`.
+The transit domain models the core business of City Link — physical stops, routes, fleets, pricing, trips, and ticketing. The schema is split across three domain files:
+
+- `prisma/models/transit.prisma` — Stage, StageLink, LinkPricing, Route, RouteLink, Trip
+- `prisma/models/fleet.prisma` — VehicleType, Fleet, FleetRoute
+- `prisma/models/ticketing.prisma` — Passenger, Ticket
 
 ---
 
