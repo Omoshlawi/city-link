@@ -430,10 +430,11 @@ export const LinkPricingScalarFieldEnum = {
   id: 'id',
   stageLinkId: 'stageLinkId',
   operatorId: 'operatorId',
-  price: 'price',
+  routeId: 'routeId',
+  day: 'day',
   timeStart: 'timeStart',
   timeEnd: 'timeEnd',
-  activeDays: 'activeDays',
+  price: 'price',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   voided: 'voided'

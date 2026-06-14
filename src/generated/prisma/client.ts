@@ -154,8 +154,10 @@ export type Stage = Prisma.StageModel
 export type StageLink = Prisma.StageLinkModel
 /**
  * Model LinkPricing
- * Fare for traversing a StageLink, scoped per operator and time window.
- * Different operators (organisations) can charge different fares on the same link.
+ * Fare for traversing a StageLink, scoped per operator, route, day and time window.
+ * One row = one unambiguous pricing rule. Everyday pricing = 7 rows (one per day).
+ * routeId null means the price applies to all routes this operator runs on the link;
+ * a non-null routeId overrides the null-route price for that specific route.
  */
 export type LinkPricing = Prisma.LinkPricingModel
 /**

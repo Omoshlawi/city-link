@@ -14,8 +14,10 @@ import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model LinkPricing
- * Fare for traversing a StageLink, scoped per operator and time window.
- * Different operators (organisations) can charge different fares on the same link.
+ * Fare for traversing a StageLink, scoped per operator, route, day and time window.
+ * One row = one unambiguous pricing rule. Everyday pricing = 7 rows (one per day).
+ * routeId null means the price applies to all routes this operator runs on the link;
+ * a non-null routeId overrides the null-route price for that specific route.
  */
 export type LinkPricingModel = runtime.Types.Result.DefaultSelection<Prisma.$LinkPricingPayload>
 
@@ -39,9 +41,11 @@ export type LinkPricingMinAggregateOutputType = {
   id: string | null
   stageLinkId: string | null
   operatorId: string | null
-  price: runtime.Decimal | null
+  routeId: string | null
+  day: $Enums.DayOfWeek | null
   timeStart: string | null
   timeEnd: string | null
+  price: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
   voided: boolean | null
@@ -51,9 +55,11 @@ export type LinkPricingMaxAggregateOutputType = {
   id: string | null
   stageLinkId: string | null
   operatorId: string | null
-  price: runtime.Decimal | null
+  routeId: string | null
+  day: $Enums.DayOfWeek | null
   timeStart: string | null
   timeEnd: string | null
+  price: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
   voided: boolean | null
@@ -63,10 +69,11 @@ export type LinkPricingCountAggregateOutputType = {
   id: number
   stageLinkId: number
   operatorId: number
-  price: number
+  routeId: number
+  day: number
   timeStart: number
   timeEnd: number
-  activeDays: number
+  price: number
   createdAt: number
   updatedAt: number
   voided: number
@@ -86,9 +93,11 @@ export type LinkPricingMinAggregateInputType = {
   id?: true
   stageLinkId?: true
   operatorId?: true
-  price?: true
+  routeId?: true
+  day?: true
   timeStart?: true
   timeEnd?: true
+  price?: true
   createdAt?: true
   updatedAt?: true
   voided?: true
@@ -98,9 +107,11 @@ export type LinkPricingMaxAggregateInputType = {
   id?: true
   stageLinkId?: true
   operatorId?: true
-  price?: true
+  routeId?: true
+  day?: true
   timeStart?: true
   timeEnd?: true
+  price?: true
   createdAt?: true
   updatedAt?: true
   voided?: true
@@ -110,10 +121,11 @@ export type LinkPricingCountAggregateInputType = {
   id?: true
   stageLinkId?: true
   operatorId?: true
-  price?: true
+  routeId?: true
+  day?: true
   timeStart?: true
   timeEnd?: true
-  activeDays?: true
+  price?: true
   createdAt?: true
   updatedAt?: true
   voided?: true
@@ -210,10 +222,11 @@ export type LinkPricingGroupByOutputType = {
   id: string
   stageLinkId: string
   operatorId: string
-  price: runtime.Decimal
+  routeId: string | null
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays: string[]
+  price: runtime.Decimal
   createdAt: Date
   updatedAt: Date
   voided: boolean
@@ -246,59 +259,66 @@ export type LinkPricingWhereInput = {
   id?: Prisma.StringFilter<"LinkPricing"> | string
   stageLinkId?: Prisma.StringFilter<"LinkPricing"> | string
   operatorId?: Prisma.StringFilter<"LinkPricing"> | string
-  price?: Prisma.DecimalFilter<"LinkPricing"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.StringNullableFilter<"LinkPricing"> | string | null
+  day?: Prisma.EnumDayOfWeekFilter<"LinkPricing"> | $Enums.DayOfWeek
   timeStart?: Prisma.StringFilter<"LinkPricing"> | string
   timeEnd?: Prisma.StringFilter<"LinkPricing"> | string
-  activeDays?: Prisma.StringNullableListFilter<"LinkPricing">
+  price?: Prisma.DecimalFilter<"LinkPricing"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"LinkPricing"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LinkPricing"> | Date | string
   voided?: Prisma.BoolFilter<"LinkPricing"> | boolean
   stageLink?: Prisma.XOR<Prisma.StageLinkScalarRelationFilter, Prisma.StageLinkWhereInput>
   operator?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  route?: Prisma.XOR<Prisma.RouteNullableScalarRelationFilter, Prisma.RouteWhereInput> | null
 }
 
 export type LinkPricingOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   stageLinkId?: Prisma.SortOrder
   operatorId?: Prisma.SortOrder
-  price?: Prisma.SortOrder
+  routeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  day?: Prisma.SortOrder
   timeStart?: Prisma.SortOrder
   timeEnd?: Prisma.SortOrder
-  activeDays?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
   stageLink?: Prisma.StageLinkOrderByWithRelationInput
   operator?: Prisma.OrganizationOrderByWithRelationInput
+  route?: Prisma.RouteOrderByWithRelationInput
 }
 
 export type LinkPricingWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  stageLinkId_operatorId_timeStart_timeEnd?: Prisma.LinkPricingStageLinkIdOperatorIdTimeStartTimeEndCompoundUniqueInput
+  stageLinkId_operatorId_routeId_day_timeStart_timeEnd?: Prisma.LinkPricingStageLinkIdOperatorIdRouteIdDayTimeStartTimeEndCompoundUniqueInput
   AND?: Prisma.LinkPricingWhereInput | Prisma.LinkPricingWhereInput[]
   OR?: Prisma.LinkPricingWhereInput[]
   NOT?: Prisma.LinkPricingWhereInput | Prisma.LinkPricingWhereInput[]
   stageLinkId?: Prisma.StringFilter<"LinkPricing"> | string
   operatorId?: Prisma.StringFilter<"LinkPricing"> | string
-  price?: Prisma.DecimalFilter<"LinkPricing"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.StringNullableFilter<"LinkPricing"> | string | null
+  day?: Prisma.EnumDayOfWeekFilter<"LinkPricing"> | $Enums.DayOfWeek
   timeStart?: Prisma.StringFilter<"LinkPricing"> | string
   timeEnd?: Prisma.StringFilter<"LinkPricing"> | string
-  activeDays?: Prisma.StringNullableListFilter<"LinkPricing">
+  price?: Prisma.DecimalFilter<"LinkPricing"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"LinkPricing"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LinkPricing"> | Date | string
   voided?: Prisma.BoolFilter<"LinkPricing"> | boolean
   stageLink?: Prisma.XOR<Prisma.StageLinkScalarRelationFilter, Prisma.StageLinkWhereInput>
   operator?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-}, "id" | "stageLinkId_operatorId_timeStart_timeEnd">
+  route?: Prisma.XOR<Prisma.RouteNullableScalarRelationFilter, Prisma.RouteWhereInput> | null
+}, "id" | "stageLinkId_operatorId_routeId_day_timeStart_timeEnd">
 
 export type LinkPricingOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   stageLinkId?: Prisma.SortOrder
   operatorId?: Prisma.SortOrder
-  price?: Prisma.SortOrder
+  routeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  day?: Prisma.SortOrder
   timeStart?: Prisma.SortOrder
   timeEnd?: Prisma.SortOrder
-  activeDays?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
@@ -316,10 +336,11 @@ export type LinkPricingScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"LinkPricing"> | string
   stageLinkId?: Prisma.StringWithAggregatesFilter<"LinkPricing"> | string
   operatorId?: Prisma.StringWithAggregatesFilter<"LinkPricing"> | string
-  price?: Prisma.DecimalWithAggregatesFilter<"LinkPricing"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.StringNullableWithAggregatesFilter<"LinkPricing"> | string | null
+  day?: Prisma.EnumDayOfWeekWithAggregatesFilter<"LinkPricing"> | $Enums.DayOfWeek
   timeStart?: Prisma.StringWithAggregatesFilter<"LinkPricing"> | string
   timeEnd?: Prisma.StringWithAggregatesFilter<"LinkPricing"> | string
-  activeDays?: Prisma.StringNullableListFilter<"LinkPricing">
+  price?: Prisma.DecimalWithAggregatesFilter<"LinkPricing"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"LinkPricing"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"LinkPricing"> | Date | string
   voided?: Prisma.BoolWithAggregatesFilter<"LinkPricing"> | boolean
@@ -327,25 +348,27 @@ export type LinkPricingScalarWhereWithAggregatesInput = {
 
 export type LinkPricingCreateInput = {
   id?: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
   stageLink: Prisma.StageLinkCreateNestedOneWithoutPricingsInput
   operator: Prisma.OrganizationCreateNestedOneWithoutLinkPricingsInput
+  route?: Prisma.RouteCreateNestedOneWithoutLinkPricingsInput
 }
 
 export type LinkPricingUncheckedCreateInput = {
   id?: string
   stageLinkId: string
   operatorId: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: string | null
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -353,25 +376,27 @@ export type LinkPricingUncheckedCreateInput = {
 
 export type LinkPricingUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   stageLink?: Prisma.StageLinkUpdateOneRequiredWithoutPricingsNestedInput
   operator?: Prisma.OrganizationUpdateOneRequiredWithoutLinkPricingsNestedInput
+  route?: Prisma.RouteUpdateOneWithoutLinkPricingsNestedInput
 }
 
 export type LinkPricingUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stageLinkId?: Prisma.StringFieldUpdateOperationsInput | string
   operatorId?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -381,10 +406,11 @@ export type LinkPricingCreateManyInput = {
   id?: string
   stageLinkId: string
   operatorId: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: string | null
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -392,10 +418,10 @@ export type LinkPricingCreateManyInput = {
 
 export type LinkPricingUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -405,10 +431,11 @@ export type LinkPricingUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stageLinkId?: Prisma.StringFieldUpdateOperationsInput | string
   operatorId?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -424,17 +451,11 @@ export type LinkPricingOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type StringNullableListFilter<$PrismaModel = never> = {
-  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
-  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
-  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  isEmpty?: boolean
-}
-
-export type LinkPricingStageLinkIdOperatorIdTimeStartTimeEndCompoundUniqueInput = {
+export type LinkPricingStageLinkIdOperatorIdRouteIdDayTimeStartTimeEndCompoundUniqueInput = {
   stageLinkId: string
   operatorId: string
+  routeId: string
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
 }
@@ -443,10 +464,11 @@ export type LinkPricingCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   stageLinkId?: Prisma.SortOrder
   operatorId?: Prisma.SortOrder
-  price?: Prisma.SortOrder
+  routeId?: Prisma.SortOrder
+  day?: Prisma.SortOrder
   timeStart?: Prisma.SortOrder
   timeEnd?: Prisma.SortOrder
-  activeDays?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
@@ -460,9 +482,11 @@ export type LinkPricingMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   stageLinkId?: Prisma.SortOrder
   operatorId?: Prisma.SortOrder
-  price?: Prisma.SortOrder
+  routeId?: Prisma.SortOrder
+  day?: Prisma.SortOrder
   timeStart?: Prisma.SortOrder
   timeEnd?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
@@ -472,9 +496,11 @@ export type LinkPricingMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   stageLinkId?: Prisma.SortOrder
   operatorId?: Prisma.SortOrder
-  price?: Prisma.SortOrder
+  routeId?: Prisma.SortOrder
+  day?: Prisma.SortOrder
   timeStart?: Prisma.SortOrder
   timeEnd?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   voided?: Prisma.SortOrder
@@ -568,34 +594,73 @@ export type LinkPricingUncheckedUpdateManyWithoutStageLinkNestedInput = {
   deleteMany?: Prisma.LinkPricingScalarWhereInput | Prisma.LinkPricingScalarWhereInput[]
 }
 
-export type LinkPricingCreateactiveDaysInput = {
-  set: string[]
+export type EnumDayOfWeekFieldUpdateOperationsInput = {
+  set?: $Enums.DayOfWeek
 }
 
-export type LinkPricingUpdateactiveDaysInput = {
-  set?: string[]
-  push?: string | string[]
+export type LinkPricingCreateNestedManyWithoutRouteInput = {
+  create?: Prisma.XOR<Prisma.LinkPricingCreateWithoutRouteInput, Prisma.LinkPricingUncheckedCreateWithoutRouteInput> | Prisma.LinkPricingCreateWithoutRouteInput[] | Prisma.LinkPricingUncheckedCreateWithoutRouteInput[]
+  connectOrCreate?: Prisma.LinkPricingCreateOrConnectWithoutRouteInput | Prisma.LinkPricingCreateOrConnectWithoutRouteInput[]
+  createMany?: Prisma.LinkPricingCreateManyRouteInputEnvelope
+  connect?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+}
+
+export type LinkPricingUncheckedCreateNestedManyWithoutRouteInput = {
+  create?: Prisma.XOR<Prisma.LinkPricingCreateWithoutRouteInput, Prisma.LinkPricingUncheckedCreateWithoutRouteInput> | Prisma.LinkPricingCreateWithoutRouteInput[] | Prisma.LinkPricingUncheckedCreateWithoutRouteInput[]
+  connectOrCreate?: Prisma.LinkPricingCreateOrConnectWithoutRouteInput | Prisma.LinkPricingCreateOrConnectWithoutRouteInput[]
+  createMany?: Prisma.LinkPricingCreateManyRouteInputEnvelope
+  connect?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+}
+
+export type LinkPricingUpdateManyWithoutRouteNestedInput = {
+  create?: Prisma.XOR<Prisma.LinkPricingCreateWithoutRouteInput, Prisma.LinkPricingUncheckedCreateWithoutRouteInput> | Prisma.LinkPricingCreateWithoutRouteInput[] | Prisma.LinkPricingUncheckedCreateWithoutRouteInput[]
+  connectOrCreate?: Prisma.LinkPricingCreateOrConnectWithoutRouteInput | Prisma.LinkPricingCreateOrConnectWithoutRouteInput[]
+  upsert?: Prisma.LinkPricingUpsertWithWhereUniqueWithoutRouteInput | Prisma.LinkPricingUpsertWithWhereUniqueWithoutRouteInput[]
+  createMany?: Prisma.LinkPricingCreateManyRouteInputEnvelope
+  set?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+  disconnect?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+  delete?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+  connect?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+  update?: Prisma.LinkPricingUpdateWithWhereUniqueWithoutRouteInput | Prisma.LinkPricingUpdateWithWhereUniqueWithoutRouteInput[]
+  updateMany?: Prisma.LinkPricingUpdateManyWithWhereWithoutRouteInput | Prisma.LinkPricingUpdateManyWithWhereWithoutRouteInput[]
+  deleteMany?: Prisma.LinkPricingScalarWhereInput | Prisma.LinkPricingScalarWhereInput[]
+}
+
+export type LinkPricingUncheckedUpdateManyWithoutRouteNestedInput = {
+  create?: Prisma.XOR<Prisma.LinkPricingCreateWithoutRouteInput, Prisma.LinkPricingUncheckedCreateWithoutRouteInput> | Prisma.LinkPricingCreateWithoutRouteInput[] | Prisma.LinkPricingUncheckedCreateWithoutRouteInput[]
+  connectOrCreate?: Prisma.LinkPricingCreateOrConnectWithoutRouteInput | Prisma.LinkPricingCreateOrConnectWithoutRouteInput[]
+  upsert?: Prisma.LinkPricingUpsertWithWhereUniqueWithoutRouteInput | Prisma.LinkPricingUpsertWithWhereUniqueWithoutRouteInput[]
+  createMany?: Prisma.LinkPricingCreateManyRouteInputEnvelope
+  set?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+  disconnect?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+  delete?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+  connect?: Prisma.LinkPricingWhereUniqueInput | Prisma.LinkPricingWhereUniqueInput[]
+  update?: Prisma.LinkPricingUpdateWithWhereUniqueWithoutRouteInput | Prisma.LinkPricingUpdateWithWhereUniqueWithoutRouteInput[]
+  updateMany?: Prisma.LinkPricingUpdateManyWithWhereWithoutRouteInput | Prisma.LinkPricingUpdateManyWithWhereWithoutRouteInput[]
+  deleteMany?: Prisma.LinkPricingScalarWhereInput | Prisma.LinkPricingScalarWhereInput[]
 }
 
 export type LinkPricingCreateWithoutOperatorInput = {
   id?: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
   stageLink: Prisma.StageLinkCreateNestedOneWithoutPricingsInput
+  route?: Prisma.RouteCreateNestedOneWithoutLinkPricingsInput
 }
 
 export type LinkPricingUncheckedCreateWithoutOperatorInput = {
   id?: string
   stageLinkId: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: string | null
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -634,10 +699,11 @@ export type LinkPricingScalarWhereInput = {
   id?: Prisma.StringFilter<"LinkPricing"> | string
   stageLinkId?: Prisma.StringFilter<"LinkPricing"> | string
   operatorId?: Prisma.StringFilter<"LinkPricing"> | string
-  price?: Prisma.DecimalFilter<"LinkPricing"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.StringNullableFilter<"LinkPricing"> | string | null
+  day?: Prisma.EnumDayOfWeekFilter<"LinkPricing"> | $Enums.DayOfWeek
   timeStart?: Prisma.StringFilter<"LinkPricing"> | string
   timeEnd?: Prisma.StringFilter<"LinkPricing"> | string
-  activeDays?: Prisma.StringNullableListFilter<"LinkPricing">
+  price?: Prisma.DecimalFilter<"LinkPricing"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"LinkPricing"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LinkPricing"> | Date | string
   voided?: Prisma.BoolFilter<"LinkPricing"> | boolean
@@ -645,23 +711,25 @@ export type LinkPricingScalarWhereInput = {
 
 export type LinkPricingCreateWithoutStageLinkInput = {
   id?: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
   operator: Prisma.OrganizationCreateNestedOneWithoutLinkPricingsInput
+  route?: Prisma.RouteCreateNestedOneWithoutLinkPricingsInput
 }
 
 export type LinkPricingUncheckedCreateWithoutStageLinkInput = {
   id?: string
   operatorId: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: string | null
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -693,13 +761,66 @@ export type LinkPricingUpdateManyWithWhereWithoutStageLinkInput = {
   data: Prisma.XOR<Prisma.LinkPricingUpdateManyMutationInput, Prisma.LinkPricingUncheckedUpdateManyWithoutStageLinkInput>
 }
 
+export type LinkPricingCreateWithoutRouteInput = {
+  id?: string
+  day: $Enums.DayOfWeek
+  timeStart: string
+  timeEnd: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  voided?: boolean
+  stageLink: Prisma.StageLinkCreateNestedOneWithoutPricingsInput
+  operator: Prisma.OrganizationCreateNestedOneWithoutLinkPricingsInput
+}
+
+export type LinkPricingUncheckedCreateWithoutRouteInput = {
+  id?: string
+  stageLinkId: string
+  operatorId: string
+  day: $Enums.DayOfWeek
+  timeStart: string
+  timeEnd: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  voided?: boolean
+}
+
+export type LinkPricingCreateOrConnectWithoutRouteInput = {
+  where: Prisma.LinkPricingWhereUniqueInput
+  create: Prisma.XOR<Prisma.LinkPricingCreateWithoutRouteInput, Prisma.LinkPricingUncheckedCreateWithoutRouteInput>
+}
+
+export type LinkPricingCreateManyRouteInputEnvelope = {
+  data: Prisma.LinkPricingCreateManyRouteInput | Prisma.LinkPricingCreateManyRouteInput[]
+  skipDuplicates?: boolean
+}
+
+export type LinkPricingUpsertWithWhereUniqueWithoutRouteInput = {
+  where: Prisma.LinkPricingWhereUniqueInput
+  update: Prisma.XOR<Prisma.LinkPricingUpdateWithoutRouteInput, Prisma.LinkPricingUncheckedUpdateWithoutRouteInput>
+  create: Prisma.XOR<Prisma.LinkPricingCreateWithoutRouteInput, Prisma.LinkPricingUncheckedCreateWithoutRouteInput>
+}
+
+export type LinkPricingUpdateWithWhereUniqueWithoutRouteInput = {
+  where: Prisma.LinkPricingWhereUniqueInput
+  data: Prisma.XOR<Prisma.LinkPricingUpdateWithoutRouteInput, Prisma.LinkPricingUncheckedUpdateWithoutRouteInput>
+}
+
+export type LinkPricingUpdateManyWithWhereWithoutRouteInput = {
+  where: Prisma.LinkPricingScalarWhereInput
+  data: Prisma.XOR<Prisma.LinkPricingUpdateManyMutationInput, Prisma.LinkPricingUncheckedUpdateManyWithoutRouteInput>
+}
+
 export type LinkPricingCreateManyOperatorInput = {
   id?: string
   stageLinkId: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: string | null
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -707,23 +828,25 @@ export type LinkPricingCreateManyOperatorInput = {
 
 export type LinkPricingUpdateWithoutOperatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   stageLink?: Prisma.StageLinkUpdateOneRequiredWithoutPricingsNestedInput
+  route?: Prisma.RouteUpdateOneWithoutLinkPricingsNestedInput
 }
 
 export type LinkPricingUncheckedUpdateWithoutOperatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stageLinkId?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -732,10 +855,11 @@ export type LinkPricingUncheckedUpdateWithoutOperatorInput = {
 export type LinkPricingUncheckedUpdateManyWithoutOperatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stageLinkId?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -744,10 +868,11 @@ export type LinkPricingUncheckedUpdateManyWithoutOperatorInput = {
 export type LinkPricingCreateManyStageLinkInput = {
   id?: string
   operatorId: string
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: string | null
+  day: $Enums.DayOfWeek
   timeStart: string
   timeEnd: string
-  activeDays?: Prisma.LinkPricingCreateactiveDaysInput | string[]
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   voided?: boolean
@@ -755,23 +880,25 @@ export type LinkPricingCreateManyStageLinkInput = {
 
 export type LinkPricingUpdateWithoutStageLinkInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   operator?: Prisma.OrganizationUpdateOneRequiredWithoutLinkPricingsNestedInput
+  route?: Prisma.RouteUpdateOneWithoutLinkPricingsNestedInput
 }
 
 export type LinkPricingUncheckedUpdateWithoutStageLinkInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   operatorId?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -780,10 +907,63 @@ export type LinkPricingUncheckedUpdateWithoutStageLinkInput = {
 export type LinkPricingUncheckedUpdateManyWithoutStageLinkInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   operatorId?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  routeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
   timeStart?: Prisma.StringFieldUpdateOperationsInput | string
   timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  activeDays?: Prisma.LinkPricingUpdateactiveDaysInput | string[]
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type LinkPricingCreateManyRouteInput = {
+  id?: string
+  stageLinkId: string
+  operatorId: string
+  day: $Enums.DayOfWeek
+  timeStart: string
+  timeEnd: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  voided?: boolean
+}
+
+export type LinkPricingUpdateWithoutRouteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
+  timeStart?: Prisma.StringFieldUpdateOperationsInput | string
+  timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  stageLink?: Prisma.StageLinkUpdateOneRequiredWithoutPricingsNestedInput
+  operator?: Prisma.OrganizationUpdateOneRequiredWithoutLinkPricingsNestedInput
+}
+
+export type LinkPricingUncheckedUpdateWithoutRouteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  stageLinkId?: Prisma.StringFieldUpdateOperationsInput | string
+  operatorId?: Prisma.StringFieldUpdateOperationsInput | string
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
+  timeStart?: Prisma.StringFieldUpdateOperationsInput | string
+  timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type LinkPricingUncheckedUpdateManyWithoutRouteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  stageLinkId?: Prisma.StringFieldUpdateOperationsInput | string
+  operatorId?: Prisma.StringFieldUpdateOperationsInput | string
+  day?: Prisma.EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
+  timeStart?: Prisma.StringFieldUpdateOperationsInput | string
+  timeEnd?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -795,72 +975,82 @@ export type LinkPricingSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   stageLinkId?: boolean
   operatorId?: boolean
-  price?: boolean
+  routeId?: boolean
+  day?: boolean
   timeStart?: boolean
   timeEnd?: boolean
-  activeDays?: boolean
+  price?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   voided?: boolean
   stageLink?: boolean | Prisma.StageLinkDefaultArgs<ExtArgs>
   operator?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  route?: boolean | Prisma.LinkPricing$routeArgs<ExtArgs>
 }, ExtArgs["result"]["linkPricing"]>
 
 export type LinkPricingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   stageLinkId?: boolean
   operatorId?: boolean
-  price?: boolean
+  routeId?: boolean
+  day?: boolean
   timeStart?: boolean
   timeEnd?: boolean
-  activeDays?: boolean
+  price?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   voided?: boolean
   stageLink?: boolean | Prisma.StageLinkDefaultArgs<ExtArgs>
   operator?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  route?: boolean | Prisma.LinkPricing$routeArgs<ExtArgs>
 }, ExtArgs["result"]["linkPricing"]>
 
 export type LinkPricingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   stageLinkId?: boolean
   operatorId?: boolean
-  price?: boolean
+  routeId?: boolean
+  day?: boolean
   timeStart?: boolean
   timeEnd?: boolean
-  activeDays?: boolean
+  price?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   voided?: boolean
   stageLink?: boolean | Prisma.StageLinkDefaultArgs<ExtArgs>
   operator?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  route?: boolean | Prisma.LinkPricing$routeArgs<ExtArgs>
 }, ExtArgs["result"]["linkPricing"]>
 
 export type LinkPricingSelectScalar = {
   id?: boolean
   stageLinkId?: boolean
   operatorId?: boolean
-  price?: boolean
+  routeId?: boolean
+  day?: boolean
   timeStart?: boolean
   timeEnd?: boolean
-  activeDays?: boolean
+  price?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   voided?: boolean
 }
 
-export type LinkPricingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "stageLinkId" | "operatorId" | "price" | "timeStart" | "timeEnd" | "activeDays" | "createdAt" | "updatedAt" | "voided", ExtArgs["result"]["linkPricing"]>
+export type LinkPricingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "stageLinkId" | "operatorId" | "routeId" | "day" | "timeStart" | "timeEnd" | "price" | "createdAt" | "updatedAt" | "voided", ExtArgs["result"]["linkPricing"]>
 export type LinkPricingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stageLink?: boolean | Prisma.StageLinkDefaultArgs<ExtArgs>
   operator?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  route?: boolean | Prisma.LinkPricing$routeArgs<ExtArgs>
 }
 export type LinkPricingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stageLink?: boolean | Prisma.StageLinkDefaultArgs<ExtArgs>
   operator?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  route?: boolean | Prisma.LinkPricing$routeArgs<ExtArgs>
 }
 export type LinkPricingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stageLink?: boolean | Prisma.StageLinkDefaultArgs<ExtArgs>
   operator?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  route?: boolean | Prisma.LinkPricing$routeArgs<ExtArgs>
 }
 
 export type $LinkPricingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -868,6 +1058,7 @@ export type $LinkPricingPayload<ExtArgs extends runtime.Types.Extensions.Interna
   objects: {
     stageLink: Prisma.$StageLinkPayload<ExtArgs>
     operator: Prisma.$OrganizationPayload<ExtArgs>
+    route: Prisma.$RoutePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -876,7 +1067,11 @@ export type $LinkPricingPayload<ExtArgs extends runtime.Types.Extensions.Interna
      * The fleet operating organisation setting this fare.
      */
     operatorId: string
-    price: runtime.Decimal
+    /**
+     * null = operator-level default; set to override for a specific route.
+     */
+    routeId: string | null
+    day: $Enums.DayOfWeek
     /**
      * 24h time string e.g. "06:00"
      */
@@ -885,10 +1080,7 @@ export type $LinkPricingPayload<ExtArgs extends runtime.Types.Extensions.Interna
      * 24h time string e.g. "20:00"
      */
     timeEnd: string
-    /**
-     * Days this pricing is active e.g. ["Monday", "Tuesday"]
-     */
-    activeDays: string[]
+    price: runtime.Decimal
     createdAt: Date
     updatedAt: Date
     voided: boolean
@@ -1288,6 +1480,7 @@ export interface Prisma__LinkPricingClient<T, Null = never, ExtArgs extends runt
   readonly [Symbol.toStringTag]: "PrismaPromise"
   stageLink<T extends Prisma.StageLinkDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StageLinkDefaultArgs<ExtArgs>>): Prisma.Prisma__StageLinkClient<runtime.Types.Result.GetResult<Prisma.$StageLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   operator<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  route<T extends Prisma.LinkPricing$routeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LinkPricing$routeArgs<ExtArgs>>): Prisma.Prisma__RouteClient<runtime.Types.Result.GetResult<Prisma.$RoutePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1320,10 +1513,11 @@ export interface LinkPricingFieldRefs {
   readonly id: Prisma.FieldRef<"LinkPricing", 'String'>
   readonly stageLinkId: Prisma.FieldRef<"LinkPricing", 'String'>
   readonly operatorId: Prisma.FieldRef<"LinkPricing", 'String'>
-  readonly price: Prisma.FieldRef<"LinkPricing", 'Decimal'>
+  readonly routeId: Prisma.FieldRef<"LinkPricing", 'String'>
+  readonly day: Prisma.FieldRef<"LinkPricing", 'DayOfWeek'>
   readonly timeStart: Prisma.FieldRef<"LinkPricing", 'String'>
   readonly timeEnd: Prisma.FieldRef<"LinkPricing", 'String'>
-  readonly activeDays: Prisma.FieldRef<"LinkPricing", 'String[]'>
+  readonly price: Prisma.FieldRef<"LinkPricing", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"LinkPricing", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"LinkPricing", 'DateTime'>
   readonly voided: Prisma.FieldRef<"LinkPricing", 'Boolean'>
@@ -1725,6 +1919,25 @@ export type LinkPricingDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many LinkPricings to delete.
    */
   limit?: number
+}
+
+/**
+ * LinkPricing.route
+ */
+export type LinkPricing$routeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Route
+   */
+  select?: Prisma.RouteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Route
+   */
+  omit?: Prisma.RouteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RouteInclude<ExtArgs> | null
+  where?: Prisma.RouteWhereInput
 }
 
 /**

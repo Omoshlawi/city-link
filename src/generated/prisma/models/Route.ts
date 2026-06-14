@@ -194,6 +194,7 @@ export type RouteWhereInput = {
   links?: Prisma.RouteLinkListRelationFilter
   trips?: Prisma.TripListRelationFilter
   fleets?: Prisma.FleetRouteListRelationFilter
+  linkPricings?: Prisma.LinkPricingListRelationFilter
 }
 
 export type RouteOrderByWithRelationInput = {
@@ -206,6 +207,7 @@ export type RouteOrderByWithRelationInput = {
   links?: Prisma.RouteLinkOrderByRelationAggregateInput
   trips?: Prisma.TripOrderByRelationAggregateInput
   fleets?: Prisma.FleetRouteOrderByRelationAggregateInput
+  linkPricings?: Prisma.LinkPricingOrderByRelationAggregateInput
 }
 
 export type RouteWhereUniqueInput = Prisma.AtLeast<{
@@ -221,6 +223,7 @@ export type RouteWhereUniqueInput = Prisma.AtLeast<{
   links?: Prisma.RouteLinkListRelationFilter
   trips?: Prisma.TripListRelationFilter
   fleets?: Prisma.FleetRouteListRelationFilter
+  linkPricings?: Prisma.LinkPricingListRelationFilter
 }, "id" | "code" | "name">
 
 export type RouteOrderByWithAggregationInput = {
@@ -257,6 +260,7 @@ export type RouteCreateInput = {
   links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutRouteInput
 }
 
 export type RouteUncheckedCreateInput = {
@@ -269,6 +273,7 @@ export type RouteUncheckedCreateInput = {
   links?: Prisma.RouteLinkUncheckedCreateNestedManyWithoutRouteInput
   trips?: Prisma.TripUncheckedCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteUncheckedCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutRouteInput
 }
 
 export type RouteUpdateInput = {
@@ -281,6 +286,7 @@ export type RouteUpdateInput = {
   links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteUncheckedUpdateInput = {
@@ -293,6 +299,7 @@ export type RouteUncheckedUpdateInput = {
   links?: Prisma.RouteLinkUncheckedUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUncheckedUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUncheckedUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteCreateManyInput = {
@@ -325,6 +332,11 @@ export type RouteUncheckedUpdateManyInput = {
 export type RouteScalarRelationFilter = {
   is?: Prisma.RouteWhereInput
   isNot?: Prisma.RouteWhereInput
+}
+
+export type RouteNullableScalarRelationFilter = {
+  is?: Prisma.RouteWhereInput | null
+  isNot?: Prisma.RouteWhereInput | null
 }
 
 export type RouteCountOrderByAggregateInput = {
@@ -368,6 +380,22 @@ export type RouteUpdateOneRequiredWithoutFleetsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RouteUpdateToOneWithWhereWithoutFleetsInput, Prisma.RouteUpdateWithoutFleetsInput>, Prisma.RouteUncheckedUpdateWithoutFleetsInput>
 }
 
+export type RouteCreateNestedOneWithoutLinkPricingsInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutLinkPricingsInput, Prisma.RouteUncheckedCreateWithoutLinkPricingsInput>
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutLinkPricingsInput
+  connect?: Prisma.RouteWhereUniqueInput
+}
+
+export type RouteUpdateOneWithoutLinkPricingsNestedInput = {
+  create?: Prisma.XOR<Prisma.RouteCreateWithoutLinkPricingsInput, Prisma.RouteUncheckedCreateWithoutLinkPricingsInput>
+  connectOrCreate?: Prisma.RouteCreateOrConnectWithoutLinkPricingsInput
+  upsert?: Prisma.RouteUpsertWithoutLinkPricingsInput
+  disconnect?: Prisma.RouteWhereInput | boolean
+  delete?: Prisma.RouteWhereInput | boolean
+  connect?: Prisma.RouteWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RouteUpdateToOneWithWhereWithoutLinkPricingsInput, Prisma.RouteUpdateWithoutLinkPricingsInput>, Prisma.RouteUncheckedUpdateWithoutLinkPricingsInput>
+}
+
 export type RouteCreateNestedOneWithoutLinksInput = {
   create?: Prisma.XOR<Prisma.RouteCreateWithoutLinksInput, Prisma.RouteUncheckedCreateWithoutLinksInput>
   connectOrCreate?: Prisma.RouteCreateOrConnectWithoutLinksInput
@@ -405,6 +433,7 @@ export type RouteCreateWithoutFleetsInput = {
   voided?: boolean
   links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutRouteInput
 }
 
 export type RouteUncheckedCreateWithoutFleetsInput = {
@@ -416,6 +445,7 @@ export type RouteUncheckedCreateWithoutFleetsInput = {
   voided?: boolean
   links?: Prisma.RouteLinkUncheckedCreateNestedManyWithoutRouteInput
   trips?: Prisma.TripUncheckedCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutRouteInput
 }
 
 export type RouteCreateOrConnectWithoutFleetsInput = {
@@ -443,6 +473,7 @@ export type RouteUpdateWithoutFleetsInput = {
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteUncheckedUpdateWithoutFleetsInput = {
@@ -454,6 +485,71 @@ export type RouteUncheckedUpdateWithoutFleetsInput = {
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   links?: Prisma.RouteLinkUncheckedUpdateManyWithoutRouteNestedInput
   trips?: Prisma.TripUncheckedUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteCreateWithoutLinkPricingsInput = {
+  id?: string
+  code: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  voided?: boolean
+  links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
+  trips?: Prisma.TripCreateNestedManyWithoutRouteInput
+  fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
+}
+
+export type RouteUncheckedCreateWithoutLinkPricingsInput = {
+  id?: string
+  code: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  voided?: boolean
+  links?: Prisma.RouteLinkUncheckedCreateNestedManyWithoutRouteInput
+  trips?: Prisma.TripUncheckedCreateNestedManyWithoutRouteInput
+  fleets?: Prisma.FleetRouteUncheckedCreateNestedManyWithoutRouteInput
+}
+
+export type RouteCreateOrConnectWithoutLinkPricingsInput = {
+  where: Prisma.RouteWhereUniqueInput
+  create: Prisma.XOR<Prisma.RouteCreateWithoutLinkPricingsInput, Prisma.RouteUncheckedCreateWithoutLinkPricingsInput>
+}
+
+export type RouteUpsertWithoutLinkPricingsInput = {
+  update: Prisma.XOR<Prisma.RouteUpdateWithoutLinkPricingsInput, Prisma.RouteUncheckedUpdateWithoutLinkPricingsInput>
+  create: Prisma.XOR<Prisma.RouteCreateWithoutLinkPricingsInput, Prisma.RouteUncheckedCreateWithoutLinkPricingsInput>
+  where?: Prisma.RouteWhereInput
+}
+
+export type RouteUpdateToOneWithWhereWithoutLinkPricingsInput = {
+  where?: Prisma.RouteWhereInput
+  data: Prisma.XOR<Prisma.RouteUpdateWithoutLinkPricingsInput, Prisma.RouteUncheckedUpdateWithoutLinkPricingsInput>
+}
+
+export type RouteUpdateWithoutLinkPricingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
+  trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
+  fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
+}
+
+export type RouteUncheckedUpdateWithoutLinkPricingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  links?: Prisma.RouteLinkUncheckedUpdateManyWithoutRouteNestedInput
+  trips?: Prisma.TripUncheckedUpdateManyWithoutRouteNestedInput
+  fleets?: Prisma.FleetRouteUncheckedUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteCreateWithoutLinksInput = {
@@ -465,6 +561,7 @@ export type RouteCreateWithoutLinksInput = {
   voided?: boolean
   trips?: Prisma.TripCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutRouteInput
 }
 
 export type RouteUncheckedCreateWithoutLinksInput = {
@@ -476,6 +573,7 @@ export type RouteUncheckedCreateWithoutLinksInput = {
   voided?: boolean
   trips?: Prisma.TripUncheckedCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteUncheckedCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutRouteInput
 }
 
 export type RouteCreateOrConnectWithoutLinksInput = {
@@ -503,6 +601,7 @@ export type RouteUpdateWithoutLinksInput = {
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   trips?: Prisma.TripUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteUncheckedUpdateWithoutLinksInput = {
@@ -514,6 +613,7 @@ export type RouteUncheckedUpdateWithoutLinksInput = {
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   trips?: Prisma.TripUncheckedUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUncheckedUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteCreateWithoutTripsInput = {
@@ -525,6 +625,7 @@ export type RouteCreateWithoutTripsInput = {
   voided?: boolean
   links?: Prisma.RouteLinkCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingCreateNestedManyWithoutRouteInput
 }
 
 export type RouteUncheckedCreateWithoutTripsInput = {
@@ -536,6 +637,7 @@ export type RouteUncheckedCreateWithoutTripsInput = {
   voided?: boolean
   links?: Prisma.RouteLinkUncheckedCreateNestedManyWithoutRouteInput
   fleets?: Prisma.FleetRouteUncheckedCreateNestedManyWithoutRouteInput
+  linkPricings?: Prisma.LinkPricingUncheckedCreateNestedManyWithoutRouteInput
 }
 
 export type RouteCreateOrConnectWithoutTripsInput = {
@@ -563,6 +665,7 @@ export type RouteUpdateWithoutTripsInput = {
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   links?: Prisma.RouteLinkUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUpdateManyWithoutRouteNestedInput
 }
 
 export type RouteUncheckedUpdateWithoutTripsInput = {
@@ -574,6 +677,7 @@ export type RouteUncheckedUpdateWithoutTripsInput = {
   voided?: Prisma.BoolFieldUpdateOperationsInput | boolean
   links?: Prisma.RouteLinkUncheckedUpdateManyWithoutRouteNestedInput
   fleets?: Prisma.FleetRouteUncheckedUpdateManyWithoutRouteNestedInput
+  linkPricings?: Prisma.LinkPricingUncheckedUpdateManyWithoutRouteNestedInput
 }
 
 
@@ -585,12 +689,14 @@ export type RouteCountOutputType = {
   links: number
   trips: number
   fleets: number
+  linkPricings: number
 }
 
 export type RouteCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   links?: boolean | RouteCountOutputTypeCountLinksArgs
   trips?: boolean | RouteCountOutputTypeCountTripsArgs
   fleets?: boolean | RouteCountOutputTypeCountFleetsArgs
+  linkPricings?: boolean | RouteCountOutputTypeCountLinkPricingsArgs
 }
 
 /**
@@ -624,6 +730,13 @@ export type RouteCountOutputTypeCountFleetsArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.FleetRouteWhereInput
 }
 
+/**
+ * RouteCountOutputType without action
+ */
+export type RouteCountOutputTypeCountLinkPricingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LinkPricingWhereInput
+}
+
 
 export type RouteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -635,6 +748,7 @@ export type RouteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   links?: boolean | Prisma.Route$linksArgs<ExtArgs>
   trips?: boolean | Prisma.Route$tripsArgs<ExtArgs>
   fleets?: boolean | Prisma.Route$fleetsArgs<ExtArgs>
+  linkPricings?: boolean | Prisma.Route$linkPricingsArgs<ExtArgs>
   _count?: boolean | Prisma.RouteCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["route"]>
 
@@ -670,6 +784,7 @@ export type RouteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   links?: boolean | Prisma.Route$linksArgs<ExtArgs>
   trips?: boolean | Prisma.Route$tripsArgs<ExtArgs>
   fleets?: boolean | Prisma.Route$fleetsArgs<ExtArgs>
+  linkPricings?: boolean | Prisma.Route$linkPricingsArgs<ExtArgs>
   _count?: boolean | Prisma.RouteCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RouteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -681,6 +796,7 @@ export type $RoutePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     links: Prisma.$RouteLinkPayload<ExtArgs>[]
     trips: Prisma.$TripPayload<ExtArgs>[]
     fleets: Prisma.$FleetRoutePayload<ExtArgs>[]
+    linkPricings: Prisma.$LinkPricingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1092,6 +1208,7 @@ export interface Prisma__RouteClient<T, Null = never, ExtArgs extends runtime.Ty
   links<T extends Prisma.Route$linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RouteLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trips<T extends Prisma.Route$tripsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$tripsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TripPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   fleets<T extends Prisma.Route$fleetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$fleetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FleetRoutePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  linkPricings<T extends Prisma.Route$linkPricingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Route$linkPricingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LinkPricingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1589,6 +1706,30 @@ export type Route$fleetsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.FleetRouteScalarFieldEnum | Prisma.FleetRouteScalarFieldEnum[]
+}
+
+/**
+ * Route.linkPricings
+ */
+export type Route$linkPricingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LinkPricing
+   */
+  select?: Prisma.LinkPricingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LinkPricing
+   */
+  omit?: Prisma.LinkPricingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LinkPricingInclude<ExtArgs> | null
+  where?: Prisma.LinkPricingWhereInput
+  orderBy?: Prisma.LinkPricingOrderByWithRelationInput | Prisma.LinkPricingOrderByWithRelationInput[]
+  cursor?: Prisma.LinkPricingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LinkPricingScalarFieldEnum | Prisma.LinkPricingScalarFieldEnum[]
 }
 
 /**

@@ -3171,10 +3171,11 @@ export const LinkPricingScalarFieldEnum = {
   id: 'id',
   stageLinkId: 'stageLinkId',
   operatorId: 'operatorId',
-  price: 'price',
+  routeId: 'routeId',
+  day: 'day',
   timeStart: 'timeStart',
   timeEnd: 'timeEnd',
-  activeDays: 'activeDays',
+  price: 'price',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   voided: 'voided'
@@ -3504,6 +3505,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'DayOfWeek'
+ */
+export type EnumDayOfWeekFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DayOfWeek'>
+    
+
+
+/**
+ * Reference to a field of type 'DayOfWeek[]'
+ */
+export type ListEnumDayOfWeekFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DayOfWeek[]'>
     
 
 
